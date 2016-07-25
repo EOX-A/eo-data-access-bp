@@ -1,8 +1,62 @@
-[#rangetype-description-enhancements,reftext='12']
+[#rangetype-description-enhancements,reftext='11']
 == rangeType Description Enhancements
 
 === Overview
 
+EO-WCS 1.1 extends the range type description of WCS 2.0 which is inherited
+from CIS 1.0 (formerly known as GMLCO).
+
+The extension includes elements to specify the measured physical properties
+(`wcseo:dataSemantics`), the data types of stored numbers (`wcseo:dataType`),
+the conversion from stored numbers to physical properties
+(`wcseo:dataType2dataSemantics`), as well as a hint for how to generate a RGB
+version (`wcseo:RGBgenerationHint`).
+
+The additional range type information is provided via the
+`wcseo:rangeTypeExtension` element which is either included once for the whole
+range type under the `swe:DataRecord` element or separately for each channel
+(band) under each `swe:DataRecord/swe:field/swe:Quantity` element. It may also
+be included in both locations for example when the RGB generation hint is
+common for all bands but the data conversion is different.
+
+Extensive examples are given <<_examples,below>>.
+
+=== Physical Properties
+
+The `wcseo:rangeTypeExtension` element includes the `wcseo:dataSemantics`
+element of type `anyURI`. This element preferably holds an URI resolving to a
+description of the observed physical property.
+
+XML instance examples included with the OGC schemas make use of
+`http://www.opengis.net/def/property/OGC/0/Radiance` which doesn't resolve to
+something useful as expected. Another URI used in OGC examples is
+`http://sweet.jpl.nasa.gov/2.0/physRadiation.owl#Radiance`. The latest version
+of this is  version is supposedly
+`http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance`.
+
+It is suspected that the ESA funded projects RARE, SMAAD, OBEOS, or PRODTREES
+define URI to describe physical properties as well. However, a web research
+didn't bring up anything useful in this direction.
+
+Besides this URI the `gmlcov:rangeType` element provides the unit of measure
+via the `code` attribute of the `swe:uom` element of each `swe:Quantity`
+element. Of course this uom and the `wcseo:dataSemantics` need to match.
+An example for a uom is `W.m-2.sr-1` (
+http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian)
+for radiance as used above.
+
+=== Data Types
+
 TODO
+
+=== Conversion from Data Type to Physical Properties
+
+TODO
+
+=== Hint for RGB Generation
+
+TODO
+
+=== Examples
 
 TODO
