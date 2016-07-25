@@ -2,13 +2,16 @@
 
 == Scope
 
+This OGC Best Practice document details configuration and instantiation
+conventions for access to Earth Observation (EO) data. It defines how to
+utilize WCS with EO products including generic conventions and recommendations
+for data and metadata mapping and conversion which are to be used in concrete
+tailoring for specific missions. It further considers how to link to other
+services like CSW, WMS, and WPS.
+
 TODO
 
-== Conformance
-
-TODO Needed?
-
-[#normative_references,reftext='3']
+[#normative_references,reftext='2']
 == Normative references
 
 The following normative documents contain provisions that, through reference in
@@ -19,12 +22,18 @@ referred to applies.
 
 OGC 06-121r9, _OGC Web Services Common Standard_, version 2.0
 
-TBD OGC 09-146r2, _Coverages Implementation Schema / GML 3.2.1 Application Schema for Coverages_, version 1.1 +
+TBD OGC 09-146r2, _Coverages Implementation Schema / GML 3.2.1 Application
+Schema for Coverages_, version 1.1 +
 Conformance classes used: _gml-coverage_
 
-TBD OGC 09-110r4, OGC® _Web Coverage Service 2.1 Interface Standard Core_,
+TBD OGC 09-110r4, _OGC® Web Coverage Service 2.1 Interface Standard Core_,
 version 2.1 +
 Conformance classes used: _core_
+
+TBD OGC 10-140r1, _OGC® Web Coverage Service 2.0 Interface Standard - Earth
+Observation Application Profile_, version 1.1 +
+Conformance classes used: _eowcs_, _eowcs_geteocoverageset_, _eowcs_get-kvp_,
+_eowcs_soap_,
 
 OGC 11-053r1, _OGC® Web Coverage Service Interface Standard - CRS Extension_,
 version 1.0 +
@@ -69,9 +78,16 @@ Conformance classes used: _eop_, _sar_, _opt_
 
 == Terms and definitions
 
+This document uses the standard terms defined in Subclause 5.3 of [OGC
+06-121r9], which is based on the ISO/IEC Directives, Part 2, Rules for the
+structure and drafting of International Standards. In particular, the word
+"shall" (not "must") is the verb form used to indicate a requirement to be
+strictly followed to conform to this standard.
+
 For the purposes of this document, the terms and definitions given in the above
-references apply. In addition, the following terms and definitions apply. An
-arrow "->" indicates that the following term is defined in this Clause.
+references, particularly EO-WCS [10-140r1], apply. In addition, the following
+terms and definitions apply. An arrow "->" indicates that the following term is
+defined in this Clause.
 
 === Coverage
 

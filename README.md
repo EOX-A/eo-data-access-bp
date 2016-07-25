@@ -2,7 +2,15 @@
 
 # OGC® EO Data Access Best Practice
 
-TODO
+This OGC Best Practice document details proposed configuration and
+instantiation conventions for access to Earth Observation (EO) data developed
+in the European Space Agency (ESA) funded project Evolution of EO Online Data
+Access Services (EVO-ODAS).
+
+It defines how to utilize WCS with EO products including generic conventions
+and recommendations for data and metadata mapping and conversion which are to
+be used in concrete tailoring for specific missions. It further considers how
+to link to other services like CSW, WMS, and WPS.
 
 ## About
 

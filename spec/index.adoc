@@ -125,23 +125,25 @@ toc::[]
 
 == Abstract
 
-TODO
+This OGC Best Practice document details proposed configuration and
+instantiation conventions for access to Earth Observation (EO) data developed
+in the European Space Agency (ESA) funded project Evolution of EO Online Data
+Access Services (EVO-ODAS).
+
+It defines how to utilize WCS with EO products including generic conventions
+and recommendations for data and metadata mapping and conversion which are to
+be used in concrete tailoring for specific missions. It further considers how
+to link to other services like CSW, WMS, and WPS.
 
 Suggested additions, changes, and comments on this draft document are welcome
-and encouraged. Such suggestions may be submitted by email message or by making
+and encouraged. Such suggestions may be submitted by email message, by creating
+an issue or a pull request at the
+https://github.com/EOX-A/eo-data-access-bp[GitHub repository], or by making
 suggested changes in an edited copy of this document.
 
 == Keywords
 
-ogcdoc, eo, earth observation
-
-== Terms and definitions
-
-This document uses the standard terms defined in Subclause 5.3 of [OGC
-06-121r9], which is based on the ISO/IEC Directives, Part 2, Rules for the
-structure and drafting of International Standards. In particular, the word
-"shall" (not "must") is the verb form used to indicate a requirement to be
-strictly followed to conform to this standard.
+ogcdoc, eo, earth observation, data access, wcs, eo-wcs
 
 == Submitting organizations
 
@@ -149,8 +151,8 @@ The following organizations have submitted this Best Practice to the
 Open GeoSpatial Consortium, Inc.:
 
 * EOX IT Services GmbH
-*
-*
+* German Aerospace Center (DLR)
+* GeoSolutions S.A.S.
 * European Space Agency (ESA)
 
 == Document Contributor Contact Points
@@ -171,19 +173,20 @@ the technical contents of this (part of this) document.
 
 == Future Work
 
-TODO
+Please send any suggestions for future work to the document editor or
+contributors named above.
 
 include::0_introduction.adoc[]
 
 :numbered:
 
 include::1_base.adoc[]
-//include::2_cross_service_interaction.adoc[]
-//include::3_grouping-of-associated-data.adoc[]
-//include::4_collection-and-product-registration.adoc[]
-//include::5_condense-coverage-description-information.adoc[]
-//include::6_uniform-coverage-grouping.adoc[]
-//include::7_wcs-masking-extension.adoc[]
+include::2_cross-service-interaction.adoc[]
+include::3_grouping-of-associated-data.adoc[]
+include::4_collection-and-product-registration.adoc[]
+include::5_condense-coverage-description-information.adoc[]
+include::6_uniform-coverage-grouping.adoc[]
+include::7_wcs-masking-extension.adoc[]
 include::8_rangetype-description-enhancements.adoc[]
 
 :numbered!:

@@ -1,0 +1,8 @@
+[#WCS Masking Extension,reftext='10']
+== WCS Masking Extension
+
+=== Overview
+
+TODO
+
+TODO
