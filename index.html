@@ -148,7 +148,6 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#_license_agreement">License Agreement</a></li>
 <li><a href="#_abstract">Abstract</a></li>
 <li><a href="#_keywords">Keywords</a></li>
-<li><a href="#_terms_and_definitions">Terms and definitions</a></li>
 <li><a href="#_submitting_organizations">Submitting organizations</a></li>
 <li><a href="#_document_contributor_contact_points">Document Contributor Contact Points</a></li>
 <li><a href="#_changes_to_the_ogc_abstract_specification">Changes to the OGC ® Abstract Specification</a></li>
@@ -160,34 +159,68 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#_ogc_eo_data_access_best_practice_2">OGC® EO Data Access Best Practice</a>
 <ul class="sectlevel1">
 <li><a href="#_scope">1. Scope</a></li>
-<li><a href="#_conformance">2. Conformance</a></li>
-<li><a href="#normative_references">3. Normative references</a></li>
-<li><a href="#_terms_and_definitions_2">4. Terms and definitions</a>
+<li><a href="#normative_references">2. Normative references</a></li>
+<li><a href="#_terms_and_definitions">3. Terms and definitions</a>
 <ul class="sectlevel2">
-<li><a href="#_coverage">4.1. Coverage</a></li>
-<li><a href="#_dataset">4.2. Dataset</a></li>
-<li><a href="#_dataset_series">4.3. Dataset Series</a></li>
-<li><a href="#_eo_coverage">4.4. EO Coverage</a></li>
-<li><a href="#_eo_metadata">4.5. EO Metadata</a></li>
-<li><a href="#_stitched_mosaic">4.6. Stitched Mosaic</a></li>
-<li><a href="#_eo_product">4.7. EO Product</a></li>
-<li><a href="#_eo_product_dataset">4.8. EO Product Dataset</a></li>
-<li><a href="#_eo_product_quicklook">4.9. EO Product Quicklook</a></li>
-<li><a href="#_lineage_record">4.10. Lineage record</a></li>
-<li><a href="#_refers_to">4.11. refers to</a></li>
+<li><a href="#_coverage">3.1. Coverage</a></li>
+<li><a href="#_dataset">3.2. Dataset</a></li>
+<li><a href="#_dataset_series">3.3. Dataset Series</a></li>
+<li><a href="#_eo_coverage">3.4. EO Coverage</a></li>
+<li><a href="#_eo_metadata">3.5. EO Metadata</a></li>
+<li><a href="#_stitched_mosaic">3.6. Stitched Mosaic</a></li>
+<li><a href="#_eo_product">3.7. EO Product</a></li>
+<li><a href="#_eo_product_dataset">3.8. EO Product Dataset</a></li>
+<li><a href="#_eo_product_quicklook">3.9. EO Product Quicklook</a></li>
+<li><a href="#_lineage_record">3.10. Lineage record</a></li>
+<li><a href="#_refers_to">3.11. refers to</a></li>
 </ul>
 </li>
-<li><a href="#_conventions">5. Conventions</a>
+<li><a href="#_conventions">4. Conventions</a>
 <ul class="sectlevel2">
-<li><a href="#_uml_notation">5.1. UML notation</a></li>
-<li><a href="#_data_dictionary_tables">5.2. Data dictionary tables</a></li>
-<li><a href="#_namespace_prefix_conventions">5.3. Namespace prefix conventions</a></li>
-<li><a href="#_multiple_representations">5.4. Multiple representations</a></li>
+<li><a href="#_uml_notation">4.1. UML notation</a></li>
+<li><a href="#_data_dictionary_tables">4.2. Data dictionary tables</a></li>
+<li><a href="#_namespace_prefix_conventions">4.3. Namespace prefix conventions</a></li>
+<li><a href="#_multiple_representations">4.4. Multiple representations</a></li>
 </ul>
 </li>
-<li><a href="#rangetype-description-enhancements">6. rangeType Description Enhancements</a>
+<li><a href="#_cross_service_interaction">5. Cross Service Interaction</a>
 <ul class="sectlevel2">
-<li><a href="#_overview">6.1. Overview</a></li>
+<li><a href="#_overview">5.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#_grouping_of_associated_data">6. Grouping of Associated Data</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_2">6.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#_collection_and_product_registration">7. Collection and Product Registration</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_3">7.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#_condense_coverage_description_information">8. Condense Coverage Description Information</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_4">8.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#_uniform_coverage_grouping">9. Uniform Coverage Grouping</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_5">9.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#_wcs_masking_extension">10. WCS Masking Extension</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_6">10.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#rangetype-description-enhancements">11. rangeType Description Enhancements</a>
+<ul class="sectlevel2">
+<li><a href="#_overview_7">11.1. Overview</a></li>
+<li><a href="#_physical_properties">11.2. Physical Properties</a></li>
+<li><a href="#_data_types">11.3. Data Types</a></li>
+<li><a href="#_conversion_from_data_type_to_physical_properties">11.4. Conversion from Data Type to Physical Properties</a></li>
+<li><a href="#_hint_for_rgb_generation">11.5. Hint for RGB Generation</a></li>
+<li><a href="#_examples">11.6. Examples</a></li>
 </ul>
 </li>
 <li><a href="#_bibliography">Bibliography</a></li>
@@ -202,11 +235,22 @@ procedures required by applicable law to make this license enforceable</p>
 <h2 id="_abstract">Abstract</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>This OGC Best Practice document details proposed configuration and
+instantiation conventions for access to Earth Observation (EO) data developed
+in the European Space Agency (ESA) funded project Evolution of EO Online Data
+Access Services (EVO-ODAS).</p>
+</div>
+<div class="paragraph">
+<p>It defines how to utilize WCS with EO products including generic conventions
+and recommendations for data and metadata mapping and conversion which are to
+be used in concrete tailoring for specific missions. It further considers how
+to link to other services like CSW, WMS, and WPS.</p>
 </div>
 <div class="paragraph">
 <p>Suggested additions, changes, and comments on this draft document are welcome
-and encouraged. Such suggestions may be submitted by email message or by making
+and encouraged. Such suggestions may be submitted by email message, by creating
+an issue or a pull request at the
+<a href="https://github.com/EOX-A/eo-data-access-bp">GitHub repository</a>, or by making
 suggested changes in an edited copy of this document.</p>
 </div>
 </div>
@@ -215,19 +259,7 @@ suggested changes in an edited copy of this document.</p>
 <h2 id="_keywords">Keywords</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>ogcdoc, eo, earth observation</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_terms_and_definitions">Terms and definitions</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This document uses the standard terms defined in Subclause 5.3 of [OGC
-06-121r9], which is based on the ISO/IEC Directives, Part 2, Rules for the
-structure and drafting of International Standards. In particular, the word
-"shall" (not "must") is the verb form used to indicate a requirement to be
-strictly followed to conform to this standard.</p>
+<p>ogcdoc, eo, earth observation, data access, wcs, eo-wcs</p>
 </div>
 </div>
 </div>
@@ -241,9 +273,13 @@ Open GeoSpatial Consortium, Inc.:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>EOX IT Services GmbH
-*
-*</p>
+<p>EOX IT Services GmbH</p>
+</li>
+<li>
+<p>German Aerospace Center (DLR)</p>
+</li>
+<li>
+<p>GeoSolutions S.A.S.</p>
 </li>
 <li>
 <p>European Space Agency (ESA)</p>
@@ -292,7 +328,8 @@ the technical contents of this (part of this) document.</p>
 <h2 id="_future_work">Future Work</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>Please send any suggestions for future work to the document editor or
+contributors named above.</p>
 </div>
 </div>
 </div>
@@ -300,7 +337,23 @@ the technical contents of this (part of this) document.</p>
 <h2 id="_foreword">Foreword</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>This OGC Best Practice document details proposed configuration and
+instantiation conventions for access to Earth Observation (EO) data developed
+in the European Space Agency (ESA) funded project Evolution of EO Online Data
+Access Services (EVO-ODAS).</p>
+</div>
+<div class="paragraph">
+<p>It defines how to utilize WCS with EO products including generic conventions
+and recommendations for data and metadata mapping and conversion which are to
+be used in concrete tailoring for specific missions. It further considers how
+to link to other services like CSW, WMS, and WPS.</p>
+</div>
+<div class="paragraph">
+<p>Suggested additions, changes, and comments on this draft document are welcome
+and encouraged. Such suggestions may be submitted by email message, by creating
+an issue or a pull request at the
+<a href="https://github.com/EOX-A/eo-data-access-bp">GitHub repository</a>, or by making
+suggested changes in an edited copy of this document.</p>
 </div>
 <div class="paragraph">
 <p><em>Attention is drawn to the possibility that some of the elements of this
@@ -309,9 +362,10 @@ shall not be held responsible for identifying any or all such patent rights.</em
 </div>
 <div class="paragraph">
 <p><em>Recipients of this document are requested to submit, with their comments,
-notification of any relevant patent claims or other intellectual property rights
-of which they may be aware that might be infringed by any implementation of the
-standard set forth in this document, and to provide supporting documentation.</em></p>
+notification of any relevant patent claims or other intellectual property
+rights of which they may be aware that might be infringed by any implementation
+of the standard set forth in this document, and to provide supporting
+documentation.</em></p>
 </div>
 </div>
 </div>
@@ -330,20 +384,28 @@ standard set forth in this document, and to provide supporting documentation.</e
 <h2 id="_scope">1. Scope</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>This OGC Best Practice document details configuration and instantiation
+conventions for access to Earth Observation (EO) data. It defines how to
+utilize WCS with EO products including generic conventions and recommendations
+for data and metadata mapping and conversion which are to be used in concrete
+tailoring for specific missions. It further considers how to link to other
+services like CSW, WMS, and WPS.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_conformance">2. Conformance</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>TODO Needed?</p>
+<p>TODO
+    Assumption service stack around EO-WCS at least including EO-WMS
+    possibly also OpenSearch and/or CSW and WPS for additional processing not covered by WCS and its extensions</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Introduce concepts of EO-WCS (e.g. limit size of capabilities response -&gt; DatasetSeries -&gt; DescribeEOCoverageSet operation including spatial-temporal search, etc.)
+    Maybe point to youtube video???</pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="normative_references">3. Normative references</h2>
+<h2 id="normative_references">2. Normative references</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following normative documents contain provisions that, through reference in
@@ -356,13 +418,20 @@ referred to applies.</p>
 <p>OGC 06-121r9, <em>OGC Web Services Common Standard</em>, version 2.0</p>
 </div>
 <div class="paragraph">
-<p>TBD OGC 09-146r2, <em>Coverages Implementation Schema / GML 3.2.1 Application Schema for Coverages</em>, version 1.1<br>
+<p>TBD OGC 09-146r2, <em>Coverages Implementation Schema / GML 3.2.1 Application
+Schema for Coverages</em>, version 1.1<br>
 Conformance classes used: <em>gml-coverage</em></p>
 </div>
 <div class="paragraph">
-<p>TBD OGC 09-110r4, OGC® <em>Web Coverage Service 2.1 Interface Standard Core</em>,
+<p>TBD OGC 09-110r4, <em>OGC® Web Coverage Service 2.1 Interface Standard Core</em>,
 version 2.1<br>
 Conformance classes used: <em>core</em></p>
+</div>
+<div class="paragraph">
+<p>TBD OGC 10-140r1, <em>OGC® Web Coverage Service 2.0 Interface Standard - Earth
+Observation Application Profile</em>, version 1.1<br>
+Conformance classes used: <em>eowcs</em>, <em>eowcs_geteocoverageset</em>, <em>eowcs_get-kvp</em>,
+<em>eowcs_soap</em>,</p>
 </div>
 <div class="paragraph">
 <p>OGC 11-053r1, <em>OGC® Web Coverage Service Interface Standard - CRS Extension</em>,
@@ -418,21 +487,29 @@ Conformance classes used: <em>eop</em>, <em>sar</em>, <em>opt</em></p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_terms_and_definitions_2">4. Terms and definitions</h2>
+<h2 id="_terms_and_definitions">3. Terms and definitions</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>This document uses the standard terms defined in Subclause 5.3 of [OGC
+06-121r9], which is based on the ISO/IEC Directives, Part 2, Rules for the
+structure and drafting of International Standards. In particular, the word
+"shall" (not "must") is the verb form used to indicate a requirement to be
+strictly followed to conform to this standard.</p>
+</div>
+<div class="paragraph">
 <p>For the purposes of this document, the terms and definitions given in the above
-references apply. In addition, the following terms and definitions apply. An
-arrow "&#8594;" indicates that the following term is defined in this Clause.</p>
+references, particularly EO-WCS [10-140r1], apply. In addition, the following
+terms and definitions apply. An arrow "&#8594;" indicates that the following term is
+defined in this Clause.</p>
 </div>
 <div class="sect2">
-<h3 id="_coverage">4.1. Coverage</h3>
+<h3 id="_coverage">3.1. Coverage</h3>
 <div class="paragraph">
 <p>digital representation of a spatio-temporally varying phenomenon as defined in</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dataset">4.2. Dataset</h3>
+<h3 id="_dataset">3.2. Dataset</h3>
 <div class="paragraph">
 <p>2-D &#8594; EO Coverage</p>
 </div>
@@ -451,59 +528,59 @@ instruments.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dataset_series">4.3. Dataset Series</h3>
+<h3 id="_dataset_series">3.3. Dataset Series</h3>
 <div class="paragraph">
 <p>collection of &#8594; EO Coverages</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eo_coverage">4.4. EO Coverage</h3>
+<h3 id="_eo_coverage">3.4. EO Coverage</h3>
 <div class="paragraph">
 <p>Rectified Grid &#8594; Coverage or Referenceable Grid &#8594; Coverage having an &#8594; EO
 Metadata record and a WGS84 bounding box</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eo_metadata">4.5. EO Metadata</h3>
+<h3 id="_eo_metadata">3.5. EO Metadata</h3>
 <div class="paragraph">
 <p>&#8594; EO Coverage&#8217;s metadata record</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_stitched_mosaic">4.6. Stitched Mosaic</h3>
+<h3 id="_stitched_mosaic">3.6. Stitched Mosaic</h3>
 <div class="paragraph">
 <p>&#8594; EO Coverage composed from subsets of one or more co-referenced &#8594; Datasets</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eo_product">4.7. EO Product</h3>
+<h3 id="_eo_product">3.7. EO Product</h3>
 <div class="paragraph">
 <p>An EO Product contains one or more related &#8594; EO Product Datasets plus metadata
 and optionally auxiliary data like &#8594; EO Product Quicklooks.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eo_product_dataset">4.8. EO Product Dataset</h3>
+<h3 id="_eo_product_dataset">3.8. EO Product Dataset</h3>
 <div class="paragraph">
 <p>One or more files each containing one or more &#8594; EO Coverages.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_eo_product_quicklook">4.9. EO Product Quicklook</h3>
+<h3 id="_eo_product_quicklook">3.9. EO Product Quicklook</h3>
 <div class="paragraph">
 <p>A visual representation of a usually reduced &#8594; EO Product Dataset encoded in
 an image format. The &#8594; EO Product Dataset may combine different bands.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lineage_record">4.10. Lineage record</h3>
+<h3 id="_lineage_record">3.10. Lineage record</h3>
 <div class="paragraph">
 <p>Data structure documenting an operation that has been applied to the &#8594; coverage
 it is part of</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_refers_to">4.11. refers to</h3>
+<h3 id="_refers_to">3.11. refers to</h3>
 <div class="paragraph">
 <p>contains, in its &#8594; EO Metadata element as defined in [OGC 10-157r4], the &#8594; EO
 Metadata element of</p>
@@ -512,10 +589,10 @@ Metadata element of</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conventions">5. Conventions</h2>
+<h2 id="_conventions">4. Conventions</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_uml_notation">5.1. UML notation</h3>
+<h3 id="_uml_notation">4.1. UML notation</h3>
 <div class="paragraph">
 <p>Unified Modeling Language (UML) static structure diagrams appearing in this
 specification are used as described in Subclause 5.2 of OGC Web Services Common
@@ -523,7 +600,7 @@ specification are used as described in Subclause 5.2 of OGC Web Services Common
 </div>
 </div>
 <div class="sect2">
-<h3 id="_data_dictionary_tables">5.2. Data dictionary tables</h3>
+<h3 id="_data_dictionary_tables">4.2. Data dictionary tables</h3>
 <div class="paragraph">
 <p>The UML model data dictionary is specified herein in a series of tables. The
 contents of the columns in these tables are described in Subclause 5.5 of [OGC
@@ -532,7 +609,7 @@ any table footnotes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_namespace_prefix_conventions">5.3. Namespace prefix conventions</h3>
+<h3 id="_namespace_prefix_conventions">4.3. Namespace prefix conventions</h3>
 <div class="paragraph">
 <p>The following namespaces are used in this document. The prefix abbreviations
 used constitute conventions used here, but are <strong>not</strong> normative. The namespaces
@@ -640,7 +717,7 @@ Extension</p></td>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_multiple_representations">5.4. Multiple representations</h3>
+<h3 id="_multiple_representations">4.4. Multiple representations</h3>
 <div class="paragraph">
 <p>When multiple representations of the same information are given in a
 specification document these are consistent. Should this not be the case then
@@ -651,13 +728,166 @@ this is considered an error, and the
 </div>
 </div>
 <div class="sect1">
-<h2 id="rangetype-description-enhancements">6. rangeType Description Enhancements</h2>
+<h2 id="_cross_service_interaction">5. Cross Service Interaction</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview">6.1. Overview</h3>
+<h3 id="_overview">5.1. Overview</h3>
 <div class="paragraph">
 <p>TODO</p>
 </div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_grouping_of_associated_data">6. Grouping of Associated Data</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_2">6.1. Overview</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_collection_and_product_registration">7. Collection and Product Registration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_3">7.1. Overview</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_condense_coverage_description_information">8. Condense Coverage Description Information</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_4">8.1. Overview</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_uniform_coverage_grouping">9. Uniform Coverage Grouping</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_5">9.1. Overview</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wcs_masking_extension">10. WCS Masking Extension</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_6">10.1. Overview</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rangetype-description-enhancements">11. rangeType Description Enhancements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_7">11.1. Overview</h3>
+<div class="paragraph">
+<p>EO-WCS 1.1 extends the range type description of WCS 2.0 which is inherited
+from CIS 1.0 (formerly known as GMLCO).</p>
+</div>
+<div class="paragraph">
+<p>The extension includes elements to specify the measured physical properties
+(<code>wcseo:dataSemantics</code>), the data types of stored numbers (<code>wcseo:dataType</code>),
+the conversion from stored numbers to physical properties
+(<code>wcseo:dataType2dataSemantics</code>), as well as a hint for how to generate a RGB
+version (<code>wcseo:RGBgenerationHint</code>).</p>
+</div>
+<div class="paragraph">
+<p>The additional range type information is provided via the
+<code>wcseo:rangeTypeExtension</code> element which is either included once for the whole
+range type under the <code>swe:DataRecord</code> element or separately for each channel
+(band) under each <code>swe:DataRecord/swe:field/swe:Quantity</code> element. It may also
+be included in both locations for example when the RGB generation hint is
+common for all bands but the data conversion is different.</p>
+</div>
+<div class="paragraph">
+<p>Extensive examples are given <a href="#_examples">below</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_physical_properties">11.2. Physical Properties</h3>
+<div class="paragraph">
+<p>The <code>wcseo:rangeTypeExtension</code> element includes the <code>wcseo:dataSemantics</code>
+element of type <code>anyURI</code>. This element preferably holds an URI resolving to a
+description of the observed physical property.</p>
+</div>
+<div class="paragraph">
+<p>XML instance examples included with the OGC schemas make use of
+<code><a href="http://www.opengis.net/def/property/OGC/0/Radiance" class="bare">http://www.opengis.net/def/property/OGC/0/Radiance</a></code> which doesn&#8217;t resolve to
+something useful as expected. Another URI used in OGC examples is
+<code><a href="http://sweet.jpl.nasa.gov/2.0/physRadiation.owl#Radiance" class="bare">http://sweet.jpl.nasa.gov/2.0/physRadiation.owl#Radiance</a></code>. The latest version
+of this is  version is supposedly
+<code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>It is suspected that the ESA funded projects RARE, SMAAD, OBEOS, or PRODTREES
+define URI to describe physical properties as well. However, a web research
+didn&#8217;t bring up anything useful in this direction.</p>
+</div>
+<div class="paragraph">
+<p>Besides this URI the <code>gmlcov:rangeType</code> element provides the unit of measure
+via the <code>code</code> attribute of the <code>swe:uom</code> element of each <code>swe:Quantity</code>
+element. Of course this uom and the <code>wcseo:dataSemantics</code> need to match.
+An example for a uom is <code>W.m-2.sr-1</code> (
+<a href="http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian" class="bare">http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian</a>)
+for radiance as used above.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_data_types">11.3. Data Types</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conversion_from_data_type_to_physical_properties">11.4. Conversion from Data Type to Physical Properties</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_hint_for_rgb_generation">11.5. Hint for RGB Generation</h3>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples">11.6. Examples</h3>
 <div class="paragraph">
 <p>TODO</p>
 </div>
@@ -738,7 +968,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-07-20 12:12:53 CEST
+Last updated 2016-07-20 14:16:30 CEST
 </div>
 </div>
 </body>
