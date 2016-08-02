@@ -218,9 +218,19 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#_overview_7">11.1. Overview</a></li>
 <li><a href="#_physical_properties">11.2. Physical Properties</a></li>
 <li><a href="#_data_types">11.3. Data Types</a></li>
-<li><a href="#_conversion_from_data_type_to_physical_properties">11.4. Conversion from Data Type to Physical Properties</a></li>
+<li><a href="#_conversion_from_data_types_to_physical_properties">11.4. Conversion from Data Types to Physical Properties</a></li>
 <li><a href="#_hint_for_rgb_generation">11.5. Hint for RGB Generation</a></li>
-<li><a href="#_examples">11.6. Examples</a></li>
+<li><a href="#_recommended_definitions">11.6. Recommended definitions</a>
+<ul class="sectlevel3">
+<li><a href="#__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">11.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></a></li>
+<li><a href="#__code_wcseo_datatype_code">11.6.2. <code>wcseo:dataType</code></a></li>
+<li><a href="#__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">11.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></a></li>
+<li><a href="#__code_definition_code_attribute_of_code_swe_datarecord_code">11.6.4. <code>definition</code> attribute of <code>swe:DataRecord</code></a></li>
+<li><a href="#__code_swe_identifier_code_vs_code_name_code_attribute_of_code_swe_field_code">11.6.5. <code>swe:identifier</code> vs. <code>name</code> attribute of <code>swe:field</code></a></li>
+<li><a href="#__code_reason_code_attribute_of_code_swe_nilvalue_code">11.6.6. <code>reason</code> attribute of <code>swe:nilValue</code></a></li>
+</ul>
+</li>
+<li><a href="#_examples">11.7. Examples</a></li>
 </ul>
 </li>
 <li><a href="#_bibliography">Bibliography</a></li>
@@ -392,15 +402,7 @@ tailoring for specific missions. It further considers how to link to other
 services like CSW, WMS, and WPS.</p>
 </div>
 <div class="paragraph">
-<p>TODO
-    Assumption service stack around EO-WCS at least including EO-WMS
-    possibly also OpenSearch and/or CSW and WPS for additional processing not covered by WCS and its extensions</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Introduce concepts of EO-WCS (e.g. limit size of capabilities response -&gt; DatasetSeries -&gt; DescribeEOCoverageSet operation including spatial-temporal search, etc.)
-    Maybe point to youtube video???</pre>
-</div>
+<p>TODO</p>
 </div>
 </div>
 </div>
@@ -818,7 +820,8 @@ this is considered an error, and the
 <h3 id="_overview_7">11.1. Overview</h3>
 <div class="paragraph">
 <p>EO-WCS 1.1 extends the range type description of WCS 2.0 which is inherited
-from CIS 1.0 (formerly known as GMLCO).</p>
+from the Coverage Implementation Schema (CIS) 1.0 (formerly known as GML
+Application Schema - Coverages (GMLCOV).</p>
 </div>
 <div class="paragraph">
 <p>The extension includes elements to specify the measured physical properties
@@ -830,66 +833,450 @@ version (<code>wcseo:RGBgenerationHint</code>).</p>
 <div class="paragraph">
 <p>The additional range type information is provided via the
 <code>wcseo:rangeTypeExtension</code> element which is either included once for the whole
-range type under the <code>swe:DataRecord</code> element or separately for each channel
-(band) under each <code>swe:DataRecord/swe:field/swe:Quantity</code> element. It may also
-be included in both locations for example when the RGB generation hint is
-common for all bands but the data conversion is different.</p>
+range type under the <code>swe:DataRecord</code> element or separately for each channel,
+often referred to as band, under each <code>swe:DataRecord/swe:field/swe:Quantity</code>
+element. It may also be included in both locations for example when there is
+one common RGB generation hint but the data conversion is specific for each
+band.</p>
 </div>
 <div class="paragraph">
-<p>Extensive examples are given <a href="#_examples">below</a>.</p>
+<p>The new elements are introduced one by one in the following sections and
+extensive examples are given <a href="#_examples">below</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_physical_properties">11.2. Physical Properties</h3>
 <div class="paragraph">
-<p>The <code>wcseo:rangeTypeExtension</code> element includes the <code>wcseo:dataSemantics</code>
-element of type <code>anyURI</code>. This element preferably holds an URI resolving to a
-description of the observed physical property.</p>
+<p>The <code>wcseo:rangeTypeExtension</code> element first includes the <code>wcseo:dataSemantics</code>
+element of type <code>anyURI</code>. This element holds an URI preferably resolving to a
+description of the observed physical property like
+<code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>This element needs to be synchronized with the <code>definition</code> attribute of each
+<code>swe:Quantity</code> element as well as the unit of measure defined via the <code>code</code>
+attribute of the <code>swe:uom</code> element again of each <code>swe:Quantity</code> element.</p>
 </div>
 <div class="paragraph">
 <p>XML instance examples included with the OGC schemas make use of
-<code><a href="http://www.opengis.net/def/property/OGC/0/Radiance" class="bare">http://www.opengis.net/def/property/OGC/0/Radiance</a></code> which doesn&#8217;t resolve to
-something useful as expected. Another URI used in OGC examples is
+<code><a href="http://www.opengis.net/def/property/OGC/0/Radiance" class="bare">http://www.opengis.net/def/property/OGC/0/Radiance</a></code> for the <code>definition</code>
+attribute which doesn&#8217;t resolve to something useful as expected. Another URI
+used in OGC examples is
 <code><a href="http://sweet.jpl.nasa.gov/2.0/physRadiation.owl#Radiance" class="bare">http://sweet.jpl.nasa.gov/2.0/physRadiation.owl#Radiance</a></code>. The latest version
-of this is  version is supposedly
+of this at the time of writing is
 <code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance</a></code>.</p>
 </div>
 <div class="paragraph">
-<p>It is suspected that the ESA funded projects RARE, SMAAD, OBEOS, or PRODTREES
-define URI to describe physical properties as well. However, a web research
-didn&#8217;t bring up anything useful in this direction.</p>
+<p>It is suspected that the ESA funded projects RARE, SMAAD, OBEOS, and/or
+PRODTREES define URIs to describe physical properties as well. However, a web
+research didn&#8217;t bring up anything useful in this direction. Thus, for the time
+being, the examples given use the SWEET ontologies defined by the NASA Jet
+Propulsion Laboratory (<a href="http://sweet.jpl.nasa.gov" class="bare">http://sweet.jpl.nasa.gov</a>).</p>
 </div>
 <div class="paragraph">
-<p>Besides this URI the <code>gmlcov:rangeType</code> element provides the unit of measure
-via the <code>code</code> attribute of the <code>swe:uom</code> element of each <code>swe:Quantity</code>
-element. Of course this uom and the <code>wcseo:dataSemantics</code> need to match.
-An example for a uom is <code>W.m-2.sr-1</code> (
-<a href="http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian" class="bare">http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian</a>)
+<p>An example for a unit of measure code is <code>W.m-2.sr-1</code> as defined by
+<code><a href="http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian" class="bare">http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian</a></code>
 for radiance as used above.</p>
+</div>
+<div class="paragraph">
+<p>SWE Common mandates the usage of units as defined by
+<a href="http://aurora.regenstrief.org/UCUM" class="bare">http://aurora.regenstrief.org/UCUM</a>. However, this server is not accessible
+anymore and seems to be moved to <a href="http://unitsofmeasure.org/ucum.html" class="bare">http://unitsofmeasure.org/ucum.html</a>.</p>
+</div>
+<div class="paragraph">
+<p>Another physical property example is spectral radiance with URI
+<code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</a></code> and unit of
+measure code <code>W.m-2.sr-1.nm-1</code> as defined by
+<code><a href="http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradianPerWavelength" class="bare">http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradianPerWavelength</a></code>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_data_types">11.3. Data Types</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>The <code>wcseo:rangeTypeExtension</code> element further includes the <code>wcseo:dataType</code>
+element, again of type <code>anyURI</code>. This element again holds an URI preferably
+resolving to a description of the data type. Examples of such URIs are
+<code><a href="http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger" class="bare">http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger</a></code>,
+<code><a href="http://www.opengis.net/def/dataType/OGC/0/unsignedInt" class="bare">http://www.opengis.net/def/dataType/OGC/0/unsignedInt</a></code>, or
+<code><a href="http://www.opengis.net/def/property/netcdf/1.0/unsignedShort" class="bare">http://www.opengis.net/def/property/netcdf/1.0/unsignedShort</a></code>.</p>
+</div>
+<div class="paragraph">
+<p>The data type is also implicitly provided via the actual coverage encoding.
+However, to describe it explicitly in the <code>wcseo:rangeTypeExtension</code> element
+allows clients to retrieve it also in coverage descriptions and without need to
+understand and parse the actual coverage encoding format.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conversion_from_data_type_to_physical_properties">11.4. Conversion from Data Type to Physical Properties</h3>
+<h3 id="_conversion_from_data_types_to_physical_properties">11.4. Conversion from Data Types to Physical Properties</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>In order to be able to convert the stored numbers to the value of the actual
+measured physical property the <code>wcseo:dataType2dataSemantics</code> element is added
+to the <code>wcseo:rangeTypeExtension</code>. It describes the conversion via two real
+number intervals and a type.</p>
+</div>
+<div class="paragraph">
+<p><code>wcseo:intervalFrom</code> gives the interval of values stored in the coverage,
+<code>wcseo:intervalTo</code> specifies the interval the stored values are converted to,
+and <code>wcseo:type</code> defines which conversion method to use. Both intervals are
+given via two real numbers and the type via anyURI.</p>
+</div>
+<div class="paragraph">
+<p>The example below describes a linear transformation, as typically used for
+optical data, from \$[1,4095\$] to
+\$[390.0000,780.0000\$] i.e. for a value \$x\$ between
+\$1\$ and \$4095\$ the actual measured value
+\$y\$ is calculated as: \$y = 390 + (x-1) * (780-390) /
+(4095-1)\$</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+  <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 4095<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+  <span class="tag">&lt;wcseo:intervalTo&gt;</span>390.0000 780.0000<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+  <span class="tag">&lt;wcseo:type&gt;</span>linear<span class="tag">&lt;/wcseo:type&gt;</span>
+<span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Another example, given below, describes the inverse to a logarithmic
+transformation as for example sometimes used for radar data. The
+transformation of stored values \$x\$ in the interval
+\$[1,65535\$] to observed values \$y\$ in the interval
+\$[2,1000000000\$] is given by \$y = 2 *
+e^(((x-1)*(ln(1000000000)-ln(2)))/(65535-1))\$.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+  <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+  <span class="tag">&lt;wcseo:intervalTo&gt;</span>2 1000000000<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+  <span class="tag">&lt;wcseo:type&gt;</span>exponential<span class="tag">&lt;/wcseo:type&gt;</span>
+<span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_hint_for_rgb_generation">11.5. Hint for RGB Generation</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>The last element in the <code>wcseo:rangeTypeExtension</code> element is the
+<code>wcseo:RGBgenerationHint</code> element. It is meant to provide a hint for clients
+wanting to visualize the data. It includes the elements <code>wcseo:bandSequence</code>,
+<code>wcseo:intervalFrom</code>, <code>wcseo:intervalTo</code>, and <code>wcseo:type</code>. The first is a list
+of three band names or band arithmetic instructions delimited by spaces used
+for the three bands to generate the RGB version. The names used shall be equal
+to <code>name</code> attributes of the respective <code>swe:field</code> element. The other three
+elements are comparable to the ones used in the data conversion above.</p>
+</div>
+<div class="paragraph">
+<p>The example below describes the RGB generation from a single band product by
+reusing the single band three times and logarithmically stretching the interval
+\$[100,10000000\$] to \$[1,255\$] i.e. value \$x\$ is
+converted to \$y\$ using \$y =
+((ln(x)-ln(100))*(255-1))/(ln(10000000)-ln(100))+1\$.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;wcseo:RGBgenerationHint&gt;</span>
+  <span class="tag">&lt;wcseo:bandSequence&gt;</span>gray gray gray<span class="tag">&lt;/wcseo:bandSequence&gt;</span>
+  <span class="tag">&lt;wcseo:intervalFrom&gt;</span>100 10000000<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+  <span class="tag">&lt;wcseo:intervalTo&gt;</span>1 255<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+  <span class="tag">&lt;wcseo:type&gt;</span>logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
+<span class="tag">&lt;/wcseo:RGBgenerationHint&gt;</span></code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples">11.6. Examples</h3>
+<h3 id="_recommended_definitions">11.6. Recommended definitions</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>This section details our recommendations for the most commonly used data as
+well as for data not covered here. Of course data providers are free to choose
+any definitions, it&#8217;s just highly recommended to use resolvable URIs providing
+meaningful descriptions ideally machine as well as human readable.</p>
+</div>
+<div class="sect3">
+<h4 id="__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">11.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></h4>
+<div class="paragraph">
+<p>The list below provides recommendations for the values of the three items
+<code>wcseo:dataSemantics</code>, <code>definition</code> attribute of <code>swe:Quantity</code>, and <code>code</code>
+attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Panchromatic</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>wcseo:dataSemantics</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>definition</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>code</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>W.m-2.sr-1.nm-1</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>RGB</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>wcseo:dataSemantics</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Red" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Red</a></code></p>
+</li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Green" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Green</a></code></p>
+</li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Blue" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Blue</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>definition</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>code</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>W.m-2.sr-1.nm-1</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>SAR</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>wcseo:dataSemantics</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#CBand" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#CBand</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>definition</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TODO <code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>code</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>TODO none, digital number (dn), <a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity</a> (<code>W.m-2</code>), Relative Amplitude (dB), <a href="http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#ScatteringCoefficient" class="bare">http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#ScatteringCoefficient</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>TODO something using radiance</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>wcseo:dataSemantics</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>TODO</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>definition</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance</a></code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>code</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>W.m-2.sr-1</code></p>
+<div class="literalblock">
+<div class="content">
+<pre>http://www.opengis.net/def/property/OGC-EO/0/opt/MaxCloudCover
+http://www.opengis.net/def/property/OGC-EO/0/opt/MaxSnowCover</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_wcseo_datatype_code">11.6.2. <code>wcseo:dataType</code></h4>
+<div class="literalblock">
+<div class="content">
+<pre>http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger
+http://www.opengis.net/def/dataType/OGC/0/unsignedInt
+http://www.opengis.net/def/property/netcdf/1.0/unsignedShort
+http://sweet.jpl.nasa.gov/2.0/info.owl</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">11.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></h4>
+<div class="literalblock">
+<div class="content">
+<pre>linear
+logarithmic
+exponential</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_definition_code_attribute_of_code_swe_datarecord_code">11.6.4. <code>definition</code> attribute of <code>swe:DataRecord</code></h4>
+<div class="paragraph">
+<p>TBD
+  <a href="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC" class="bare">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC</a>
+  <a href="http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC" class="bare">http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC</a></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR
+http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR
+http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_swe_identifier_code_vs_code_name_code_attribute_of_code_swe_field_code">11.6.5. <code>swe:identifier</code> vs. <code>name</code> attribute of <code>swe:field</code></h4>
+<div class="literalblock">
+<div class="content">
+<pre>name is NCName
+identifier is anyURI could be used for more complex IDs...</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_reason_code_attribute_of_code_swe_nilvalue_code">11.6.6. <code>reason</code> attribute of <code>swe:nilValue</code></h4>
+<div class="literalblock">
+<div class="content">
+<pre>http://www.opengis.net/def/nil/OGC/0/unknown
+http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange
+http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples">11.7. Examples</h3>
+<div class="paragraph">
+<p>The following provides an example <code>gmlcov:rangeType</code> element including
+additional range type information for RGB generation on <code>swe:DataRecord</code> level
+as well as data conversion information on <code>swe:Quantity</code> level.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;gmlcov:rangeType&gt;</span>
+  <span class="tag">&lt;swe:DataRecord</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">TODO</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;swe:extension&gt;</span>
+      <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;wcseo:RGBgenerationHint&gt;</span>
+          <span class="tag">&lt;wcseo:bandSequence&gt;</span>gray gray gray<span class="tag">&lt;/wcseo:bandSequence&gt;</span>
+          <span class="tag">&lt;wcseo:intervalFrom&gt;</span>100 10000000<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+          <span class="tag">&lt;wcseo:intervalTo&gt;</span>1 255<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+          <span class="tag">&lt;wcseo:type&gt;</span>logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
+        <span class="tag">&lt;/wcseo:RGBgenerationHint&gt;</span>
+      <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+    <span class="tag">&lt;/swe:extension&gt;</span>
+    <span class="tag">&lt;swe:label&gt;</span>Gray Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+    <span class="tag">&lt;swe:field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">gray</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;swe:Quantity</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;swe:extension&gt;</span>
+          <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+            <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>100 10000000<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalTo&gt;</span>390.0000 780.0000<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>linear<span class="tag">&lt;/wcseo:type&gt;</span>
+            <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
+          <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;/swe:extension&gt;</span>
+        <span class="tag">&lt;swe:identifier&gt;</span>gray<span class="tag">&lt;/swe:identifier&gt;</span>
+        <span class="tag">&lt;swe:label&gt;</span>Gray Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+        <span class="tag">&lt;swe:description&gt;</span>Gray Channel/Band<span class="tag">&lt;/swe:description&gt;</span>
+        <span class="tag">&lt;swe:nilValues&gt;</span>
+          <span class="tag">&lt;swe:NilValues&gt;</span>
+            <span class="tag">&lt;swe:nilValue</span> <span class="attribute-name">reason</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/nil/OGC/0/unknown</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/swe:nilValue&gt;</span>
+          <span class="tag">&lt;/swe:NilValues&gt;</span>
+        <span class="tag">&lt;/swe:nilValues&gt;</span>
+        <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;swe:constraint&gt;</span>
+          <span class="tag">&lt;swe:AllowedValues&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 10000000<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>8<span class="tag">&lt;/swe:significantFigures&gt;</span>
+          <span class="tag">&lt;/swe:AllowedValues&gt;</span>
+        <span class="tag">&lt;/swe:constraint&gt;</span>
+      <span class="tag">&lt;/swe:Quantity&gt;</span>
+    <span class="tag">&lt;/swe:field&gt;</span>
+  <span class="tag">&lt;/swe:DataRecord&gt;</span>
+<span class="tag">&lt;/gmlcov:rangeType&gt;</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -968,8 +1355,24 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-07-20 14:16:30 CEST
+Last updated 2016-08-02 13:54:28 CEST
 </div>
 </div>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  messageStyle: "none",
+  tex2jax: {
+    inlineMath: [["\\(", "\\)"]],
+    displayMath: [["\\[", "\\]"]],
+    ignoreClass: "nostem|nolatexmath"
+  },
+  asciimath2jax: {
+    delimiters: [["\\$", "\\$"]],
+    ignoreClass: "nostem|noasciimath"
+  },
+  TeX: { equationNumbers: { autoNumber: "none" } }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.0/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
 </body>
 </html>
