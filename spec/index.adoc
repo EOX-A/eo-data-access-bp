@@ -11,6 +11,7 @@
 :icons: font
 :source-highlighter: coderay
 :numbered!:
+:stem:
 
 [id="ogcname"]
 Open Geospatial Consortium +
