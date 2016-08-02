@@ -4,7 +4,8 @@
 === Overview
 
 EO-WCS 1.1 extends the range type description of WCS 2.0 which is inherited
-from CIS 1.0 (formerly known as GMLCO).
+from the Coverage Implementation Schema (CIS) 1.0 (formerly known as GML
+Application Schema - Coverages (GMLCOV).
 
 The extension includes elements to specify the measured physical properties
 (`wcseo:dataSemantics`), the data types of stored numbers (`wcseo:dataType`),
@@ -14,49 +15,269 @@ version (`wcseo:RGBgenerationHint`).
 
 The additional range type information is provided via the
 `wcseo:rangeTypeExtension` element which is either included once for the whole
-range type under the `swe:DataRecord` element or separately for each channel
-(band) under each `swe:DataRecord/swe:field/swe:Quantity` element. It may also
-be included in both locations for example when the RGB generation hint is
-common for all bands but the data conversion is different.
+range type under the `swe:DataRecord` element or separately for each channel,
+often referred to as band, under each `swe:DataRecord/swe:field/swe:Quantity`
+element. It may also be included in both locations for example when there is
+one common RGB generation hint but the data conversion is specific for each
+band.
 
-Extensive examples are given <<_examples,below>>.
+The new elements are introduced one by one in the following sections and
+extensive examples are given <<_examples,below>>.
 
 === Physical Properties
 
-The `wcseo:rangeTypeExtension` element includes the `wcseo:dataSemantics`
-element of type `anyURI`. This element preferably holds an URI resolving to a
-description of the observed physical property.
+The `wcseo:rangeTypeExtension` element first includes the `wcseo:dataSemantics`
+element of type `anyURI`. This element holds an URI preferably resolving to a
+description of the observed physical property like
+`http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible`.
+
+This element needs to be synchronized with the `definition` attribute of each
+`swe:Quantity` element as well as the unit of measure defined via the `code`
+attribute of the `swe:uom` element again of each `swe:Quantity` element.
 
 XML instance examples included with the OGC schemas make use of
-`http://www.opengis.net/def/property/OGC/0/Radiance` which doesn't resolve to
-something useful as expected. Another URI used in OGC examples is
+`http://www.opengis.net/def/property/OGC/0/Radiance` for the `definition`
+attribute which doesn't resolve to something useful as expected. Another URI
+used in OGC examples is
 `http://sweet.jpl.nasa.gov/2.0/physRadiation.owl#Radiance`. The latest version
-of this is  version is supposedly
+of this at the time of writing is
 `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance`.
 
-It is suspected that the ESA funded projects RARE, SMAAD, OBEOS, or PRODTREES
-define URI to describe physical properties as well. However, a web research
-didn't bring up anything useful in this direction.
+It is suspected that the ESA funded projects RARE, SMAAD, OBEOS, and/or
+PRODTREES define URIs to describe physical properties as well. However, a web
+research didn't bring up anything useful in this direction. Thus, for the time
+being, the examples given use the SWEET ontologies defined by the NASA Jet
+Propulsion Laboratory (http://sweet.jpl.nasa.gov).
 
-Besides this URI the `gmlcov:rangeType` element provides the unit of measure
-via the `code` attribute of the `swe:uom` element of each `swe:Quantity`
-element. Of course this uom and the `wcseo:dataSemantics` need to match.
-An example for a uom is `W.m-2.sr-1` (
-http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian)
+An example for a unit of measure code is `W.m-2.sr-1` as defined by
+`http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradian`
 for radiance as used above.
+
+SWE Common mandates the usage of units as defined by
+http://aurora.regenstrief.org/UCUM. However, this server is not accessible
+anymore and seems to be moved to http://unitsofmeasure.org/ucum.html.
+
+Another physical property example is spectral radiance with URI
+`http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance` and unit of
+measure code `W.m-2.sr-1.nm-1` as defined by
+`http://sweet.jpl.nasa.gov/2.3/reprSciUnits.owl#wattPerMeterSquaredPerSteradianPerWavelength`.
 
 === Data Types
 
-TODO
+The `wcseo:rangeTypeExtension` element further includes the `wcseo:dataType`
+element, again of type `anyURI`. This element again holds an URI preferably
+resolving to a description of the data type. Examples of such URIs are
+`http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger`,
+`http://www.opengis.net/def/dataType/OGC/0/unsignedInt`, or
+`http://www.opengis.net/def/property/netcdf/1.0/unsignedShort`.
 
-=== Conversion from Data Type to Physical Properties
+The data type is also implicitly provided via the actual coverage encoding.
+However, to describe it explicitly in the `wcseo:rangeTypeExtension` element
+allows clients to retrieve it also in coverage descriptions and without need to
+understand and parse the actual coverage encoding format.
 
-TODO
+=== Conversion from Data Types to Physical Properties
+
+In order to be able to convert the stored numbers to the value of the actual
+measured physical property the `wcseo:dataType2dataSemantics` element is added
+to the `wcseo:rangeTypeExtension`. It describes the conversion via two real
+number intervals and a type.
+
+`wcseo:intervalFrom` gives the interval of values stored in the coverage,
+`wcseo:intervalTo` specifies the interval the stored values are converted to,
+and `wcseo:type` defines which conversion method to use. Both intervals are
+given via two real numbers and the type via anyURI.
+
+The example below describes a linear transformation, as typically used for
+optical data, from asciimath:[[1,4095]] to
+asciimath:[[390.0000,780.0000]] i.e. for a value asciimath:[x] between
+asciimath:[1] and asciimath:[4095] the actual measured value
+asciimath:[y] is calculated as: asciimath:[y = 390 + (x-1) * (780-390) /
+(4095-1)]
+
+[source,xml]
+<wcseo:dataType2dataSemantics>
+  <wcseo:intervalFrom>1 4095</wcseo:intervalFrom>
+  <wcseo:intervalTo>390.0000 780.0000</wcseo:intervalTo>
+  <wcseo:type>linear</wcseo:type>
+</wcseo:dataType2dataSemantics>
+
+Another example, given below, describes the inverse to a logarithmic
+transformation as for example sometimes used for radar data. The
+transformation of stored values asciimath:[x] in the interval
+asciimath:[[1,65535]] to observed values asciimath:[y] in the interval
+asciimath:[[2,1000000000]] is given by asciimath:[y = 2 *
+e^(((x-1)*(ln(1000000000)-ln(2)))/(65535-1))].
+
+[source,xml]
+<wcseo:dataType2dataSemantics>
+  <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+  <wcseo:intervalTo>2 1000000000</wcseo:intervalTo>
+  <wcseo:type>exponential</wcseo:type>
+</wcseo:dataType2dataSemantics>
 
 === Hint for RGB Generation
 
-TODO
+The last element in the `wcseo:rangeTypeExtension` element is the
+`wcseo:RGBgenerationHint` element. It is meant to provide a hint for clients
+wanting to visualize the data. It includes the elements `wcseo:bandSequence`,
+`wcseo:intervalFrom`, `wcseo:intervalTo`, and `wcseo:type`. The first is a list
+of three band names or band arithmetic instructions delimited by spaces used
+for the three bands to generate the RGB version. The names used shall be equal
+to `name` attributes of the respective `swe:field` element. The other three
+elements are comparable to the ones used in the data conversion above.
+
+The example below describes the RGB generation from a single band product by
+reusing the single band three times and logarithmically stretching the interval
+asciimath:[[100,10000000]] to asciimath:[[1,255]] i.e. value asciimath:[x] is
+converted to asciimath:[y] using asciimath:[y =
+((ln(x)-ln(100))*(255-1))/(ln(10000000)-ln(100))+1].
+
+[source,xml]
+<wcseo:RGBgenerationHint>
+  <wcseo:bandSequence>gray gray gray</wcseo:bandSequence>
+  <wcseo:intervalFrom>100 10000000</wcseo:intervalFrom>
+  <wcseo:intervalTo>1 255</wcseo:intervalTo>
+  <wcseo:type>logarithmic</wcseo:type>
+</wcseo:RGBgenerationHint>
+
+=== Recommended definitions
+
+This section details our recommendations for the most commonly used data as
+well as for data not covered here. Of course data providers are free to choose
+any definitions, it's just highly recommended to use resolvable URIs providing
+meaningful descriptions ideally machine as well as human readable.
+
+==== `wcseo:dataSemantics`, `swe:Quantity/@definition`, and `swe:uom/@code`
+
+The list below provides recommendations for the values of the three items
+`wcseo:dataSemantics`, `definition` attribute of `swe:Quantity`, and `code`
+attribute of `swe:Quantity/swe:uom` for the most common use cases.
+
+* Panchromatic
+** `wcseo:dataSemantics`
+*** `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible`
+** `definition`
+*** `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance`
+** `code`
+*** `W.m-2.sr-1.nm-1`
+* RGB
+** `wcseo:dataSemantics`
+*** `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Red`
+*** `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Green`
+*** `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Blue`
+** `definition`
+*** `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance`
+** `code`
+*** `W.m-2.sr-1.nm-1`
+* SAR
+** `wcseo:dataSemantics`
+*** `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#CBand`
+** `definition`
+*** TODO `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity`
+** `code`
+*** TODO none, digital number (dn), http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity (`W.m-2`), Relative Amplitude (dB), http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#ScatteringCoefficient
+* TODO something using radiance
+** `wcseo:dataSemantics`
+*** `TODO`
+** `definition`
+*** `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance`
+** `code`
+*** `W.m-2.sr-1`
+
+
+  http://www.opengis.net/def/property/OGC-EO/0/opt/MaxCloudCover
+  http://www.opengis.net/def/property/OGC-EO/0/opt/MaxSnowCover
+
+
+==== `wcseo:dataType`
+
+
+    http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger
+    http://www.opengis.net/def/dataType/OGC/0/unsignedInt
+    http://www.opengis.net/def/property/netcdf/1.0/unsignedShort
+    http://sweet.jpl.nasa.gov/2.0/info.owl
+
+
+==== `wcseo:type` in `wcseo:dataType2dataSemantics` and `wcseo:RGBgenerationHint`
+
+  linear
+  logarithmic
+  exponential
+
+==== `definition` attribute of `swe:DataRecord`
+
+TBD
+  http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC
+  http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC
+
+  http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR
+  http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR
+  http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition
+
+
+==== `swe:identifier` vs. `name` attribute of `swe:field`
+
+    name is NCName
+    identifier is anyURI could be used for more complex IDs...
+
+==== `reason` attribute of `swe:nilValue`
+
+
+    http://www.opengis.net/def/nil/OGC/0/unknown
+    http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange
+    http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange
+
 
 === Examples
 
-TODO
+The following provides an example `gmlcov:rangeType` element including
+additional range type information for RGB generation on `swe:DataRecord` level
+as well as data conversion information on `swe:Quantity` level.
+
+[source,xml]
+<gmlcov:rangeType>
+  <swe:DataRecord definition="TODO">
+    <swe:extension>
+      <wcseo:rangeTypeExtension>
+        <wcseo:RGBgenerationHint>
+          <wcseo:bandSequence>gray gray gray</wcseo:bandSequence>
+          <wcseo:intervalFrom>100 10000000</wcseo:intervalFrom>
+          <wcseo:intervalTo>1 255</wcseo:intervalTo>
+          <wcseo:type>logarithmic</wcseo:type>
+        </wcseo:RGBgenerationHint>
+      </wcseo:rangeTypeExtension>
+    </swe:extension>
+    <swe:label>Gray Channel/Band</swe:label>
+    <swe:field name="gray">
+      <swe:Quantity definition="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance">
+        <swe:extension>
+          <wcseo:rangeTypeExtension>
+            <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible</wcseo:dataSemantics>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger</wcseo:dataType>
+            <wcseo:dataType2dataSemantics>
+              <wcseo:intervalFrom>100 10000000</wcseo:intervalFrom>
+              <wcseo:intervalTo>390.0000 780.0000</wcseo:intervalTo>
+              <wcseo:type>linear</wcseo:type>
+            </wcseo:dataType2dataSemantics>
+          </wcseo:rangeTypeExtension>
+        </swe:extension>
+        <swe:identifier>gray</swe:identifier>
+        <swe:label>Gray Channel/Band</swe:label>
+        <swe:description>Gray Channel/Band</swe:description>
+        <swe:nilValues>
+          <swe:NilValues>
+            <swe:nilValue reason="http://www.opengis.net/def/nil/OGC/0/unknown">0</swe:nilValue>
+          </swe:NilValues>
+        </swe:nilValues>
+        <swe:uom code="W.m-2.sr-1.nm-1"/>
+        <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 10000000</swe:interval>
+            <swe:significantFigures>8</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+  </swe:DataRecord>
+</gmlcov:rangeType>
