@@ -3,6 +3,20 @@
 
 === Overview
 
-TODO
+OpenSearch is the designated EVO-ODAS endorsed search service. Thus we propose
+to extend OpenSearch in a way to allow clients to specify the verbosity of the
+answer using a new parameter named `view`. Several allowed values are defined
+in that proposal ranging from `full` for everything to `geotime` for a very
+limited view only including id, name, bbox, start, and end.
+
+Additionally, there is the idea of adding histogram like functionality i.e.,
+requesting summary information for defined buckets like months.
+
+It has also been suggested to evaluate XPath as mechanism to retrieve only
+subsets of XML documents. Although this looks like a promising approach there
+are some difficulties from an implementation point of view. In general, an XML
+document can be queried using XPath once it has been generated. This approach
+wouldn't scale well on server implementations and is thus discarded, at least
+in EVO-ODAS.
 
 TODO

@@ -3,6 +3,31 @@
 
 === Overview
 
-TODO
+We propose to address the cross service interaction item by giving
+recommendations on how to structure the data offered in the various services as
+well as how to explicitly link between them. These explicit link
+recommendations include these services: OpenSearch, WMS, WMTS, WCS, and DS-EO.
+
+An example for a data structuring recommendation is that for a collection there
+should be an EO-WMS layer and an EO-WCS DatasetSeries provided both reusing the
+ID of the collection. Thus clients know that a product viewed via a GetMap
+request with TIME parameter can be downloaded via a GetEOCoverageSet request
+using the same TIME parameter value.
+
+First explicit linking recommendations are given in the "EVO-ODAS
+Recommendation on building a discovery interface using OpenSearch Technical
+Note" [RD49] by GeoSolutions. The recommendation there is to use `link`
+elements with a `rel` attribute of value `wms` ,`wmts`, `wcs`, `wfs`, or `ds-
+eo` in Atom results to link to the EO Product in the respective service. Note
+that it also includes recommendations on how to structure these links in order
+to link to a single product. In short the recommendation is to link to a
+tailored Capabilities document like e.g.,
+`http://u.rl?service=WMS&acceptVersions=1.3.0&request=GetCapabilities&time=2015-10-02T10:00:00Z&elevation=150`.
+This covers all links from OpenSearch to any other service.
+
+In the same way recommendations will be given from (EO-)WMS, WMTS, (EO-)WCS,
+and DS-EO to the respective four other services using for example
+`wms:DataURL`, in the layer specification of the WMS Capabilities linking to
+the corresponding EO-WCS DatasetSeries.
 
 TODO

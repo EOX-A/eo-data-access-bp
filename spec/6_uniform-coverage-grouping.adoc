@@ -3,6 +3,17 @@
 
 === Overview
 
-TODO
+We propose to carefully review to which extent the forthcoming CIS 1.1 is
+prepared for this.
+
+The new partitioning functionality of CIS 1.1 requires all partitions to share
+the same range type partitions which is exactly what is ask for in this item.
+On the other side it requires partitions to not overlap which would require to
+use real 3D coverages in order to group 2D EO coverages.
+
+This needs to be further reviewed in order to harmonize with the concepts of
+EO-WCS. In any case this might be best suited to be integrated and documented
+in the solution to the "General Coverage Grouping" item detailed in section
+3.3.1 below.
 
 TODO

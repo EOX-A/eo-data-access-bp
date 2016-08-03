@@ -3,6 +3,14 @@
 
 === Overview
 
-TODO
+We propose to extend the GetCoverage request with parameters to request a
+masking via a mask coverage or polygons e.g. given as GeoJSON or shapefile. The
+coverage of polygons can be given by reference or, if small enough, included
+directly in the request in case of polygons as WKT.
+
+The response shall use a defined NoData value for areas outside of the mask.
+
+In the frame of EVO-ODAS this will be described in the EO Data Access Best
+Practice. Later on this might be promoted to an actual WCS extension.
 
 TODO
