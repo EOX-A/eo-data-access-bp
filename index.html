@@ -736,7 +736,35 @@ this is considered an error, and the
 <div class="sect2">
 <h3 id="_overview">5.1. Overview</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>We propose to address the cross service interaction item by giving
+recommendations on how to structure the data offered in the various services as
+well as how to explicitly link between them. These explicit link
+recommendations include these services: OpenSearch, WMS, WMTS, WCS, and DS-EO.</p>
+</div>
+<div class="paragraph">
+<p>An example for a data structuring recommendation is that for a collection there
+should be an EO-WMS layer and an EO-WCS DatasetSeries provided both reusing the
+ID of the collection. Thus clients know that a product viewed via a GetMap
+request with TIME parameter can be downloaded via a GetEOCoverageSet request
+using the same TIME parameter value.</p>
+</div>
+<div class="paragraph">
+<p>First explicit linking recommendations are given in the "EVO-ODAS
+Recommendation on building a discovery interface using OpenSearch Technical
+Note" [RD49] by GeoSolutions. The recommendation there is to use <code>link</code>
+elements with a <code>rel</code> attribute of value <code>wms</code> ,<code>wmts</code>, <code>wcs</code>, <code>wfs</code>, or <code>ds-
+eo</code> in Atom results to link to the EO Product in the respective service. Note
+that it also includes recommendations on how to structure these links in order
+to link to a single product. In short the recommendation is to link to a
+tailored Capabilities document like e.g.,
+<code><a href="http://u.rl?service=WMS&amp;acceptVersions=1.3.0&amp;request=GetCapabilities&amp;time=2015-10-02T10:00:00Z&amp;elevation=150" class="bare">http://u.rl?service=WMS&amp;acceptVersions=1.3.0&amp;request=GetCapabilities&amp;time=2015-10-02T10:00:00Z&amp;elevation=150</a></code>.
+This covers all links from OpenSearch to any other service.</p>
+</div>
+<div class="paragraph">
+<p>In the same way recommendations will be given from (EO-)WMS, WMTS, (EO-)WCS,
+and DS-EO to the respective four other services using for example
+<code>wms:DataURL</code>, in the layer specification of the WMS Capabilities linking to
+the corresponding EO-WCS DatasetSeries.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -750,7 +778,130 @@ this is considered an error, and the
 <div class="sect2">
 <h3 id="_overview_2">6.1. Overview</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>Modeling the grouped data as coverage itself would directly allow GetCoverage
+requests but would require rather big changes to WCS. Thus we propose to follow
+and extend the approach already established in EO- WCS and reuse the concept of
+DatasetSeries.</p>
+</div>
+<div class="paragraph">
+<p>As described in the section "Encoding of Multiple Coverages in One File" 3.1.2
+above we propose to use <code>Reference</code> elements in <code>Metadata</code> elements also for
+associated data. Together with the GetEOCoverageRequest operation and a
+<code>mediaType</code> of <code>multipart/related</code> this could be suitable to be used for data
+access to whole EO Products.</p>
+</div>
+<div class="paragraph">
+<p>The first part of the multipart response would look like the example below but
+additionally include <code>Reference</code> elements to the associated data inside
+<code>Metadata</code> elements of the <code>DatasetSeries</code> element. Of course the second part
+of the multipart response needs to include all the referenced files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;wcseo:EOCoverageSet</span> <span class="attribute-name">numberMatched</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">numberReturned</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:ows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ows/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gml</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/gml/3.2</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gmlcov</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ mlcov/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:swe</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/swe/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcseo</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:eop</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/eop/2.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:om</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/om/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xlink</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/1999/xlink</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1 http://schemas.opengis.net/wcs/wcseo/1.1/wcsEOAll.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;wcseo:RectifiedDataset</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someEOCoverage1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;gml:boundedBy&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:boundedBy&gt;</span>
+    <span class="tag">&lt;gml:domainSet&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:domainSet&gt;</span>
+    <span class="tag">&lt;gml:rangeSet&gt;</span>
+      <span class="tag">&lt;gml:File&gt;</span>
+        <span class="tag">&lt;gml:rangeParameters</span> <span class="attribute-name">xlink:arcrole</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileReference</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cid:coverage.meta4;someEOCoverage1.tif</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/GMLCOV_geotiff-coverages/1.0/conf/geotiff-coverage</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:fileReference&gt;</span>cid:coverage.meta4;someEOCoverage1.tif<span class="tag">&lt;/gml:fileReference&gt;</span>
+        <span class="tag">&lt;gml:fileStructure</span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:mimeType&gt;</span>image/tiff<span class="tag">&lt;/gml:mimeType&gt;</span>
+      <span class="tag">&lt;/gml:File&gt;</span>
+    <span class="tag">&lt;/gml:rangeSet&gt;</span>
+    <span class="tag">&lt;gmlcov:rangeType&gt;</span>
+    ...
+    <span class="tag">&lt;/gmlcov:rangeType&gt;</span>
+    <span class="tag">&lt;gmlcov:metadata&gt;</span>
+      <span class="tag">&lt;gmlcov:Extension&gt;</span>
+        <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+          <span class="tag">&lt;eop:EarthObservation</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">eop_someEOCoverage1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          ...
+          <span class="tag">&lt;/eop:EarthObservation&gt;</span>
+          <span class="tag">&lt;wcseo:lineage&gt;</span>
+            <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
+              <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
+            <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
+          <span class="tag">&lt;/wcseo:lineage&gt;</span>
+        <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+      <span class="tag">&lt;/gmlcov:Extension&gt;</span>
+    <span class="tag">&lt;/gmlcov:metadata&gt;</span>
+  <span class="tag">&lt;/wcseo:RectifiedDataset&gt;</span>
+  <span class="tag">&lt;wcseo:RectifiedDataset</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someEOCoverage2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;gml:boundedBy&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:boundedBy&gt;</span>
+    <span class="tag">&lt;gml:domainSet&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:domainSet&gt;</span>
+    <span class="tag">&lt;gml:rangeSet&gt;</span>
+      <span class="tag">&lt;gml:File&gt;</span>
+        <span class="tag">&lt;gml:rangeParameters</span> <span class="attribute-name">xlink:arcrole</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileReference</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cid:coverage.meta4;someEOCoverage2.tif</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/GMLCOV_geotiff-coverages/1.0/conf/geotiff-coverage</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:fileReference&gt;</span>cid:coverage.meta4;someEOCoverage2.tif<span class="tag">&lt;/gml:fileReference&gt;</span>
+        <span class="tag">&lt;gml:fileStructure</span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:mimeType&gt;</span>image/tiff<span class="tag">&lt;/gml:mimeType&gt;</span>
+        <span class="tag">&lt;/gml:File&gt;</span>
+    <span class="tag">&lt;/gml:rangeSet&gt;</span>
+    <span class="tag">&lt;gmlcov:rangeType&gt;</span>
+    ...
+    <span class="tag">&lt;/gmlcov:rangeType&gt;</span>
+    <span class="tag">&lt;gmlcov:metadata&gt;</span>
+      <span class="tag">&lt;gmlcov:Extension&gt;</span>
+        <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+          <span class="tag">&lt;eop:EarthObservation</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">eop_someEOCoverage2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          ...
+          <span class="tag">&lt;/eop:EarthObservation&gt;</span>
+          <span class="tag">&lt;wcseo:lineage&gt;</span>
+            <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
+              <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
+            <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
+          <span class="tag">&lt;/wcseo:lineage&gt;</span>
+        <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+      <span class="tag">&lt;/gmlcov:Extension&gt;</span>
+    <span class="tag">&lt;/gmlcov:metadata&gt;</span>
+  <span class="tag">&lt;/wcseo:RectifiedDataset&gt;</span>
+  <span class="tag">&lt;wcseo:DatasetSeries&gt;</span>
+    <span class="tag">&lt;wcseo:DatasetSeriesId&gt;</span>someDatasetSeries1<span class="tag">&lt;/wcseo:DatasetSeriesId&gt;</span>
+    <span class="tag">&lt;eop:Footprint</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footprint_someDatasetSeries1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    ...
+    <span class="tag">&lt;/eop:Footprint&gt;</span>
+    <span class="tag">&lt;gml:TimePeriod</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someDatasetSeries1_timeperiod</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:TimePeriod&gt;</span>
+    <span class="tag">&lt;ows:Metadata&gt;</span>
+      <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+        <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someCatalogue.org/eop-metadatafrom-someDatasetSeries1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://standards.iso.org/iso/19115/-3/mdb/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:title</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ISO 19115-3 Metadata</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;wcseo:lineage&gt;</span>
+          <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
+          <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
+        <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
+        <span class="tag">&lt;/wcseo:lineage&gt;</span>
+      <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+    <span class="tag">&lt;/ows:Metadata&gt;</span>
+    <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
+      <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage1<span class="tag">&lt;/wcs:CoverageId&gt;</span>
+    <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
+    <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
+      <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage2<span class="tag">&lt;/wcs:CoverageId&gt;</span>
+    <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
+  <span class="tag">&lt;/wcseo:DatasetSeries&gt;</span>
+<span class="tag">&lt;/wcseo:EOCoverageSet&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An additional consideration is to harmonize this proposal with EO-O&amp;M as
+adopted by EO-WCS. EO-O&amp;M is designed to define a catalog record for one EO
+product including links to various raster or vector features like measurements,
+browses, masks, etc.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -764,7 +915,18 @@ this is considered an error, and the
 <div class="sect2">
 <h3 id="_overview_3">7.1. Overview</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>We propose to include a high level description of a HTTP REST API to
+programmatic register collections and products in ODA Systems.</p>
+</div>
+<div class="paragraph">
+<p>The API needs to specify the request and response structure as well as the
+payloads. Both, particularly the payload, depend heavily on the functionality
+available in concrete implementations. Thus we propose to evaluate the
+suitability to specify collection and product registration including
+suitability to specify a minimal set of services an ODA System has to support.</p>
+</div>
+<div class="paragraph">
+<p>The GeoServer REST API 20 serves as basis for our proposal.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -778,7 +940,23 @@ this is considered an error, and the
 <div class="sect2">
 <h3 id="_overview_4">8.1. Overview</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>OpenSearch is the designated EVO-ODAS endorsed search service. Thus we propose
+to extend OpenSearch in a way to allow clients to specify the verbosity of the
+answer using a new parameter named <code>view</code>. Several allowed values are defined
+in that proposal ranging from <code>full</code> for everything to <code>geotime</code> for a very
+limited view only including id, name, bbox, start, and end.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, there is the idea of adding histogram like functionality i.e.,
+requesting summary information for defined buckets like months.</p>
+</div>
+<div class="paragraph">
+<p>It has also been suggested to evaluate XPath as mechanism to retrieve only
+subsets of XML documents. Although this looks like a promising approach there
+are some difficulties from an implementation point of view. In general, an XML
+document can be queried using XPath once it has been generated. This approach
+wouldn&#8217;t scale well on server implementations and is thus discarded, at least
+in EVO-ODAS.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -792,7 +970,20 @@ this is considered an error, and the
 <div class="sect2">
 <h3 id="_overview_5">9.1. Overview</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>We propose to carefully review to which extent the forthcoming CIS 1.1 is
+prepared for this.</p>
+</div>
+<div class="paragraph">
+<p>The new partitioning functionality of CIS 1.1 requires all partitions to share
+the same range type partitions which is exactly what is ask for in this item.
+On the other side it requires partitions to not overlap which would require to
+use real 3D coverages in order to group 2D EO coverages.</p>
+</div>
+<div class="paragraph">
+<p>This needs to be further reviewed in order to harmonize with the concepts of
+EO-WCS. In any case this might be best suited to be integrated and documented
+in the solution to the "General Coverage Grouping" item detailed in section
+3.3.1 below.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -806,7 +997,17 @@ this is considered an error, and the
 <div class="sect2">
 <h3 id="_overview_6">10.1. Overview</h3>
 <div class="paragraph">
-<p>TODO</p>
+<p>We propose to extend the GetCoverage request with parameters to request a
+masking via a mask coverage or polygons e.g. given as GeoJSON or shapefile. The
+coverage of polygons can be given by reference or, if small enough, included
+directly in the request in case of polygons as WKT.</p>
+</div>
+<div class="paragraph">
+<p>The response shall use a defined NoData value for areas outside of the mask.</p>
+</div>
+<div class="paragraph">
+<p>In the frame of EVO-ODAS this will be described in the EO Data Access Best
+Practice. Later on this might be promoted to an actual WCS extension.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -1631,9 +1832,6 @@ interchange - Representation of dates and time</p>
 <p><a id="8"></a>[8] OGC 09-025r2, OpenGIS Web Feature Service 2.0 Interface Standard -
 With Corrigendum, version 2.0.2</p>
 </li>
-<li>
-<p><a id="9"></a>[9] OGC 16-118 EO Data Access Best Practice, version 0.0.1</p>
-</li>
 </ul>
 </div>
 </div>
@@ -1674,7 +1872,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-08-02 18:39:36 CEST
+Last updated 2016-08-03 14:54:12 CEST
 </div>
 </div>
 <script type="text/x-mathjax-config">
