@@ -126,21 +126,8 @@ toc::[]
 
 == Abstract
 
-This OGC Best Practice document details proposed configuration and
-instantiation conventions for access to Earth Observation (EO) data developed
-in the European Space Agency (ESA) funded project Evolution of EO Online Data
-Access Services (EVO-ODAS).
-
-It defines how to utilize WCS with EO products including generic conventions
-and recommendations for data and metadata mapping and conversion which are to
-be used in concrete tailoring for specific missions. It further considers how
-to link to other services like CSW, WMS, and WPS.
-
-Suggested additions, changes, and comments on this draft document are welcome
-and encouraged. Such suggestions may be submitted by email message, by creating
-an issue or a pull request at the
-https://github.com/EOX-A/eo-data-access-bp[GitHub repository], or by making
-suggested changes in an edited copy of this document.
+This OGC Best Practice document provides conventions and recommendations on how
+to utilize OGC services to provide access to Earth Observation data.
 
 == Keywords
 
@@ -151,10 +138,11 @@ ogcdoc, eo, earth observation, data access, wcs, eo-wcs
 The following organizations have submitted this Best Practice to the
 Open GeoSpatial Consortium, Inc.:
 
-* EOX IT Services GmbH
-* German Aerospace Center (DLR)
-* GeoSolutions S.A.S.
-* European Space Agency (ESA)
+* https://eox.at[EOX IT Services GmbH]
+* http://www.dlr.de[German Aerospace Center (DLR)]
+* http://www.geo-solutions.it[GeoSolutions S.A.S.]
+* http://www.esa.int[European Space Agency (ESA)]
+* http://www.jacobs-university.de[Jacobs University Bremen]
 
 == Document Contributor Contact Points
 
@@ -165,6 +153,8 @@ contributors.
 |==============================================================================
 |Name                                   |Organization
 |Stephan Meißl <stephan.meissl@eox.at>  |https://eox.at[EOX IT Services GmbH]
+|Peter Baumann <p.baumann@jacobs-university.de> |
+http://www.jacobs-university.de[Jacobs University Bremen]
 |==============================================================================
 
 == Changes to the OGC ® Abstract Specification
