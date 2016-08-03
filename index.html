@@ -225,9 +225,10 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">11.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></a></li>
 <li><a href="#__code_wcseo_datatype_code">11.6.2. <code>wcseo:dataType</code></a></li>
 <li><a href="#__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">11.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></a></li>
-<li><a href="#__code_definition_code_attribute_of_code_swe_datarecord_code">11.6.4. <code>definition</code> attribute of <code>swe:DataRecord</code></a></li>
-<li><a href="#__code_swe_identifier_code_vs_code_name_code_attribute_of_code_swe_field_code">11.6.5. <code>swe:identifier</code> vs. <code>name</code> attribute of <code>swe:field</code></a></li>
-<li><a href="#__code_reason_code_attribute_of_code_swe_nilvalue_code">11.6.6. <code>reason</code> attribute of <code>swe:nilValue</code></a></li>
+<li><a href="#__code_wcseo_bandsequence_code">11.6.4. <code>wcseo:bandSequence</code></a></li>
+<li><a href="#__code_definition_code_attribute_of_code_swe_datarecord_code">11.6.5. <code>definition</code> attribute of <code>swe:DataRecord</code></a></li>
+<li><a href="#__code_swe_field_name_code_vs_code_swe_field_swe_quantity_swe_identifier_code">11.6.6. <code>swe:field/@name</code> vs. <code>swe:field/swe:Quantity/swe:identifier</code></a></li>
+<li><a href="#__code_swe_nilvalue_reason_code">11.6.7. <code>swe:nilValue/@reason</code></a></li>
 </ul>
 </li>
 <li><a href="#_examples">11.7. Examples</a></li>
@@ -420,13 +421,13 @@ referred to applies.</p>
 <p>OGC 06-121r9, <em>OGC Web Services Common Standard</em>, version 2.0</p>
 </div>
 <div class="paragraph">
-<p>TBD OGC 09-146r2, <em>Coverages Implementation Schema / GML 3.2.1 Application
-Schema for Coverages</em>, version 1.1<br>
-Conformance classes used: <em>gml-coverage</em></p>
+<p>OGC 09-146r2, <em>OGC® Coverage Implementation Schema</em> (renamed from <em>OGC®
+GML Application Schema - Coverages</em>), version 1.0<br>
+Conformance classes used: <em>gml-coverage</em>, <em>gml</em>, <em>multipart</em>, <em>special-format</em></p>
 </div>
 <div class="paragraph">
-<p>TBD OGC 09-110r4, <em>OGC® Web Coverage Service 2.1 Interface Standard Core</em>,
-version 2.1<br>
+<p>OGC 09-110r4, <em>OGC® WCS 2.0 Interface Standard- Core: Corrigendum</em>, version
+2.0<br>
 Conformance classes used: <em>core</em></p>
 </div>
 <div class="paragraph">
@@ -456,13 +457,13 @@ Extension</em>, version 1.0<br>
 Conformance classes used: <em>interpolation</em></p>
 </div>
 <div class="paragraph">
-<p>OGC 09-147r3, OGC® <em>WCS 2.0 Interface Standard - KVP Protocol Binding
-Extension</em>, version 1.0<br>
+<p>OGC 09-147r3, <em>OGC® Web Coverage Service 2.0 Interface Standard - KVP Protocol
+Binding Extension - Corrigendum</em>, version 1.0<br>
 Conformance classes used: <em>get-kvp</em></p>
 </div>
 <div class="paragraph">
-<p>OGC 09-149r1, OGC® <em>WCS 2.0 Interface Standard - SOAP Protocol Binding
-Extension</em>, version 1.0<br>
+<p>OGC 09-149r1, <em>OGC® Web Coverage Service 2.0 Interface Standard - XML/SOAP
+Protocol Binding Extension</em>, version 1.0<br>
 Conformance classes used: <em>soap</em></p>
 </div>
 <div class="paragraph">
@@ -471,8 +472,8 @@ Encoding Profile</em>, version 1.0<br>
 Conformance classes used: <em>geotiff-coverage</em></p>
 </div>
 <div class="paragraph">
-<p>OGC 14-100r2, <em>OGC® CF-netCDF 3.0 encoding using GML Coverage Application</em>,
-version 2.0<br>
+<p>OGC 14-100r2, <em>OGC® CF-netCDF 3.0 encoding using GML Coverage Application
+Schema</em>, version 2.0<br>
 Conformance classes used: <em>CF-netCDF-1.6 GML encoding</em>, <em>CF-netCDF-1.6 data
 format</em>, <em>CF-netCDF-1.6 multipart data encoding</em></p>
 </div>
@@ -482,8 +483,8 @@ Extension</em>, version 1.0<br>
 Conformance classes used: <em>jpeg2000-coverage</em></p>
 </div>
 <div class="paragraph">
-<p>OGC 10-157r4, <em>Earth Observation Metadata Profile of Observations and
-Measurements</em>, version 1.1.0<br>
+<p>OGC 10-157r4, <em>OGC® Earth Observation Metadata profile of Observations &amp;
+Measurements</em>, version 1.1<br>
 Conformance classes used: <em>eop</em>, <em>sar</em>, <em>opt</em></p>
 </div>
 </div>
@@ -649,30 +650,30 @@ to which the prefixes refer are normative, however.</p>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">gmlcov</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/gmlcov/1.1" class="bare">http://www.opengis.net/gmlcov/1.1</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/gmlcov/1.0" class="bare">http://www.opengis.net/gmlcov/1.0</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Coverages Implementation Schema
-1.1</p></td>
+1.0</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">wcs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/wcs/2.1" class="bare">http://www.opengis.net/wcs/2.1</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">WCS 2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/wcs/2.0" class="bare">http://www.opengis.net/wcs/2.0</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WCS 2.0</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">eop</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/eop/2.0" class="bare">http://www.opengis.net/eop/2.0</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/eop/2.1" class="bare">http://www.opengis.net/eop/2.1</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Earth Observation Metadata
 Profile of Observations and Measurements</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">opt</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/opt/2.0" class="bare">http://www.opengis.net/opt/2.0</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/opt/2.1" class="bare">http://www.opengis.net/opt/2.1</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Optical Earth Observation
 Metadata Profile of Observations and Measurements (extension of eop)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock">sar</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/sar/2.0" class="bare">http://www.opengis.net/sar/2.0</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.opengis.net/sar/2.1" class="bare">http://www.opengis.net/sar/2.1</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SAR Earth Observation Metadata
 Profile of Observations and Measurements (extension of eop)</p></td>
 </tr>
@@ -934,7 +935,7 @@ optical data, from \$[1,4095\$] to
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
   <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 4095<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
   <span class="tag">&lt;wcseo:intervalTo&gt;</span>390.0000 780.0000<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
-  <span class="tag">&lt;wcseo:type&gt;</span>linear<span class="tag">&lt;/wcseo:type&gt;</span>
+  <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
 <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span></code></pre>
 </div>
 </div>
@@ -951,7 +952,7 @@ e^(((x-1)*(ln(1000000000)-ln(2)))/(65535-1))\$.</p>
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
   <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
   <span class="tag">&lt;wcseo:intervalTo&gt;</span>2 1000000000<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
-  <span class="tag">&lt;wcseo:type&gt;</span>exponential<span class="tag">&lt;/wcseo:type&gt;</span>
+  <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#ExponentialFunction<span class="tag">&lt;/wcseo:type&gt;</span>
 <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span></code></pre>
 </div>
 </div>
@@ -981,7 +982,7 @@ converted to \$y\$ using \$y =
   <span class="tag">&lt;wcseo:bandSequence&gt;</span>gray gray gray<span class="tag">&lt;/wcseo:bandSequence&gt;</span>
   <span class="tag">&lt;wcseo:intervalFrom&gt;</span>100 10000000<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
   <span class="tag">&lt;wcseo:intervalTo&gt;</span>1 255<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
-  <span class="tag">&lt;wcseo:type&gt;</span>logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
+  <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
 <span class="tag">&lt;/wcseo:RGBgenerationHint&gt;</span></code></pre>
 </div>
 </div>
@@ -997,9 +998,9 @@ meaningful descriptions ideally machine as well as human readable.</p>
 <div class="sect3">
 <h4 id="__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">11.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></h4>
 <div class="paragraph">
-<p>The list below provides recommendations for the values of the three items
-<code>wcseo:dataSemantics</code>, <code>definition</code> attribute of <code>swe:Quantity</code>, and <code>code</code>
-attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p>
+<p>The non-exhaustive list below provides recommendations for the values of the
+three items <code>wcseo:dataSemantics</code>, <code>definition</code> attribute of <code>swe:Quantity</code>,
+and <code>code</code> attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1102,7 +1103,7 @@ attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p
 <div class="ulist">
 <ul>
 <li>
-<p>TODO <code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity</a></code></p>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/propSpaceMultidimensional.owl#RadarCrossSection" class="bare">http://sweet.jpl.nasa.gov/2.3/propSpaceMultidimensional.owl#RadarCrossSection</a></code></p>
 </li>
 </ul>
 </div>
@@ -1112,7 +1113,7 @@ attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p
 <div class="ulist">
 <ul>
 <li>
-<p>TODO none, digital number (dn), <a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity</a> (<code>W.m-2</code>), Relative Amplitude (dB), <a href="http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#ScatteringCoefficient" class="bare">http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#ScatteringCoefficient</a></p>
+<p><code>dB</code></p>
 </li>
 </ul>
 </div>
@@ -1121,7 +1122,7 @@ attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p
 </div>
 </li>
 <li>
-<p>TODO something using radiance</p>
+<p>Further URIs</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1129,7 +1130,7 @@ attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p
 <div class="ulist">
 <ul>
 <li>
-<p><code>TODO</code></p>
+<p>Most concepts in <code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl</a></code></p>
 </li>
 </ul>
 </div>
@@ -1141,6 +1142,9 @@ attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p
 <li>
 <p><code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance</a></code></p>
 </li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity" class="bare">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity</a></code></p>
+</li>
 </ul>
 </div>
 </li>
@@ -1150,12 +1154,9 @@ attribute of <code>swe:Quantity/swe:uom</code> for the most common use cases.</p
 <ul>
 <li>
 <p><code>W.m-2.sr-1</code></p>
-<div class="literalblock">
-<div class="content">
-<pre>http://www.opengis.net/def/property/OGC-EO/0/opt/MaxCloudCover
-http://www.opengis.net/def/property/OGC-EO/0/opt/MaxSnowCover</pre>
-</div>
-</div>
+</li>
+<li>
+<p><code>W.m-2</code></p>
 </li>
 </ul>
 </div>
@@ -1168,57 +1169,203 @@ http://www.opengis.net/def/property/OGC-EO/0/opt/MaxSnowCover</pre>
 </div>
 <div class="sect3">
 <h4 id="__code_wcseo_datatype_code">11.6.2. <code>wcseo:dataType</code></h4>
-<div class="literalblock">
-<div class="content">
-<pre>http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger
-http://www.opengis.net/def/dataType/OGC/0/unsignedInt
-http://www.opengis.net/def/property/netcdf/1.0/unsignedShort
-http://sweet.jpl.nasa.gov/2.0/info.owl</pre>
+<div class="paragraph">
+<p>The <code>wcseo:dataType</code> needs to match the data type actually used in the coverage
+encoding like GeoTIFF. The non-exhaustive list below provides recommendations
+for URIs to use. Further definitions can be retrieved using the base URIs from
+the examples given below.</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://www.opengis.net/def/dataType/OGC/0/unsignedByte" class="bare">http://www.opengis.net/def/dataType/OGC/0/unsignedByte</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/dataType/OGC/0/unsignedShort" class="bare">http://www.opengis.net/def/dataType/OGC/0/unsignedShort</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/dataType/OGC/0/unsignedInt" class="bare">http://www.opengis.net/def/dataType/OGC/0/unsignedInt</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/dataType/OGC/0/unsignedLong" class="bare">http://www.opengis.net/def/dataType/OGC/0/unsignedLong</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.w3.org/2001/XMLSchema#unsignedByte" class="bare">http://www.w3.org/2001/XMLSchema#unsignedByte</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.w3.org/2001/XMLSchema#unsignedShort" class="bare">http://www.w3.org/2001/XMLSchema#unsignedShort</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.w3.org/2001/XMLSchema#integer" class="bare">http://www.w3.org/2001/XMLSchema#integer</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.w3.org/2001/XMLSchema#nonNegativeInteger" class="bare">http://www.w3.org/2001/XMLSchema#nonNegativeInteger</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.w3.org/2001/XMLSchema#double" class="bare">http://www.w3.org/2001/XMLSchema#double</a></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Other possible but not recommended values are provided in the list below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger" class="bare">http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/property/netcdf/1.0/unsignedShort" class="bare">http://www.opengis.net/def/property/netcdf/1.0/unsignedShort</a></code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">11.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></h4>
-<div class="literalblock">
-<div class="content">
-<pre>linear
-logarithmic
-exponential</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="__code_definition_code_attribute_of_code_swe_datarecord_code">11.6.4. <code>definition</code> attribute of <code>swe:DataRecord</code></h4>
 <div class="paragraph">
-<p>TBD
-  <a href="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC" class="bare">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC</a>
-  <a href="http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC" class="bare">http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC</a></p>
+<p>Recommendations for possible values for the <code>wcseo:type</code> element used to define
+data conversions are provided below.</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR
-http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR
-http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition</pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="__code_swe_identifier_code_vs_code_name_code_attribute_of_code_swe_field_code">11.6.5. <code>swe:identifier</code> vs. <code>name</code> attribute of <code>swe:field</code></h4>
-<div class="literalblock">
-<div class="content">
-<pre>name is NCName
-identifier is anyURI could be used for more complex IDs...</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear" class="bare">http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</a></code></p>
+</li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic" class="bare">http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic</a></code></p>
+</li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#ExponentialFunction" class="bare">http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#ExponentialFunction</a></code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_reason_code_attribute_of_code_swe_nilvalue_code">11.6.6. <code>reason</code> attribute of <code>swe:nilValue</code></h4>
-<div class="literalblock">
-<div class="content">
-<pre>http://www.opengis.net/def/nil/OGC/0/unknown
-http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange
-http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange</pre>
+<h4 id="__code_wcseo_bandsequence_code">11.6.4. <code>wcseo:bandSequence</code></h4>
+<div class="paragraph">
+<p>The <code>wcseo:bandSequence</code> element used in the <code>wcseo:RGBgenerationHint</code> is
+defined as type <code>NameTriple</code> which is a space delimited list of three elements
+of type <code>anyURI</code>. Typically these three elements each reference a <code>name</code>
+attribute of a <code>swe:field</code> element. An additional option is to define three
+arithmetic expression like \$"band1"*1/3+"band2"*2/3\$. Note that the
+arithmetic expressions themselves need to be URL-encoded and particularly must
+not include spaces. A valid example would be <code>band1%2F3%2Bband2%2A2%2F3
+band1%2A2%2F3%2Bband2%2F3 %28band1%2Bband3%29%2F2</code>.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="__code_definition_code_attribute_of_code_swe_datarecord_code">11.6.5. <code>definition</code> attribute of <code>swe:DataRecord</code></h4>
+<div class="paragraph">
+<p>The non-exhaustive list below provides recommendations for the value of the
+definition` attribute of <code>swe:DataRecord</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC" class="bare">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR" class="bare">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/MULTISPECTRAL" class="bare">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/MULTISPECTRAL</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/property/OGC-EO/0/sar/PolarizationMode/HH" class="bare">http://www.opengis.net/def/property/OGC-EO/0/sar/PolarizationMode/HH</a></code></p>
+</li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Monochromatic" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Monochromatic</a></code></p>
+</li>
+<li>
+<p><code><a href="http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Polychromatic" class="bare">http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Polychromatic</a></code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The list below shows other possible but not recommended URIs.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC" class="bare">http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR" class="bare">http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition" class="bare">http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/order/OGC-EO/0/SpectralBandComposition" class="bare">http://www.opengis.net/def/order/OGC-EO/0/SpectralBandComposition</a></code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_swe_field_name_code_vs_code_swe_field_swe_quantity_swe_identifier_code">11.6.6. <code>swe:field/@name</code> vs. <code>swe:field/swe:Quantity/swe:identifier</code></h4>
+<div class="paragraph">
+<p>The <code>name</code> attribute of <code>swe:field</code> is defined as type <code>NCName</code>. This mainly
+means that it must not include characters like <code>:</code> (colon), <code>@</code>, <code>$</code>, <code>%</code>, <code>&amp;</code>,
+<code>/</code>, <code>+</code>, <code>,</code>, <code>;</code>, or any whitespace characters. If further must not start
+with a number, minus, or dot.</p>
+</div>
+<div class="paragraph">
+<p>The range subsetting extension of WCS [OGC 12-040] uses this <code>name</code> attribute
+in its <code>RangeComponent</code> element to select bands for retrieval.</p>
+</div>
+<div class="paragraph">
+<p>Coverages, however, may use not <code>NCName</code> compliant IDs for their bands. It is,
+for example, quite common to identify variables within a netCDF file with
+strings including blanks or colons.</p>
+</div>
+<div class="paragraph">
+<p>The <code>swe:field</code> element includes in its <code>swe:Quantity</code> element a
+<code>swe:identifier</code> element which is of type anyURI and can potentially hold any
+complex ID given it is URL-encoded.</p>
+</div>
+<div class="paragraph">
+<p>For coverages using non <code>NCName</code> IDs for their bands it is recommended to
+provide the full IDs, potentially URL-encoded, in the <code>swe:identifier</code> element.
+It is further recommended to use the respective first word (<code>NCNAME</code> type
+substring i.e. starting from it&#8217;s first character up to and excluding the first
+character which is not allowed in an <code>NCName</code>) of the IDs for the <code>name</code>
+attributes.</p>
+</div>
+<div class="paragraph">
+<p>For example an ID of <code>gray band</code> should use <code>gray</code> for the <code>name</code> attribute and
+<code>gray%20band</code> for the <code>swe:identifier</code> element.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_swe_nilvalue_reason_code">11.6.7. <code>swe:nilValue/@reason</code></h4>
+<div class="paragraph">
+<p>The recommendations for the value of the <code>reason</code> attribute of <code>swe:nilValue</code>
+are given below.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/unknown" class="bare">http://www.opengis.net/def/nil/OGC/0/unknown</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange" class="bare">http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange" class="bare">http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/inapplicable" class="bare">http://www.opengis.net/def/nil/OGC/0/inapplicable</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/missing" class="bare">http://www.opengis.net/def/nil/OGC/0/missing</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/template" class="bare">http://www.opengis.net/def/nil/OGC/0/template</a></code></p>
+</li>
+<li>
+<p><code><a href="http://www.opengis.net/def/nil/OGC/0/withheld" class="bare">http://www.opengis.net/def/nil/OGC/0/withheld</a></code></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1232,14 +1379,14 @@ as well as data conversion information on <code>swe:Quantity</code> level.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;gmlcov:rangeType&gt;</span>
-  <span class="tag">&lt;swe:DataRecord</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">TODO</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;swe:DataRecord</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     <span class="tag">&lt;swe:extension&gt;</span>
       <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
         <span class="tag">&lt;wcseo:RGBgenerationHint&gt;</span>
           <span class="tag">&lt;wcseo:bandSequence&gt;</span>gray gray gray<span class="tag">&lt;/wcseo:bandSequence&gt;</span>
-          <span class="tag">&lt;wcseo:intervalFrom&gt;</span>100 10000000<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+          <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 4095<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
           <span class="tag">&lt;wcseo:intervalTo&gt;</span>1 255<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
-          <span class="tag">&lt;wcseo:type&gt;</span>logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
+          <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
         <span class="tag">&lt;/wcseo:RGBgenerationHint&gt;</span>
       <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
     <span class="tag">&lt;/swe:extension&gt;</span>
@@ -1249,11 +1396,11 @@ as well as data conversion information on <code>swe:Quantity</code> level.</p>
         <span class="tag">&lt;swe:extension&gt;</span>
           <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
             <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
-            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/0/unsignedShort<span class="tag">&lt;/wcseo:dataType&gt;</span>
             <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
-              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>100 10000000<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 4095<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
               <span class="tag">&lt;wcseo:intervalTo&gt;</span>390.0000 780.0000<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
-              <span class="tag">&lt;wcseo:type&gt;</span>linear<span class="tag">&lt;/wcseo:type&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
             <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
           <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
         <span class="tag">&lt;/swe:extension&gt;</span>
@@ -1268,8 +1415,180 @@ as well as data conversion information on <code>swe:Quantity</code> level.</p>
         <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
         <span class="tag">&lt;swe:constraint&gt;</span>
           <span class="tag">&lt;swe:AllowedValues&gt;</span>
-            <span class="tag">&lt;swe:interval&gt;</span>0 10000000<span class="tag">&lt;/swe:interval&gt;</span>
-            <span class="tag">&lt;swe:significantFigures&gt;</span>8<span class="tag">&lt;/swe:significantFigures&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 4095<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>4<span class="tag">&lt;/swe:significantFigures&gt;</span>
+          <span class="tag">&lt;/swe:AllowedValues&gt;</span>
+        <span class="tag">&lt;/swe:constraint&gt;</span>
+      <span class="tag">&lt;/swe:Quantity&gt;</span>
+    <span class="tag">&lt;/swe:field&gt;</span>
+  <span class="tag">&lt;/swe:DataRecord&gt;</span>
+<span class="tag">&lt;/gmlcov:rangeType&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following is an example of a multispectral range type.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;gmlcov:rangeType&gt;</span>
+  <span class="tag">&lt;swe:DataRecord</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/MULTISPECTRAL</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;swe:extension&gt;</span>
+      <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;wcseo:RGBgenerationHint&gt;</span>
+          <span class="tag">&lt;wcseo:bandSequence&gt;</span>red green blue<span class="tag">&lt;/wcseo:bandSequence&gt;</span>
+          <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+          <span class="tag">&lt;wcseo:intervalTo&gt;</span>1 255<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+          <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic<span class="tag">&lt;/wcseo:type&gt;</span>
+        <span class="tag">&lt;/wcseo:RGBgenerationHint&gt;</span>
+      <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+    <span class="tag">&lt;/swe:extension&gt;</span>
+    <span class="tag">&lt;swe:label&gt;</span>Multispectral product<span class="tag">&lt;/swe:label&gt;</span>
+    <span class="tag">&lt;swe:field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">blue</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;swe:Quantity</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;swe:extension&gt;</span>
+          <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+            <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Blue<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/0/unsignedShort<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalTo&gt;</span>455.0 492.0<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
+            <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
+          <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;/swe:extension&gt;</span>
+        <span class="tag">&lt;swe:identifier&gt;</span>blue<span class="tag">&lt;/swe:identifier&gt;</span>
+        <span class="tag">&lt;swe:label&gt;</span>Blue Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+        <span class="tag">&lt;swe:description&gt;</span>Blue Channel/Band<span class="tag">&lt;/swe:description&gt;</span>
+        <span class="tag">&lt;swe:nilValues&gt;</span>
+          <span class="tag">&lt;swe:NilValues&gt;</span>
+            <span class="tag">&lt;swe:nilValue</span> <span class="attribute-name">reason</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/nil/OGC/0/unknown</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/swe:nilValue&gt;</span>
+          <span class="tag">&lt;/swe:NilValues&gt;</span>
+        <span class="tag">&lt;/swe:nilValues&gt;</span>
+        <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;swe:constraint&gt;</span>
+          <span class="tag">&lt;swe:AllowedValues&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 65535<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>5<span class="tag">&lt;/swe:significantFigures&gt;</span>
+          <span class="tag">&lt;/swe:AllowedValues&gt;</span>
+        <span class="tag">&lt;/swe:constraint&gt;</span>
+      <span class="tag">&lt;/swe:Quantity&gt;</span>
+    <span class="tag">&lt;/swe:field&gt;</span>
+    <span class="tag">&lt;swe:field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">green</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;swe:Quantity</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;swe:extension&gt;</span>
+          <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+            <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Green<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/0/unsignedShort<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalTo&gt;</span>492.0 557.0<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
+            <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
+          <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;/swe:extension&gt;</span>
+        <span class="tag">&lt;swe:identifier&gt;</span>green<span class="tag">&lt;/swe:identifier&gt;</span>
+        <span class="tag">&lt;swe:label&gt;</span>Green Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+        <span class="tag">&lt;swe:description&gt;</span>Green Channel/Band<span class="tag">&lt;/swe:description&gt;</span>
+        <span class="tag">&lt;swe:nilValues&gt;</span>
+          <span class="tag">&lt;swe:NilValues&gt;</span>
+            <span class="tag">&lt;swe:nilValue</span> <span class="attribute-name">reason</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/nil/OGC/0/unknown</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/swe:nilValue&gt;</span>
+          <span class="tag">&lt;/swe:NilValues&gt;</span>
+        <span class="tag">&lt;/swe:nilValues&gt;</span>
+        <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;swe:constraint&gt;</span>
+          <span class="tag">&lt;swe:AllowedValues&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 65535<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>5<span class="tag">&lt;/swe:significantFigures&gt;</span>
+          <span class="tag">&lt;/swe:AllowedValues&gt;</span>
+        <span class="tag">&lt;/swe:constraint&gt;</span>
+      <span class="tag">&lt;/swe:Quantity&gt;</span>
+    <span class="tag">&lt;/swe:field&gt;</span>
+    <span class="tag">&lt;swe:field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">yellow</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;swe:Quantity</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;swe:extension&gt;</span>
+          <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+            <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Yellow<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/0/unsignedShort<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalTo&gt;</span>557.0 597.0<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
+            <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
+          <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;/swe:extension&gt;</span>
+        <span class="tag">&lt;swe:identifier&gt;</span>yellow<span class="tag">&lt;/swe:identifier&gt;</span>
+        <span class="tag">&lt;swe:label&gt;</span>Yellow Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+        <span class="tag">&lt;swe:description&gt;</span>Yellow Channel/Band<span class="tag">&lt;/swe:description&gt;</span>
+        <span class="tag">&lt;swe:nilValues&gt;</span>
+          <span class="tag">&lt;swe:NilValues&gt;</span>
+            <span class="tag">&lt;swe:nilValue</span> <span class="attribute-name">reason</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/nil/OGC/0/unknown</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/swe:nilValue&gt;</span>
+          <span class="tag">&lt;/swe:NilValues&gt;</span>
+        <span class="tag">&lt;/swe:nilValues&gt;</span>
+        <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;swe:constraint&gt;</span>
+          <span class="tag">&lt;swe:AllowedValues&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 65535<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>5<span class="tag">&lt;/swe:significantFigures&gt;</span>
+          <span class="tag">&lt;/swe:AllowedValues&gt;</span>
+        <span class="tag">&lt;/swe:constraint&gt;</span>
+      <span class="tag">&lt;/swe:Quantity&gt;</span>
+    <span class="tag">&lt;/swe:field&gt;</span>
+    <span class="tag">&lt;swe:field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">orange</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;swe:Quantity</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;swe:extension&gt;</span>
+          <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+            <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Orange<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/0/unsignedShort<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalTo&gt;</span>597.0 622.0<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
+            <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
+          <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;/swe:extension&gt;</span>
+        <span class="tag">&lt;swe:identifier&gt;</span>orange<span class="tag">&lt;/swe:identifier&gt;</span>
+        <span class="tag">&lt;swe:label&gt;</span>Orange Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+        <span class="tag">&lt;swe:description&gt;</span>Orange Channel/Band<span class="tag">&lt;/swe:description&gt;</span>
+        <span class="tag">&lt;swe:nilValues&gt;</span>
+          <span class="tag">&lt;swe:NilValues&gt;</span>
+            <span class="tag">&lt;swe:nilValue</span> <span class="attribute-name">reason</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/nil/OGC/0/unknown</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/swe:nilValue&gt;</span>
+          <span class="tag">&lt;/swe:NilValues&gt;</span>
+        <span class="tag">&lt;/swe:nilValues&gt;</span>
+        <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;swe:constraint&gt;</span>
+          <span class="tag">&lt;swe:AllowedValues&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 65535<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>5<span class="tag">&lt;/swe:significantFigures&gt;</span>
+          <span class="tag">&lt;/swe:AllowedValues&gt;</span>
+        <span class="tag">&lt;/swe:constraint&gt;</span>
+      <span class="tag">&lt;/swe:Quantity&gt;</span>
+    <span class="tag">&lt;/swe:field&gt;</span>
+    <span class="tag">&lt;swe:field</span> <span class="attribute-name">name</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">red</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+      <span class="tag">&lt;swe:Quantity</span> <span class="attribute-name">definition</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;swe:extension&gt;</span>
+          <span class="tag">&lt;wcseo:rangeTypeExtension&gt;</span>
+            <span class="tag">&lt;wcseo:dataSemantics&gt;</span>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Red<span class="tag">&lt;/wcseo:dataSemantics&gt;</span>
+            <span class="tag">&lt;wcseo:dataType&gt;</span>http://www.opengis.net/def/dataType/OGC/0/unsignedShort<span class="tag">&lt;/wcseo:dataType&gt;</span>
+            <span class="tag">&lt;wcseo:dataType2dataSemantics&gt;</span>
+              <span class="tag">&lt;wcseo:intervalFrom&gt;</span>1 65535<span class="tag">&lt;/wcseo:intervalFrom&gt;</span>
+              <span class="tag">&lt;wcseo:intervalTo&gt;</span>622.0 780.0<span class="tag">&lt;/wcseo:intervalTo&gt;</span>
+              <span class="tag">&lt;wcseo:type&gt;</span>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear<span class="tag">&lt;/wcseo:type&gt;</span>
+            <span class="tag">&lt;/wcseo:dataType2dataSemantics&gt;</span>
+          <span class="tag">&lt;/wcseo:rangeTypeExtension&gt;</span>
+        <span class="tag">&lt;/swe:extension&gt;</span>
+        <span class="tag">&lt;swe:identifier&gt;</span>red<span class="tag">&lt;/swe:identifier&gt;</span>
+        <span class="tag">&lt;swe:label&gt;</span>Red Channel/Band<span class="tag">&lt;/swe:label&gt;</span>
+        <span class="tag">&lt;swe:description&gt;</span>Red Channel/Band<span class="tag">&lt;/swe:description&gt;</span>
+        <span class="tag">&lt;swe:nilValues&gt;</span>
+          <span class="tag">&lt;swe:NilValues&gt;</span>
+            <span class="tag">&lt;swe:nilValue</span> <span class="attribute-name">reason</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/def/nil/OGC/0/unknown</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>0<span class="tag">&lt;/swe:nilValue&gt;</span>
+          <span class="tag">&lt;/swe:NilValues&gt;</span>
+        <span class="tag">&lt;/swe:nilValues&gt;</span>
+        <span class="tag">&lt;swe:uom</span> <span class="attribute-name">code</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">W.m-2.sr-1.nm-1</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;swe:constraint&gt;</span>
+          <span class="tag">&lt;swe:AllowedValues&gt;</span>
+            <span class="tag">&lt;swe:interval&gt;</span>0 65535<span class="tag">&lt;/swe:interval&gt;</span>
+            <span class="tag">&lt;swe:significantFigures&gt;</span>5<span class="tag">&lt;/swe:significantFigures&gt;</span>
           <span class="tag">&lt;/swe:AllowedValues&gt;</span>
         <span class="tag">&lt;/swe:constraint&gt;</span>
       <span class="tag">&lt;/swe:Quantity&gt;</span>
@@ -1341,7 +1660,7 @@ With Corrigendum, version 2.0.2</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2016-07-22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TBD</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.0.1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Stephan Meißl</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">All</p></td>
@@ -1355,7 +1674,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-08-02 13:54:28 CEST
+Last updated 2016-08-02 18:39:36 CEST
 </div>
 </div>
 <script type="text/x-mathjax-config">
