@@ -99,7 +99,7 @@ asciimath:[y] is calculated as: asciimath:[y = 390 + (x-1) * (780-390) /
 <wcseo:dataType2dataSemantics>
   <wcseo:intervalFrom>1 4095</wcseo:intervalFrom>
   <wcseo:intervalTo>390.0000 780.0000</wcseo:intervalTo>
-  <wcseo:type>linear</wcseo:type>
+  <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
 </wcseo:dataType2dataSemantics>
 
 Another example, given below, describes the inverse to a logarithmic
@@ -113,7 +113,7 @@ e^(((x-1)*(ln(1000000000)-ln(2)))/(65535-1))].
 <wcseo:dataType2dataSemantics>
   <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
   <wcseo:intervalTo>2 1000000000</wcseo:intervalTo>
-  <wcseo:type>exponential</wcseo:type>
+  <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#ExponentialFunction</wcseo:type>
 </wcseo:dataType2dataSemantics>
 
 === Hint for RGB Generation
@@ -138,7 +138,7 @@ converted to asciimath:[y] using asciimath:[y =
   <wcseo:bandSequence>gray gray gray</wcseo:bandSequence>
   <wcseo:intervalFrom>100 10000000</wcseo:intervalFrom>
   <wcseo:intervalTo>1 255</wcseo:intervalTo>
-  <wcseo:type>logarithmic</wcseo:type>
+  <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic</wcseo:type>
 </wcseo:RGBgenerationHint>
 
 === Recommended definitions
@@ -150,9 +150,9 @@ meaningful descriptions ideally machine as well as human readable.
 
 ==== `wcseo:dataSemantics`, `swe:Quantity/@definition`, and `swe:uom/@code`
 
-The list below provides recommendations for the values of the three items
-`wcseo:dataSemantics`, `definition` attribute of `swe:Quantity`, and `code`
-attribute of `swe:Quantity/swe:uom` for the most common use cases.
+The non-exhaustive list below provides recommendations for the values of the
+three items `wcseo:dataSemantics`, `definition` attribute of `swe:Quantity`,
+and `code` attribute of `swe:Quantity/swe:uom` for the most common use cases.
 
 * Panchromatic
 ** `wcseo:dataSemantics`
@@ -174,60 +174,120 @@ attribute of `swe:Quantity/swe:uom` for the most common use cases.
 ** `wcseo:dataSemantics`
 *** `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#CBand`
 ** `definition`
-*** TODO `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity`
+*** `http://sweet.jpl.nasa.gov/2.3/propSpaceMultidimensional.owl#RadarCrossSection`
 ** `code`
-*** TODO none, digital number (dn), http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity (`W.m-2`), Relative Amplitude (dB), http://sweet.jpl.nasa.gov/2.3/propSpaceDistance.owl#ScatteringCoefficient
-* TODO something using radiance
+*** `dB`
+* Further URIs
 ** `wcseo:dataSemantics`
-*** `TODO`
+*** Most concepts in `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl`
 ** `definition`
 *** `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Radiance`
+*** `http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#Intensity`
 ** `code`
 *** `W.m-2.sr-1`
-
-
-  http://www.opengis.net/def/property/OGC-EO/0/opt/MaxCloudCover
-  http://www.opengis.net/def/property/OGC-EO/0/opt/MaxSnowCover
-
+*** `W.m-2`
 
 ==== `wcseo:dataType`
 
+The `wcseo:dataType` needs to match the data type actually used in the coverage
+encoding like GeoTIFF. The non-exhaustive list below provides recommendations
+for URIs to use. Further definitions can be retrieved using the base URIs from
+the examples given below.
 
-    http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger
-    http://www.opengis.net/def/dataType/OGC/0/unsignedInt
-    http://www.opengis.net/def/property/netcdf/1.0/unsignedShort
-    http://sweet.jpl.nasa.gov/2.0/info.owl
+* `http://www.opengis.net/def/dataType/OGC/0/unsignedByte`
+* `http://www.opengis.net/def/dataType/OGC/0/unsignedShort`
+* `http://www.opengis.net/def/dataType/OGC/0/unsignedInt`
+* `http://www.opengis.net/def/dataType/OGC/0/unsignedLong`
+* `http://www.w3.org/2001/XMLSchema#unsignedByte`
+* `http://www.w3.org/2001/XMLSchema#unsignedShort`
+* `http://www.w3.org/2001/XMLSchema#integer`
+* `http://www.w3.org/2001/XMLSchema#nonNegativeInteger`
+* `http://www.w3.org/2001/XMLSchema#double`
 
+Other possible but not recommended values are provided in the list below.
+
+* `http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger`
+* `http://www.opengis.net/def/property/netcdf/1.0/unsignedShort`
 
 ==== `wcseo:type` in `wcseo:dataType2dataSemantics` and `wcseo:RGBgenerationHint`
 
-  linear
-  logarithmic
-  exponential
+Recommendations for possible values for the `wcseo:type` element used to define
+data conversions are provided below.
+
+* `http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear`
+* `http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic`
+* `http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#ExponentialFunction`
+
+==== `wcseo:bandSequence`
+
+The `wcseo:bandSequence` element used in the `wcseo:RGBgenerationHint` is
+defined as type `NameTriple` which is a space delimited list of three elements
+of type `anyURI`. Typically these three elements each reference a `name`
+attribute of a `swe:field` element. An additional option is to define three
+arithmetic expression like asciimath:["band1"*1/3+"band2"*2/3]. Note that the
+arithmetic expressions themselves need to be URL-encoded and particularly must
+not include spaces. A valid example would be `band1%2F3%2Bband2%2A2%2F3
+band1%2A2%2F3%2Bband2%2F3 %28band1%2Bband3%29%2F2`.
 
 ==== `definition` attribute of `swe:DataRecord`
 
-TBD
-  http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC
-  http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC
+The non-exhaustive list below provides recommendations for the value of the
+definition` attribute of `swe:DataRecord`.
 
-  http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR
-  http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR
-  http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition
+* `http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC`
+* `http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/COLOR`
+* `http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/MULTISPECTRAL`
+* `http://www.opengis.net/def/property/OGC-EO/0/sar/PolarizationMode/HH`
+* `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Monochromatic`
+* `http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Polychromatic`
 
+The list below shows other possible but not recommended URIs.
 
-==== `swe:identifier` vs. `name` attribute of `swe:field`
+* `http://www.opengis.net/def/ogc-eo/opt/SpectralMode/PANCHROMATIC`
+* `http://www.opengis.net/def/ogc-eo/opt/SpectralMode/COLOR`
+* `http://www.opengis.net/def/order/OGC-EO/0/SpectralBandColorComposition`
+* `http://www.opengis.net/def/order/OGC-EO/0/SpectralBandComposition`
 
-    name is NCName
-    identifier is anyURI could be used for more complex IDs...
+==== `swe:field/@name` vs. `swe:field/swe:Quantity/swe:identifier`
 
-==== `reason` attribute of `swe:nilValue`
+The `name` attribute of `swe:field` is defined as type `NCName`. This mainly
+means that it must not include characters like `:` (colon), `@`, `$`, `%`, `&`,
+`/`, `+`, `,`, `;`, or any whitespace characters. If further must not start
+with a number, minus, or dot.
 
+The range subsetting extension of WCS [OGC 12-040] uses this `name` attribute
+in its `RangeComponent` element to select bands for retrieval.
 
-    http://www.opengis.net/def/nil/OGC/0/unknown
-    http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange
-    http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange
+Coverages, however, may use not `NCName` compliant IDs for their bands. It is,
+for example, quite common to identify variables within a netCDF file with
+strings including blanks or colons.
 
+The `swe:field` element includes in its `swe:Quantity` element a
+`swe:identifier` element which is of type anyURI and can potentially hold any
+complex ID given it is URL-encoded.
+
+For coverages using non `NCName` IDs for their bands it is recommended to
+provide the full IDs, potentially URL-encoded, in the `swe:identifier` element.
+It is further recommended to use the respective first word (`NCNAME` type
+substring i.e. starting from it's first character up to and excluding the first
+character which is not allowed in an `NCName`) of the IDs for the `name`
+attributes.
+
+For example an ID of `gray band` should use `gray` for the `name` attribute and
+`gray%20band` for the `swe:identifier` element.
+
+==== `swe:nilValue/@reason`
+
+The recommendations for the value of the `reason` attribute of `swe:nilValue`
+are given below.
+
+* `http://www.opengis.net/def/nil/OGC/0/unknown`
+* `http://www.opengis.net/def/nil/OGC/0/BelowDetectionRange`
+* `http://www.opengis.net/def/nil/OGC/0/AboveDetectionRange`
+* `http://www.opengis.net/def/nil/OGC/0/inapplicable`
+* `http://www.opengis.net/def/nil/OGC/0/missing`
+* `http://www.opengis.net/def/nil/OGC/0/template`
+* `http://www.opengis.net/def/nil/OGC/0/withheld`
 
 === Examples
 
@@ -237,14 +297,14 @@ as well as data conversion information on `swe:Quantity` level.
 
 [source,xml]
 <gmlcov:rangeType>
-  <swe:DataRecord definition="TODO">
+  <swe:DataRecord definition="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/PANCHROMATIC">
     <swe:extension>
       <wcseo:rangeTypeExtension>
         <wcseo:RGBgenerationHint>
           <wcseo:bandSequence>gray gray gray</wcseo:bandSequence>
-          <wcseo:intervalFrom>100 10000000</wcseo:intervalFrom>
+          <wcseo:intervalFrom>1 4095</wcseo:intervalFrom>
           <wcseo:intervalTo>1 255</wcseo:intervalTo>
-          <wcseo:type>logarithmic</wcseo:type>
+          <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic</wcseo:type>
         </wcseo:RGBgenerationHint>
       </wcseo:rangeTypeExtension>
     </swe:extension>
@@ -254,11 +314,11 @@ as well as data conversion information on `swe:Quantity` level.
         <swe:extension>
           <wcseo:rangeTypeExtension>
             <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Visible</wcseo:dataSemantics>
-            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/1.1/nonNegativeInteger</wcseo:dataType>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/0/unsignedShort</wcseo:dataType>
             <wcseo:dataType2dataSemantics>
-              <wcseo:intervalFrom>100 10000000</wcseo:intervalFrom>
+              <wcseo:intervalFrom>1 4095</wcseo:intervalFrom>
               <wcseo:intervalTo>390.0000 780.0000</wcseo:intervalTo>
-              <wcseo:type>linear</wcseo:type>
+              <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
             </wcseo:dataType2dataSemantics>
           </wcseo:rangeTypeExtension>
         </swe:extension>
@@ -273,8 +333,177 @@ as well as data conversion information on `swe:Quantity` level.
         <swe:uom code="W.m-2.sr-1.nm-1"/>
         <swe:constraint>
           <swe:AllowedValues>
-            <swe:interval>0 10000000</swe:interval>
-            <swe:significantFigures>8</swe:significantFigures>
+            <swe:interval>0 4095</swe:interval>
+            <swe:significantFigures>4</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+  </swe:DataRecord>
+</gmlcov:rangeType>
+
+The following is an example of a multispectral range type.
+
+[source,xml]
+<gmlcov:rangeType>
+  <swe:DataRecord definition="http://www.opengis.net/def/property/OGC-EO/0/opt/SpectralMode/MULTISPECTRAL">
+    <swe:extension>
+      <wcseo:rangeTypeExtension>
+        <wcseo:RGBgenerationHint>
+          <wcseo:bandSequence>red green blue</wcseo:bandSequence>
+          <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+          <wcseo:intervalTo>1 255</wcseo:intervalTo>
+          <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Logarithmic</wcseo:type>
+        </wcseo:RGBgenerationHint>
+      </wcseo:rangeTypeExtension>
+    </swe:extension>
+    <swe:label>Multispectral product</swe:label>
+    <swe:field name="blue">
+      <swe:Quantity definition="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance">
+        <swe:extension>
+          <wcseo:rangeTypeExtension>
+            <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Blue</wcseo:dataSemantics>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/0/unsignedShort</wcseo:dataType>
+            <wcseo:dataType2dataSemantics>
+              <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+              <wcseo:intervalTo>455.0 492.0</wcseo:intervalTo>
+              <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
+            </wcseo:dataType2dataSemantics>
+          </wcseo:rangeTypeExtension>
+        </swe:extension>
+        <swe:identifier>blue</swe:identifier>
+        <swe:label>Blue Channel/Band</swe:label>
+        <swe:description>Blue Channel/Band</swe:description>
+        <swe:nilValues>
+          <swe:NilValues>
+            <swe:nilValue reason="http://www.opengis.net/def/nil/OGC/0/unknown">0</swe:nilValue>
+          </swe:NilValues>
+        </swe:nilValues>
+        <swe:uom code="W.m-2.sr-1.nm-1"/>
+        <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 65535</swe:interval>
+            <swe:significantFigures>5</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+    <swe:field name="green">
+      <swe:Quantity definition="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance">
+        <swe:extension>
+          <wcseo:rangeTypeExtension>
+            <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Green</wcseo:dataSemantics>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/0/unsignedShort</wcseo:dataType>
+            <wcseo:dataType2dataSemantics>
+              <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+              <wcseo:intervalTo>492.0 557.0</wcseo:intervalTo>
+              <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
+            </wcseo:dataType2dataSemantics>
+          </wcseo:rangeTypeExtension>
+        </swe:extension>
+        <swe:identifier>green</swe:identifier>
+        <swe:label>Green Channel/Band</swe:label>
+        <swe:description>Green Channel/Band</swe:description>
+        <swe:nilValues>
+          <swe:NilValues>
+            <swe:nilValue reason="http://www.opengis.net/def/nil/OGC/0/unknown">0</swe:nilValue>
+          </swe:NilValues>
+        </swe:nilValues>
+        <swe:uom code="W.m-2.sr-1.nm-1"/>
+        <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 65535</swe:interval>
+            <swe:significantFigures>5</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+    <swe:field name="yellow">
+      <swe:Quantity definition="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance">
+        <swe:extension>
+          <wcseo:rangeTypeExtension>
+            <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Yellow</wcseo:dataSemantics>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/0/unsignedShort</wcseo:dataType>
+            <wcseo:dataType2dataSemantics>
+              <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+              <wcseo:intervalTo>557.0 597.0</wcseo:intervalTo>
+              <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
+            </wcseo:dataType2dataSemantics>
+          </wcseo:rangeTypeExtension>
+        </swe:extension>
+        <swe:identifier>yellow</swe:identifier>
+        <swe:label>Yellow Channel/Band</swe:label>
+        <swe:description>Yellow Channel/Band</swe:description>
+        <swe:nilValues>
+          <swe:NilValues>
+            <swe:nilValue reason="http://www.opengis.net/def/nil/OGC/0/unknown">0</swe:nilValue>
+          </swe:NilValues>
+        </swe:nilValues>
+        <swe:uom code="W.m-2.sr-1.nm-1"/>
+        <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 65535</swe:interval>
+            <swe:significantFigures>5</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+    <swe:field name="orange">
+      <swe:Quantity definition="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance">
+        <swe:extension>
+          <wcseo:rangeTypeExtension>
+            <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Orange</wcseo:dataSemantics>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/0/unsignedShort</wcseo:dataType>
+            <wcseo:dataType2dataSemantics>
+              <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+              <wcseo:intervalTo>597.0 622.0</wcseo:intervalTo>
+              <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
+            </wcseo:dataType2dataSemantics>
+          </wcseo:rangeTypeExtension>
+        </swe:extension>
+        <swe:identifier>orange</swe:identifier>
+        <swe:label>Orange Channel/Band</swe:label>
+        <swe:description>Orange Channel/Band</swe:description>
+        <swe:nilValues>
+          <swe:NilValues>
+            <swe:nilValue reason="http://www.opengis.net/def/nil/OGC/0/unknown">0</swe:nilValue>
+          </swe:NilValues>
+        </swe:nilValues>
+        <swe:uom code="W.m-2.sr-1.nm-1"/>
+        <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 65535</swe:interval>
+            <swe:significantFigures>5</swe:significantFigures>
+          </swe:AllowedValues>
+        </swe:constraint>
+      </swe:Quantity>
+    </swe:field>
+    <swe:field name="red">
+      <swe:Quantity definition="http://sweet.jpl.nasa.gov/2.3/propEnergyFlux.owl#SpectralRadiance">
+        <swe:extension>
+          <wcseo:rangeTypeExtension>
+            <wcseo:dataSemantics>http://sweet.jpl.nasa.gov/2.3/stateSpectralBand.owl#Red</wcseo:dataSemantics>
+            <wcseo:dataType>http://www.opengis.net/def/dataType/OGC/0/unsignedShort</wcseo:dataType>
+            <wcseo:dataType2dataSemantics>
+              <wcseo:intervalFrom>1 65535</wcseo:intervalFrom>
+              <wcseo:intervalTo>622.0 780.0</wcseo:intervalTo>
+              <wcseo:type>http://sweet.jpl.nasa.gov/2.3/reprMathFunction.owl#Linear</wcseo:type>
+            </wcseo:dataType2dataSemantics>
+          </wcseo:rangeTypeExtension>
+        </swe:extension>
+        <swe:identifier>red</swe:identifier>
+        <swe:label>Red Channel/Band</swe:label>
+        <swe:description>Red Channel/Band</swe:description>
+        <swe:nilValues>
+          <swe:NilValues>
+            <swe:nilValue reason="http://www.opengis.net/def/nil/OGC/0/unknown">0</swe:nilValue>
+          </swe:NilValues>
+        </swe:nilValues>
+        <swe:uom code="W.m-2.sr-1.nm-1"/>
+        <swe:constraint>
+          <swe:AllowedValues>
+            <swe:interval>0 65535</swe:interval>
+            <swe:significantFigures>5</swe:significantFigures>
           </swe:AllowedValues>
         </swe:constraint>
       </swe:Quantity>
