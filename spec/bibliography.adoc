@@ -11,4 +11,3 @@ interchange - Representation of dates and time
 - [[[7]]] OpenSearch Specification, 1.1, Draft 5
 - [[[8]]] OGC 09-025r2, OpenGIS Web Feature Service 2.0 Interface Standard -
 With Corrigendum, version 2.0.2
-- [[[9]]] OGC 16-118 EO Data Access Best Practice, version 0.0.1
