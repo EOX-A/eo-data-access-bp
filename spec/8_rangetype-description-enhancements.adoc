@@ -229,7 +229,7 @@ arithmetic expressions themselves need to be URL-encoded and particularly must
 not include spaces. A valid example would be `band1%2F3%2Bband2%2A2%2F3
 band1%2A2%2F3%2Bband2%2F3 %28band1%2Bband3%29%2F2`.
 
-==== `definition` attribute of `swe:DataRecord`
+==== `swe:DataRecord/@definition`
 
 The non-exhaustive list below provides recommendations for the value of the
 definition` attribute of `swe:DataRecord`.

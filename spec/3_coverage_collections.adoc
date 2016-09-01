@@ -1,7 +1,12 @@
-[#Grouping of Associated Data,reftext='6']
-== Grouping of Associated Data
+[#Coverage Collections,reftext='6']
+== Coverage Collections
 
-=== Overview
+TODO
+
+[#Grouping of Associated Data,reftext='6.1']
+=== Grouping of Associated Data
+
+==== Overview
 
 Modeling the grouped data as coverage itself would directly allow GetCoverage
 requests but would require rather big changes to WCS. Thus we propose to follow
@@ -122,5 +127,45 @@ An additional consideration is to harmonize this proposal with EO-O&M as
 adopted by EO-WCS. EO-O&M is designed to define a catalog record for one EO
 product including links to various raster or vector features like measurements,
 browses, masks, etc.
+
+TODO
+
+
+[#Collection and Product Registration,reftext='6.2']
+=== Collection and Product Registration
+
+==== Overview
+
+We propose to include a high level description of a HTTP REST API to
+programmatic register collections and products in ODA Systems.
+
+The API needs to specify the request and response structure as well as the
+payloads. Both, particularly the payload, depend heavily on the functionality
+available in concrete implementations. Thus we propose to evaluate the
+suitability to specify collection and product registration including
+suitability to specify a minimal set of services an ODA System has to support.
+
+The GeoServer REST API 20 serves as basis for our proposal.
+
+TODO
+
+
+[#Uniform Coverage Grouping,reftext='6.3']
+=== Uniform Coverage Grouping
+
+==== Overview
+
+We propose to carefully review to which extent the forthcoming CIS 1.1 is
+prepared for this.
+
+The new partitioning functionality of CIS 1.1 requires all partitions to share
+the same range type partitions which is exactly what is ask for in this item.
+On the other side it requires partitions to not overlap which would require to
+use real 3D coverages in order to group 2D EO coverages.
+
+This needs to be further reviewed in order to harmonize with the concepts of
+EO-WCS. In any case this might be best suited to be integrated and documented
+in the solution to the "General Coverage Grouping" item detailed in section
+3.3.1 below.
 
 TODO
