@@ -523,3 +523,4 @@ The following is an example of a multispectral range type.
     </swe:field>
   </swe:DataRecord>
 </gmlcov:rangeType>
+
