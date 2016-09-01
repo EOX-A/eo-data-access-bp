@@ -177,6 +177,7 @@ include::3_coverage_collections.adoc[]
 include::5_condense-coverage-description-information.adoc[]
 include::7_wcs-masking-extension.adoc[]
 include::8_rangetype-description-enhancements.adoc[]
+include::9_conclusions.adoc[]
 
 :numbered!:
 

@@ -1,0 +1,10 @@
+[#conclusions,reftext='10']
+== Conclusions
+
+This section summarizes intended use and benefits of EO-WCS 1.1.
+
+Among others, this might mention that EO-WCS 1.0 has inspired coverage
+extensions, and it can be expected that EO-WCS 1.1 work will have a similar
+impact.
+
+TODO
