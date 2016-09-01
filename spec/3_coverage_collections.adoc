@@ -1,7 +1,32 @@
 [#Coverage Collections,reftext='6']
 == Coverage Collections
 
-TODO
+WCS originally was perceived to give access to single coverages taken from a
+flat set of coverage offerings in the server.
+
+This approach was based on the classical subdivision into metadata services
+(i.e., catalogs) and data services, connected through some loose coupling
+(which effectively was never standardized beyond the recommendation to use
+URLs).
+
+With the progress of requirements and technology it is more and more considered
+important to merge data and metadata perspectives with the vision of a common
+integrated information space.
+
+For WCS, this means in particular to further structure a server's offering of
+coverages along various criteria.
+
+Early on EO-WCS has provided a lead in this by introducing both uniform and
+non-uniform coverage groupings together with dedicated search functionality
+which is able to perform a focused search within coverage subsets.
+
+With OGC Coverage Implementation Schema (CIS) 1.1 comes massively enhanced
+support for structuring coverages. Therefore, a harmonization task has to be
+accomplished to relate both concepts, which may well lead to an extension of
+functionality for fully exploiting all benefits.
+
+In the following subsections, we discuss EO-relevant grouping concepts, based
+on CIS and EO-WCS.
 
 [#Grouping of Associated Data,reftext='6.1']
 === Grouping of Associated Data
