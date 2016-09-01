@@ -3,9 +3,22 @@
 
 === Overview
 
-EO-WCS 1.1 extends the range type description of WCS 2.0 which is inherited
-from the Coverage Implementation Schema (CIS) 1.0 (formerly known as GML
-Application Schema - Coverages (GMLCOV).
+The rangeType component of a coverage describes the common data type all this
+coverage's range values (such as pixels) share. In programming languages, this
+typically consists of differentiating between signed integer, unsigned integer,
+float, etc.
+
+The rangeType concept, however, goes far beyond such classical data typing;
+adopting OGC O&M definitions, a comprehensive semantics description can be
+expressed indicating the range value type (which can be a classical data type
+such as "non-negative integer", but can also denote application semantics such
+as "radiation", "SAR") given by a URL, a definition of the unit of measure of
+the values, null values, and several more can be expressed.
+
+In the basic, domain-agnostic OGC Coverage Implementation Schema (CIS, formerly
+known as GML Application Schema, GMLCOV) only these general items are defined.
+EO-WCS 1.1 extends this range type description, as it is used in WCS 2, with
+EO-specific detail information.
 
 The extension includes elements to specify the measured physical properties
 (`wcseo:dataSemantics`), the data types of stored numbers (`wcseo:dataType`),
