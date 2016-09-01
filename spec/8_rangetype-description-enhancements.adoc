@@ -1,4 +1,4 @@
-[#rangetype-description-enhancements,reftext='11']
+[#rangetype-description-enhancements,reftext='9']
 == rangeType Description Enhancements
 
 === Overview
