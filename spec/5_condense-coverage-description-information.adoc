@@ -12,11 +12,31 @@ limited view only including id, name, bbox, start, and end.
 Additionally, there is the idea of adding histogram like functionality i.e.,
 requesting summary information for defined buckets like months.
 
-It has also been suggested to evaluate XPath as mechanism to retrieve only
-subsets of XML documents. Although this looks like a promising approach there
-are some difficulties from an implementation point of view. In general, an XML
-document can be queried using XPath once it has been generated. This approach
-wouldn't scale well on server implementations and is thus discarded, at least
-in EVO-ODAS.
+It should be noted that there exists an alternative approach to searching which
+is based on XPath enabling traversal and subsetting of a server's XML
+information hierarchy.
+
+OpenSearch and XPath are not competing, but complementary approaches:
+OpenSearch empowers users to do human-centric search through keywords. XPath,
+conversely, enables fine-grain drilling into the server's information structure
+and, hence, is suitable in particular for machine-to-machine communication.
+
+Both search types, therefore, are important for versatile coverage services. In
+EVO-ODAS, the OpenSearch avenue will be elaborated.
+
+Although XPath looks like a promising approach there are some difficulties
+particularly from an implementation point of view. In general, an XML document
+can only be subsetted using XPath once it has been generated. This approach
+wouldn't scale well on server implementations. Of course particular queries can
+be computed on the fly but to allow generic XPath queries is quite challenging.
+
+Another issue is, that XPath returns subsets of XML documents without
+maintaining overlying hierarchy. While it is simple to retrieve a list of
+coverage IDs for certain search criteria it is difficult if not impossible to
+retrieve for the same list of coverages tailored coverage descriptions only
+containing ID, phenomenon time, and footprint.
+
+Further challenges arise when the query is supposed to contain time or spatial
+subsetting.
 
 TODO
