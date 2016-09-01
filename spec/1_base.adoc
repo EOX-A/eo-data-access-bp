@@ -30,7 +30,7 @@ OGC 09-110r4, _OGC® WCS 2.0 Interface Standard- Core: Corrigendum_, version
 2.0 +
 Conformance classes used: _core_
 
-TBD OGC 10-140r1, _OGC® Web Coverage Service 2.0 Interface Standard - Earth
+OGC 10-140r2, _OGC® Web Coverage Service 2.0 Interface Standard - Earth
 Observation Application Profile_, version 1.1 +
 Conformance classes used: _eowcs_, _eowcs_geteocoverageset_, _eowcs_get-kvp_,
 _eowcs_soap_,
@@ -139,8 +139,8 @@ it is part of
 
 === refers to
 
-contains, in its -> EO Metadata element as defined in [OGC 10-157r4], the -> EO
-Metadata element of
+contains or references, in its -> EO Metadata element as defined in [OGC
+10-157r4], the -> EO Metadata element of
 
 == Conventions
 
@@ -189,7 +189,8 @@ http://www.opengis.net/WCS_service-extension_interpolation/1.0|WCS Interpolation
 Extension
 |crs    |http://www.opengis.net/wcs/crs/1.0     |WCS CRS Extension
 |gmd    |http://www.isotc211.org/2005/gmd       |ISO 19139 Metadata
-|gmi    |http://standards.iso.org/iso/19115/-2/gmi/1.0 |ISO 19139-2 Metadata
+|gmi    |http://standards.iso.org/iso/19115/-2/gmi/1.0 or
+http://www.isotc211.org/2005/gmi |ISO 19139-2 Metadata
 |mdb    |http://standards.iso.org/iso/19115/-3/mdb/1.0 |ISO 19115-3 Metadata
 |===============================================================================
 
