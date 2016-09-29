@@ -2,14 +2,18 @@
 == Foreword
 
 This OGC Best Practice document details proposed configuration and
-instantiation conventions for access to Earth Observation (EO) data developed
-in the European Space Agency (ESA) funded project Evolution of EO Online Data
-Access Services (EVO-ODAS).
+instantiation conventions and recommendations on how to utilize OGC services
+for access to Earth Observation (EO) data. These proposed conventions and
+recommendations have been developed in the http://www.esa.int/ESA[European
+Space Agency (ESA)] funded project
+https://wiki.services.eoportal.org/tiki-index.php?page=EVO-ODAS[Evolution of
+EO Online Data Access Services (EVO-ODAS)].
 
-It defines how to utilize WCS with EO products including generic conventions
-and recommendations for data and metadata mapping and conversion which are to
-be used in concrete tailoring for specific missions. It further considers how
-to link to other services like CSW, WMS, and WPS.
+It is defined how to utilize OGC's http://www.opengeospatial.org/standards/wcs[
+Web Coverage Service (WCS)] with EO products including generic conventions and
+recommendations for data and metadata mapping and conversions which are to be
+used in concrete tailorings for specific missions. It further considers how to
+link to other services like CSW, WMS, and WPS.
 
 Suggested additions, changes, and comments on this draft document are welcome
 and encouraged. Such suggestions may be submitted by email message, by creating
@@ -29,4 +33,44 @@ documentation._
 
 == Introduction
 
-TODO
+The Earth Observation Data Access Best Practice document at hand provides a
+detailed look at the access to EO data from an OGC perspective.
+
+EO data is typically available as raster data or, in OGC terminology, as
+coverages. Thus the main OGC service relevant for the data access task is the
+http://www.opengeospatial.org/standards/wcs[Web Coverage Service (WCS)].
+Nonetheless further OGC services like the
+http://www.opengeospatial.org/standards/wms[Web Map Service (WMS)] and the
+http://www.opengeospatial.org/standards/wmts[Web Map Tile Service (WMTS)] for
+visualization, the http://www.opengeospatial.org/standards/cat[Catalog Service
+(CSW, OpenSearch)] for discovery, or the
+http://www.opengeospatial.org/standards/wps[Web Processing Service (WPS)] for
+processing need to be taken into account in order to provide a well integrated
+solution for data consumers.
+
+A https://schpidi.github.io/eo-wcs/[WCS 2.0 Earth Observation Application
+Profile (EO-WCS) [OGC 10-140r2\]] has been adopted by OGC defining a profile of
+WCS 2.0 for use on Earth Observation data. Naturally the present document
+focuses on EO-WCS but makes sure not to forget the surroundings to put it into
+context.
+
+Centered around WCS and EO-WCS this Best Practice document defines conventions
+and makes recommendations for the following topics:
+
+* <<cross-service-interaction,Cross Service Interaction>> - Detailing how to
+structure the data offered in the various services as well as how to explicitly
+link between those services. The OGC services under consideration are:
+OpenSearch, WMS, WMTS, WCS, and DS- EO.
+* <<rangetype-description-enhancements,rangeType Description Enhancements>> -
+Designing usage and utilization of how to describe the range values of
+products.
+* <<collection-and-product-registration,Collection and Product Registration>> -
+Drafting an HTTP REST API for programmatic collection and product registration.
+* <<coverage-collections,Grouping of Coverages and Associated Data>> - Adding
+support for typical EO concepts like multi-resolution products or cloud masks
+to OGC services.
+* <<condense-coverage-description-information,Condense Coverage Description
+Information>> - Applying performance optimizations to facilitate and enable
+modern web based applications.
+* <<wcs-masking-extension,WCS Masking Extension>> - Proposing support for
+retrieving non-rectangular subsets of coverages from WCS.

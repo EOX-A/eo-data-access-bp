@@ -1,4 +1,4 @@
-[#Coverage Collections,reftext='7']
+[#coverage-collections,reftext='7']
 == Coverage Collections
 
 WCS originally was perceived to give access to single coverages taken from a
@@ -28,7 +28,7 @@ functionality for fully exploiting all benefits.
 In the following subsections, we discuss EO-relevant grouping concepts, based
 on CIS and EO-WCS.
 
-[#Grouping of Associated Data,reftext='6.1']
+[#grouping-of-associated-data,reftext='6.1']
 === Grouping of Associated Data
 
 ==== Overview
@@ -156,7 +156,7 @@ browses, masks, etc.
 TODO
 
 
-[#Collection and Product Registration,reftext='6.2']
+[#collection-and-product-registration,reftext='6.2']
 === Collection and Product Registration
 
 ==== Overview
@@ -175,7 +175,7 @@ The GeoServer REST API 20 serves as basis for our proposal.
 TODO
 
 
-[#Uniform Coverage Grouping,reftext='6.3']
+[#uniform-coverage-grouping,reftext='6.3']
 === Uniform Coverage Grouping
 
 ==== Overview

@@ -1,4 +1,4 @@
-[#Condense Coverage Description Information,reftext='8']
+[#condense-coverage-description-information,reftext='8']
 == Condense Coverage Description Information
 
 === Overview
