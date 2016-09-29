@@ -1,4 +1,4 @@
-[#Coverage Collections,reftext='6']
+[#Coverage Collections,reftext='7']
 == Coverage Collections
 
 WCS originally was perceived to give access to single coverages taken from a
