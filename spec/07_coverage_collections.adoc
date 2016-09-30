@@ -2,7 +2,7 @@
 == Coverage Collections
 
 WCS originally was perceived to give access to single coverages taken from a
-flat set of coverage offerings in the server.
+flat set of coverage offerings on the server.
 
 This approach was based on the classical subdivision into metadata services
 (i.e., catalogs) and data services, connected through some loose coupling
@@ -28,21 +28,86 @@ functionality for fully exploiting all benefits.
 In the following subsections, we discuss EO-relevant grouping concepts, based
 on CIS and EO-WCS.
 
-[#grouping-of-associated-data,reftext='6.1']
+[#grouping-of-associated-data,reftext='7.1']
 === Grouping of Associated Data
 
 ==== Overview
 
+EO products are typically stored in single files, either using a special binary
+EO format like NetCDF or ENVISAT N1, a special EO container format like SAFE,
+e.g. Sentinel-2, or DIMAP, or a general container format like TAR or ZIP.
+Sometimes EO products are stored as multiple files directly, e.g. Landsat-8.
+
 Modeling the grouped data as coverage itself would directly allow GetCoverage
 requests but would require rather big changes to WCS. Thus we propose to follow
-and extend the approach already established in EO- WCS and reuse the concept of
-DatasetSeries.
+and extend the approach already established in EO-WCS and reuse the concept of
+Dataset Series.
 
-As described in the section "Encoding of Multiple Coverages in One File" 3.1.2
-above we propose to use `Reference` elements in `Metadata` elements also for
-associated data. Together with the GetEOCoverageRequest operation and a
-`mediaType` of `multipart/related` this could be suitable to be used for data
-access to whole EO Products.
+As a first step, the encoding of multiple coverages, potentially representing
+an EO Product, in a package format like TAR or ZIP is investigated. Given the
+new operation GetEOCoverageSet the only point missing is the inclusion of
+metadata on package level.
+
+Basically the EOMetadata element has been amended to be in the
+`substitutionGroup` of `ows:AbstractMetaData` and the choice is extended by
+references to ISO 19139 `MD_Metadata`, which can be substituted by ISO 19139-2
+`MI_Metadata`, and ISO 19115-3 `MD_Metadata`. To recap, the already available
+options are EO-O&M, or EOP as it is referred to sometimes, or by reference as
+seen in the example below. A complete
+https://github.com/Schpidi/eo-wcs/blob/evo-odas/schema/wcseo/examples/wcseo_responseDescribeEOCoverageSet_minimal.xml[example]
+is provided with the EO-WCS standard.
+
+These choices leave the option to use the concept of Dataset Series for
+offering collections but also for EO Products. Although named Dataset Series
+technically speaking it is a heterogeneous grouping of coverages and/or Dataset
+Series and can thus be used for any other concept like an EO Product containing
+multiple coverages with different resolutions as well.
+
+The example below shows a complete `DatasetSeries` element including a
+reference to further metadata.
+
+[source,xml]
+<?xml version="1.0" encoding="UTF-8"?>
+<wcseo:DatasetSeries xmlns:ows="http://www.opengis.net/ows/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:wcs="http://www.opengis.net/wcs/2.0" xmlns:wcseo="http://www.opengis.net/wcs/wcseo/1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchemainstance" xsi:schemaLocation="http://www.opengis.net/wcs/wcseo/1.1 http://schemas.opengis.net/wcs/wcseo/1.1/wcsEOAll.xsd">
+  <wcseo:DatasetSeriesId>someDatasetSeries1</wcseo:DatasetSeriesId>
+  <eop:Footprint gml:id="footprint_someDatasetSeries1">
+    <eop:multiExtentOf>
+      <gml:MultiSurface gml:id="multisurface_someDatasetSeries1" srsName="EPSG:4326">
+        <gml:surfaceMembers>
+          <gml:Polygon gml:id="polygon_someDatasetSeries1">
+            <gml:exterior>
+              <gml:LinearRing>
+                <gml:posList>43.516667 2.1025 43.381667 2.861667 42.862778 2.65 42.996389 1.896944 43.516667 2.1025</gml:posList>
+              </gml:LinearRing>
+              </gml:exterior>
+            </gml:Polygon>
+          </gml:surfaceMembers>
+        </gml:MultiSurface>
+    </eop:multiExtentOf>
+  </eop:Footprint>
+  <gml:TimePeriod gml:id="someDatasetSeries1_timeperiod">
+    <gml:beginPosition>2008-03-13T00:00:00.000</gml:beginPosition>
+    <gml:endPosition>2008-03-13T23:59:59.999</gml:endPosition>
+  </gml:TimePeriod>
+  <ows:Metadata>
+    <wcseo:EOMetadata>
+      <ows:Reference xlink:href="http://www.someCatalogue.org/eop-metadatafrom-someDatasetSeries1" xlink:role="http://standards.iso.org/iso/19115/-3/mdb/1.0" xlink:title="ISO 19115-3 Metadata" />
+    </wcseo:EOMetadata>
+  </ows:Metadata>
+  <wcseo:rectifiedDataset>
+    <wcs:CoverageId>someEOCoverage1</wcs:CoverageId>
+  </wcseo:rectifiedDataset>
+</wcseo:DatasetSeries>
+
+Of course the mechanism of using `Reference` elements in `Metadata` elements
+can also be used for associated data.
+
+We propose to further investigate if a GetEOCoverageRequest together with a
+`mediaType` of `multipart/related` is suitable to be used for data access to
+whole EO Products. In a first step this will be verified using general
+container formats as written above. The next step then is to investigate the
+suitability of this approach also for special EO container formats like SAFE
+and special binary EO formats like NetCDF or ENVISAT N1.
 
 The first part of the multipart response would look like the example below but
 additionally include `Reference` elements to the associated data inside
@@ -152,9 +217,6 @@ An additional consideration is to harmonize this proposal with EO-O&M as
 adopted by EO-WCS. EO-O&M is designed to define a catalog record for one EO
 product including links to various raster or vector features like measurements,
 browses, masks, etc.
-
-TODO
-
 
 [#collection-and-product-registration,reftext='6.2']
 === Collection and Product Registration
