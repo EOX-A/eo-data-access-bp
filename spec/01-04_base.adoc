@@ -61,6 +61,11 @@ Measurements_, version 1.1
 OGC 07-063r1, _OpenGIS® Web Map Services - Profile for EO Products_, version
 0.3.3
 
+_OpenSearch Parameter extension_, version 1.0 Draft 2, accessed 2016-43-20,
+http://www.opensearch.org/Specifications/OpenSearch/Extensions/Parameter/1.0/Draft_2
+
+OGC 13-026r8, _OGC® OpenSearch Extension for Earth Observation_, version 1.0
+
 OGC 13-043, _OGC Download Service for Earth Observation Products Best
 Practice_, version 1.0
 

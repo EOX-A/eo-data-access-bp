@@ -40,3 +40,78 @@ Both search types, therefore, are important for versatile coverage services. In
 EVO-ODAS, the OpenSearch avenue will be elaborated.
 
 TODO
+
+=== OpenSearch `view` parameter
+
+==== Objective
+
+This proposal adds support for different levels of verbosity in OpenSearch
+responses. Clients mainly need a complete and detailed view on the result set
+but for example to show data availability on a time slider only a limited view
+is needed. This limited view provides a great opportunity for performance
+optimization, in response generation time on the server, in response size and
+thus transfer time, and in response parsing time on the client.
+
+The proposal adds a parameter named `view` to the OpenSearch URL template using
+the OpenSearch Parameter extension. It further defines several mandatory and
+optional options for predefined values for the new parameter including the
+definition of the content of response. Additionally it leaves room to add
+custom options as needed.
+
+This shows an example of an `Url` element using the `view` parameter:
+
+  <Url xmlns:param="http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"
+       xmlns:eo="http://a9.com/-/opensearch/extensions/eo/1.0/"
+       type="application/atom+xml"
+       rel="collection"
+       template="http://example.com/atom?q={searchTerms}&amp;view={eo:view}">
+    <param:Parameter name="view"
+                     value="{eo:view}"
+                     title="Verbosity of the response. Default: full"
+                     pattern="full|brief|geotime"
+                     minimum="0">
+      <param:Option value="full" label="Complete and detailed view."/>
+      <param:Option value="brief" label="Brief view to get a quick impression."/>
+      <param:Option value="geotime" label="View to show data availability on a time slider."/>
+    </param:Parameter>
+  </Url>
+
+==== `view` Parameter
+
+The new `view` parameter reuses the namespace of the OGC® OpenSearch Extension
+for Earth Observation [OGC 13-026r8]. It is used as `view={eo:view}` in the
+template attribute of `Url` elements.
+
+The following mandatory and optional option values are defined:
+
+* `full` - mandatory - Complete and detailed view.
+* `brief` - mandatory - Brief view to get a quick impression.
+* `geotime` - optional - View to show data availability on a time slider.
+* TODO
+
+NOTE: Not all options have to necessarily be made available with each format.
+The `geotime` option for example might be available with JSON or CSV formatting
+but not with ATOM.
+
+===== `full`
+
+TODO: Use full EOP
+
+===== `brief`
+
+TODO: Check with CSW
+
+===== `geotime`
+
+Using this option returns the needed metadata to show data availability on a
+time slider. The needed metadata are identifier, name, bounding box or
+footprint in EPSG:4326, start time, and end time.
+
+This is a response example in CSV format:
+
+  "identifier","name","bbox","starttime","endtime"
+  "1","Satellite image","(40,10,50,20)","2016-04-20T00:00:00Z","2016-04-20T23:59:59Z"
+
+===== Custom options
+
+TODO
