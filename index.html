@@ -237,6 +237,12 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#condense-coverage-description-information">8. Condense Coverage Description Information</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_6">8.1. Overview</a></li>
+<li><a href="#_opensearch_code_view_code_parameter">8.2. OpenSearch <code>view</code> parameter</a>
+<ul class="sectlevel3">
+<li><a href="#_objective">8.2.1. Objective</a></li>
+<li><a href="#__code_view_code_parameter">8.2.2. <code>view</code> Parameter</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#wcs-masking-extension">9. WCS Masking Extension</a>
@@ -691,6 +697,13 @@ Measurements</em>, version 1.1</p>
 <div class="paragraph">
 <p>OGC 07-063r1, <em>OpenGIS® Web Map Services - Profile for EO Products</em>, version
 0.3.3</p>
+</div>
+<div class="paragraph">
+<p><em>OpenSearch Parameter extension</em>, version 1.0 Draft 2, accessed 2016-43-20,
+<a href="http://www.opensearch.org/Specifications/OpenSearch/Extensions/Parameter/1.0/Draft_2" class="bare">http://www.opensearch.org/Specifications/OpenSearch/Extensions/Parameter/1.0/Draft_2</a></p>
+</div>
+<div class="paragraph">
+<p>OGC 13-026r8, <em>OGC® OpenSearch Extension for Earth Observation</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 13-043, <em>OGC Download Service for Earth Observation Products Best
@@ -1798,7 +1811,7 @@ as well as data conversion information on <code>swe:Quantity</code> level.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>WCS originally was perceived to give access to single coverages taken from a
-flat set of coverage offerings in the server.</p>
+flat set of coverage offerings on the server.</p>
 </div>
 <div class="paragraph">
 <p>This approach was based on the classical subdivision into metadata services
@@ -1835,17 +1848,90 @@ on CIS and EO-WCS.</p>
 <div class="sect3">
 <h4 id="_overview_3">7.1.1. Overview</h4>
 <div class="paragraph">
-<p>Modeling the grouped data as coverage itself would directly allow GetCoverage
-requests but would require rather big changes to WCS. Thus we propose to follow
-and extend the approach already established in EO- WCS and reuse the concept of
-DatasetSeries.</p>
+<p>EO products are typically stored in single files, either using a special binary
+EO format like NetCDF or ENVISAT N1, a special EO container format like SAFE,
+e.g. Sentinel-2, or DIMAP, or a general container format like TAR or ZIP.
+Sometimes EO products are stored as multiple files directly, e.g. Landsat-8.</p>
 </div>
 <div class="paragraph">
-<p>As described in the section "Encoding of Multiple Coverages in One File" 3.1.2
-above we propose to use <code>Reference</code> elements in <code>Metadata</code> elements also for
-associated data. Together with the GetEOCoverageRequest operation and a
-<code>mediaType</code> of <code>multipart/related</code> this could be suitable to be used for data
-access to whole EO Products.</p>
+<p>Modeling the grouped data as coverage itself would directly allow GetCoverage
+requests but would require rather big changes to WCS. Thus we propose to follow
+and extend the approach already established in EO-WCS and reuse the concept of
+Dataset Series.</p>
+</div>
+<div class="paragraph">
+<p>As a first step, the encoding of multiple coverages, potentially representing
+an EO Product, in a package format like TAR or ZIP is investigated. Given the
+new operation GetEOCoverageSet the only point missing is the inclusion of
+metadata on package level.</p>
+</div>
+<div class="paragraph">
+<p>Basically the EOMetadata element has been amended to be in the
+<code>substitutionGroup</code> of <code>ows:AbstractMetaData</code> and the choice is extended by
+references to ISO 19139 <code>MD_Metadata</code>, which can be substituted by ISO 19139-2
+<code>MI_Metadata</code>, and ISO 19115-3 <code>MD_Metadata</code>. To recap, the already available
+options are EO-O&amp;M, or EOP as it is referred to sometimes, or by reference as
+seen in the example below. A complete
+<a href="https://github.com/Schpidi/eo-wcs/blob/evo-odas/schema/wcseo/examples/wcseo_responseDescribeEOCoverageSet_minimal.xml">example</a>
+is provided with the EO-WCS standard.</p>
+</div>
+<div class="paragraph">
+<p>These choices leave the option to use the concept of Dataset Series for
+offering collections but also for EO Products. Although named Dataset Series
+technically speaking it is a heterogeneous grouping of coverages and/or Dataset
+Series and can thus be used for any other concept like an EO Product containing
+multiple coverages with different resolutions as well.</p>
+</div>
+<div class="paragraph">
+<p>The example below shows a complete <code>DatasetSeries</code> element including a
+reference to further metadata.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;wcseo:DatasetSeries</span> <span class="attribute-name">xmlns:ows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ows/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gml</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/gml/3.2</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcseo</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xlink</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/1999/xlink</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchemainstance</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1 http://schemas.opengis.net/wcs/wcseo/1.1/wcsEOAll.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;wcseo:DatasetSeriesId&gt;</span>someDatasetSeries1<span class="tag">&lt;/wcseo:DatasetSeriesId&gt;</span>
+  <span class="tag">&lt;eop:Footprint</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footprint_someDatasetSeries1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;eop:multiExtentOf&gt;</span>
+      <span class="tag">&lt;gml:MultiSurface</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">multisurface_someDatasetSeries1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">srsName</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">EPSG:4326</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+        <span class="tag">&lt;gml:surfaceMembers&gt;</span>
+          <span class="tag">&lt;gml:Polygon</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">polygon_someDatasetSeries1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+            <span class="tag">&lt;gml:exterior&gt;</span>
+              <span class="tag">&lt;gml:LinearRing&gt;</span>
+                <span class="tag">&lt;gml:posList&gt;</span>43.516667 2.1025 43.381667 2.861667 42.862778 2.65 42.996389 1.896944 43.516667 2.1025<span class="tag">&lt;/gml:posList&gt;</span>
+              <span class="tag">&lt;/gml:LinearRing&gt;</span>
+              <span class="tag">&lt;/gml:exterior&gt;</span>
+            <span class="tag">&lt;/gml:Polygon&gt;</span>
+          <span class="tag">&lt;/gml:surfaceMembers&gt;</span>
+        <span class="tag">&lt;/gml:MultiSurface&gt;</span>
+    <span class="tag">&lt;/eop:multiExtentOf&gt;</span>
+  <span class="tag">&lt;/eop:Footprint&gt;</span>
+  <span class="tag">&lt;gml:TimePeriod</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someDatasetSeries1_timeperiod</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;gml:beginPosition&gt;</span>2008-03-13T00:00:00.000<span class="tag">&lt;/gml:beginPosition&gt;</span>
+    <span class="tag">&lt;gml:endPosition&gt;</span>2008-03-13T23:59:59.999<span class="tag">&lt;/gml:endPosition&gt;</span>
+  <span class="tag">&lt;/gml:TimePeriod&gt;</span>
+  <span class="tag">&lt;ows:Metadata&gt;</span>
+    <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+      <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someCatalogue.org/eop-metadatafrom-someDatasetSeries1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://standards.iso.org/iso/19115/-3/mdb/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:title</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ISO 19115-3 Metadata</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+    <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+  <span class="tag">&lt;/ows:Metadata&gt;</span>
+  <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
+    <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage1<span class="tag">&lt;/wcs:CoverageId&gt;</span>
+  <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
+<span class="tag">&lt;/wcseo:DatasetSeries&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Of course the mechanism of using <code>Reference</code> elements in <code>Metadata</code> elements
+can also be used for associated data.</p>
+</div>
+<div class="paragraph">
+<p>We propose to further investigate if a GetEOCoverageRequest together with a
+<code>mediaType</code> of <code>multipart/related</code> is suitable to be used for data access to
+whole EO Products. In a first step this will be verified using general
+container formats as written above. The next step then is to investigate the
+suitability of this approach also for special EO container formats like SAFE
+and special binary EO formats like NetCDF or ENVISAT N1.</p>
 </div>
 <div class="paragraph">
 <p>The first part of the multipart response would look like the example below but
@@ -1960,9 +2046,6 @@ adopted by EO-WCS. EO-O&amp;M is designed to define a catalog record for one EO
 product including links to various raster or vector features like measurements,
 browses, masks, etc.</p>
 </div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -2066,6 +2149,125 @@ EVO-ODAS, the OpenSearch avenue will be elaborated.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_opensearch_code_view_code_parameter">8.2. OpenSearch <code>view</code> parameter</h3>
+<div class="sect3">
+<h4 id="_objective">8.2.1. Objective</h4>
+<div class="paragraph">
+<p>This proposal adds support for different levels of verbosity in OpenSearch
+responses. Clients mainly need a complete and detailed view on the result set
+but for example to show data availability on a time slider only a limited view
+is needed. This limited view provides a great opportunity for performance
+optimization, in response generation time on the server, in response size and
+thus transfer time, and in response parsing time on the client.</p>
+</div>
+<div class="paragraph">
+<p>The proposal adds a parameter named <code>view</code> to the OpenSearch URL template using
+the OpenSearch Parameter extension. It further defines several mandatory and
+optional options for predefined values for the new parameter including the
+definition of the content of response. Additionally it leaves room to add
+custom options as needed.</p>
+</div>
+<div class="paragraph">
+<p>This shows an example of an <code>Url</code> element using the <code>view</code> parameter:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;Url xmlns:param="http://a9.com/-/spec/opensearch/extensions/parameters/1.0/"
+     xmlns:eo="http://a9.com/-/opensearch/extensions/eo/1.0/"
+     type="application/atom+xml"
+     rel="collection"
+     template="http://example.com/atom?q={searchTerms}&amp;amp;view={eo:view}"&gt;
+  &lt;param:Parameter name="view"
+                   value="{eo:view}"
+                   title="Verbosity of the response. Default: full"
+                   pattern="full|brief|geotime"
+                   minimum="0"&gt;
+    &lt;param:Option value="full" label="Complete and detailed view."/&gt;
+    &lt;param:Option value="brief" label="Brief view to get a quick impression."/&gt;
+    &lt;param:Option value="geotime" label="View to show data availability on a time slider."/&gt;
+  &lt;/param:Parameter&gt;
+&lt;/Url&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="__code_view_code_parameter">8.2.2. <code>view</code> Parameter</h4>
+<div class="paragraph">
+<p>The new <code>view</code> parameter reuses the namespace of the OGC® OpenSearch Extension
+for Earth Observation [OGC 13-026r8]. It is used as <code>view={eo:view}</code> in the
+template attribute of <code>Url</code> elements.</p>
+</div>
+<div class="paragraph">
+<p>The following mandatory and optional option values are defined:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>full</code> - mandatory - Complete and detailed view.</p>
+</li>
+<li>
+<p><code>brief</code> - mandatory - Brief view to get a quick impression.</p>
+</li>
+<li>
+<p><code>geotime</code> - optional - View to show data availability on a time slider.</p>
+</li>
+<li>
+<p>TODO</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Not all options have to necessarily be made available with each format.
+The <code>geotime</code> option for example might be available with JSON or CSV formatting
+but not with ATOM.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="__code_full_code"><code>full</code></h5>
+<div class="paragraph">
+<p>TODO: Use full EOP</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="__code_brief_code"><code>brief</code></h5>
+<div class="paragraph">
+<p>TODO: Check with CSW</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="__code_geotime_code"><code>geotime</code></h5>
+<div class="paragraph">
+<p>Using this option returns the needed metadata to show data availability on a
+time slider. The needed metadata are identifier, name, bounding box or
+footprint in EPSG:4326, start time, and end time.</p>
+</div>
+<div class="paragraph">
+<p>This is a response example in CSV format:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>"identifier","name","bbox","starttime","endtime"
+"1","Satellite image","(40,10,50,20)","2016-04-20T00:00:00Z","2016-04-20T23:59:59Z"</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_custom_options">Custom options</h5>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -2181,7 +2383,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-30 16:18:28 CEST
+Last updated 2016-09-30 17:28:35 CEST
 </div>
 </div>
 <script type="text/x-mathjax-config">
