@@ -4,12 +4,10 @@
 
 This OGC Best Practice document details configuration and instantiation
 conventions for access to Earth Observation (EO) data. It defines how to
-utilize WCS with EO products including generic conventions and recommendations
+utilize EO-WCS with EO products including generic conventions and recommendations
 for data and metadata mapping and conversion which are to be used in concrete
 tailoring for specific missions. It further considers how to link to other
 services like CSW, WMS, and WPS.
-
-TODO
 
 [#normative-references,reftext='2']
 == Normative references

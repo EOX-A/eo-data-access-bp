@@ -3,6 +3,14 @@
 
 === Overview
 
+In a number of scenarios and use cases it is necessary to be able to link from
+one service to another, holding e.g. different views on the same data. For
+example a user might first be presented with an RGB view on some data via WMS
+before downloading the actual data, that is, full bands via WCS. The question
+is, how is a client supposed to construct WCS requests for the same product
+just seen via WMS? Currently there is no standard way defined how to provide
+such links.
+
 We propose to address the cross service interaction item by giving
 recommendations on how to structure the data offered in the various services as
 well as how to explicitly link between them. These explicit link
