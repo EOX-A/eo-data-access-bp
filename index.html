@@ -153,13 +153,19 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#_changes_to_the_ogc_abstract_specification">Changes to the OGC ® Abstract Specification</a></li>
 <li><a href="#_future_work">Future Work</a></li>
 <li><a href="#_foreword">Foreword</a></li>
-<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_introduction">Introduction</a>
+<ul class="sectlevel2">
+<li><a href="#_eo_wcs">EO-WCS</a></li>
+<li><a href="#_further_relevant_ogc_services">Further relevant OGC Services</a></li>
+<li><a href="#_topics_covered">Topics Covered</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#_ogc_eo_data_access_best_practice_2">OGC® EO Data Access Best Practice</a>
 <ul class="sectlevel1">
 <li><a href="#_scope">1. Scope</a></li>
-<li><a href="#normative_references">2. Normative references</a></li>
+<li><a href="#normative-references">2. Normative references</a></li>
 <li><a href="#_terms_and_definitions">3. Terms and definitions</a>
 <ul class="sectlevel2">
 <li><a href="#_coverage">3.1. Coverage</a></li>
@@ -183,59 +189,59 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#_multiple_representations">4.4. Multiple representations</a></li>
 </ul>
 </li>
-<li><a href="#_cross_service_interaction">5. Cross Service Interaction</a>
+<li><a href="#cross-service-interaction">5. Cross Service Interaction</a>
 <ul class="sectlevel2">
 <li><a href="#_overview">5.1. Overview</a></li>
 </ul>
 </li>
-<li><a href="#_coverage_collections">6. Coverage Collections</a>
+<li><a href="#rangetype-description-enhancements">6. rangeType Description Enhancements</a>
 <ul class="sectlevel2">
-<li><a href="#_grouping_of_associated_data">6.1. Grouping of Associated Data</a>
+<li><a href="#_overview_2">6.1. Overview</a></li>
+<li><a href="#_physical_properties">6.2. Physical Properties</a></li>
+<li><a href="#_data_types">6.3. Data Types</a></li>
+<li><a href="#_conversion_from_data_types_to_physical_properties">6.4. Conversion from Data Types to Physical Properties</a></li>
+<li><a href="#_hint_for_rgb_generation">6.5. Hint for RGB Generation</a></li>
+<li><a href="#_recommended_definitions">6.6. Recommended definitions</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_2">6.1.1. Overview</a></li>
+<li><a href="#__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">6.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></a></li>
+<li><a href="#__code_wcseo_datatype_code">6.6.2. <code>wcseo:dataType</code></a></li>
+<li><a href="#__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">6.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></a></li>
+<li><a href="#__code_wcseo_bandsequence_code">6.6.4. <code>wcseo:bandSequence</code></a></li>
+<li><a href="#__code_swe_datarecord_definition_code">6.6.5. <code>swe:DataRecord/@definition</code></a></li>
+<li><a href="#__code_swe_field_name_code_vs_code_swe_field_swe_quantity_swe_identifier_code">6.6.6. <code>swe:field/@name</code> vs. <code>swe:field/swe:Quantity/swe:identifier</code></a></li>
+<li><a href="#__code_swe_nilvalue_reason_code">6.6.7. <code>swe:nilValue/@reason</code></a></li>
 </ul>
 </li>
-<li><a href="#_collection_and_product_registration">6.2. Collection and Product Registration</a>
-<ul class="sectlevel3">
-<li><a href="#_overview_3">6.2.1. Overview</a></li>
+<li><a href="#_examples">6.7. Examples</a></li>
 </ul>
 </li>
-<li><a href="#_uniform_coverage_grouping">6.3. Uniform Coverage Grouping</a>
-<ul class="sectlevel3">
-<li><a href="#_overview_4">6.3.1. Overview</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#_condense_coverage_description_information">7. Condense Coverage Description Information</a>
+<li><a href="#coverage-collections">7. Coverage Collections</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_5">7.1. Overview</a></li>
+<li><a href="#grouping-of-associated-data">7.1. Grouping of Associated Data</a>
+<ul class="sectlevel3">
+<li><a href="#_overview_3">7.1.1. Overview</a></li>
 </ul>
 </li>
-<li><a href="#_wcs_masking_extension">8. WCS Masking Extension</a>
+<li><a href="#collection-and-product-registration">7.2. Collection and Product Registration</a>
+<ul class="sectlevel3">
+<li><a href="#_overview_4">7.2.1. Overview</a></li>
+</ul>
+</li>
+<li><a href="#uniform-coverage-grouping">7.3. Uniform Coverage Grouping</a>
+<ul class="sectlevel3">
+<li><a href="#_overview_5">7.3.1. Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#condense-coverage-description-information">8. Condense Coverage Description Information</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_6">8.1. Overview</a></li>
 </ul>
 </li>
-<li><a href="#rangetype-description-enhancements">9. rangeType Description Enhancements</a>
+<li><a href="#wcs-masking-extension">9. WCS Masking Extension</a>
 <ul class="sectlevel2">
 <li><a href="#_overview_7">9.1. Overview</a></li>
-<li><a href="#_physical_properties">9.2. Physical Properties</a></li>
-<li><a href="#_data_types">9.3. Data Types</a></li>
-<li><a href="#_conversion_from_data_types_to_physical_properties">9.4. Conversion from Data Types to Physical Properties</a></li>
-<li><a href="#_hint_for_rgb_generation">9.5. Hint for RGB Generation</a></li>
-<li><a href="#_recommended_definitions">9.6. Recommended definitions</a>
-<ul class="sectlevel3">
-<li><a href="#__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">9.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></a></li>
-<li><a href="#__code_wcseo_datatype_code">9.6.2. <code>wcseo:dataType</code></a></li>
-<li><a href="#__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">9.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></a></li>
-<li><a href="#__code_wcseo_bandsequence_code">9.6.4. <code>wcseo:bandSequence</code></a></li>
-<li><a href="#__code_swe_datarecord_definition_code">9.6.5. <code>swe:DataRecord/@definition</code></a></li>
-<li><a href="#__code_swe_field_name_code_vs_code_swe_field_swe_quantity_swe_identifier_code">9.6.6. <code>swe:field/@name</code> vs. <code>swe:field/swe:Quantity/swe:identifier</code></a></li>
-<li><a href="#__code_swe_nilvalue_reason_code">9.6.7. <code>swe:nilValue/@reason</code></a></li>
-</ul>
-</li>
-<li><a href="#_examples">9.7. Examples</a></li>
 </ul>
 </li>
 <li><a href="#conclusions">10. Conclusions</a></li>
@@ -346,15 +352,19 @@ contributors named above.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This OGC Best Practice document details proposed configuration and
-instantiation conventions for access to Earth Observation (EO) data developed
-in the European Space Agency (ESA) funded project Evolution of EO Online Data
-Access Services (EVO-ODAS).</p>
+instantiation conventions and recommendations on how to utilize OGC services
+for access to Earth Observation (EO) data. These proposed conventions and
+recommendations have been developed in the <a href="http://www.esa.int/ESA">European
+Space Agency (ESA)</a> funded project
+<a href="https://wiki.services.eoportal.org/tiki-index.php?page=EVO-ODAS">Evolution of
+EO Online Data Access Services (EVO-ODAS)</a>.</p>
 </div>
 <div class="paragraph">
-<p>It defines how to utilize WCS with EO products including generic conventions
-and recommendations for data and metadata mapping and conversion which are to
-be used in concrete tailoring for specific missions. It further considers how
-to link to other services like CSW, WMS, and WPS.</p>
+<p>It is defined how to utilize OGC&#8217;s <a href="http://www.opengeospatial.org/standards/wcs">
+Web Coverage Service (WCS)</a> with EO products including generic conventions and
+recommendations for data and metadata mapping and conversions which are to be
+used in concrete tailorings for specific missions. It further considers how to
+link to other services like CSW, WMS, and WPS.</p>
 </div>
 <div class="paragraph">
 <p>Suggested additions, changes, and comments on this draft document are welcome
@@ -381,7 +391,221 @@ documentation.</em></p>
 <h2 id="_introduction">Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TODO</p>
+<p>The <a href="https://eox-a.github.io/eo-data-access-bp/">Earth Observation Data Access
+Best Practice document</a> at hand provides a detailed look at the access to EO
+data from an OGC perspective.</p>
+</div>
+<div class="paragraph">
+<p>EO data is typically available as raster data or, in OGC terminology, as
+coverages. Thus the main OGC service relevant for the data access task is the
+<a href="http://www.opengeospatial.org/standards/wcs">Web Coverage Service (WCS)</a> and its
+<a href="https://schpidi.github.io/eo-wcs/">Earth Observation Application Profile
+(EO-WCS)</a>. Nonetheless further OGC services like the
+<a href="http://www.opengeospatial.org/standards/wms">Web Map Service (WMS)</a> and the
+<a href="http://www.opengeospatial.org/standards/wmts">Web Map Tile Service (WMTS)</a> for
+visualization, the <a href="http://www.opengeospatial.org/standards/cat">Catalog Service
+(CSW, OpenSearch)</a> for discovery, or the
+<a href="http://www.opengeospatial.org/standards/wps">Web Processing Service (WPS)</a> for
+processing need to be taken into account in order to provide a well integrated
+solution for data consumers.</p>
+</div>
+<div class="sect2">
+<h3 id="_eo_wcs">EO-WCS</h3>
+<div class="paragraph">
+<p>The <a href="https://schpidi.github.io/eo-wcs/">WCS 2.0 Earth Observation Application
+Profile (EO-WCS) [OGC 10-140r2]</a> has been adopted by OGC defining a profile of
+WCS 2.0 for use on Earth Observation data. Naturally the present document
+focuses on EO-WCS but makes sure not to forget the surroundings to put it into
+context.</p>
+</div>
+<div class="paragraph">
+<p>EO-WCS adds some concepts relevant for the EO domain on one side and some
+constraints on the other to the generic WCS:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Specific Earth Observation coverages (<a href="#_eo_coverage">EO Coverage</a> or <a href="#_dataset">Dataset</a>) which
+have at least a footprint on Earth as well as a temporal validity extent. Each
+<a href="#_eo_coverage">EO Coverage</a> has to have an <a href="#_eo_metadata">EO Metadata</a> set [OGC 10-157r4] contained in
+its metadata which describes the coverage on hand on a higher semantic level.</p>
+</li>
+<li>
+<p>Heterogeneous groupings or collections of Datasets into  <a href="#_dataset_series">Dataset Series</a>.
+This hierarchy allows for an efficient retrieval of metadata as well as data
+via the newly added <a href="#DescribeEOCoverageSet">DescribeEOCoverageSet</a> and <a href="#GetEOCoverageSet">GetEOCoverageSet</a>
+operations respectively.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Although named <a href="#_dataset_series">Dataset Series</a> this concept can and should be used to
+group together any <a href="#_dataset">Datasets</a>. An example is to group together the
+Datasets stemming from a multi-resolution satellite image to form an
+<a href="#_eo_product">EO Product</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#_dataset_series">Dataset Series</a> may also include other Dataset Series as well as
+<a href="#_stitched_mosaic">Stitched Mosaics</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#_dataset_series">Dataset Series</a> themselves are not coverages.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Homogeneous groupings or collections of spatially non-overlapping subsets of
+Datasets into <a href="#_stitched_mosaic">Stitched Mosaics</a>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<a href="#_stitched_mosaic">Stitched Mosaics</a> are accessible themselves as
+coverages.
+</td>
+</tr>
+</table>
+</div>
+<div id="DescribeEOCoverageSet" class="ulist">
+<ul>
+<li>
+<p>DescribeEOCoverageSet operation allowing to retrieve metadata from
+collections applying spatial and/or temporal constraints.</p>
+</li>
+</ul>
+</div>
+<div id="GetEOCoverageSet" class="ulist">
+<ul>
+<li>
+<p>GetEOCoverageSet operation allowing to retrieve data from collections
+applying spatial and/or temporal constraints.</p>
+</li>
+<li>
+<p>Constraint mandatory WCS extensions.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>One of the motivations to introduce the concept of <a href="#_dataset_series">Dataset Series</a> is to
+limit the size of capabilities responses. They only need to report the
+identifiers of <a href="#_dataset_series">Dataset Series</a> instead of summaries for all coverages
+available. Metadata for individual coverages is obtained using the new
+DescribeEOCoverageSet operation. This operation supports basic spatial and
+temporal searching as well as paging and thus stepping through the available
+data. <a href="#sequence-eo-wcs">Figure 1</a> shows the sequence to use EO-WCS.</p>
+</div>
+<div id="sequence-eo-wcs" class="imageblock">
+<div class="content">
+<img src="images/sequence_eo-wcs.png" alt="EO-WCS Sequence Diagram">
+</div>
+<div class="title">Figure 1. Sequence diagram showing the exploitation of EO-WCS</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_further_relevant_ogc_services">Further relevant OGC Services</h3>
+<div class="paragraph">
+<p>Before downloading data it is typically desired or at least useful to view the
+data and metadata. The OGC service standardized for data viewing is the
+<a href="http://www.opengeospatial.org/standards/wms">Web Map Service (WMS)</a>. For the EO
+domain the <a href="http://portal.opengeospatial.org/files/?artifact_id=30912">Web Map
+Services - Profile for EO Products (EO-WMS) [07-063r1]</a> has been designed.
+This WMS profile allows to browse through collections using the time parameter
+on one layer. Provided that the same data is available from the EO-WCS Dataset
+Series and the EO-WMS collection layer a combined exploitation of EO-WCS and
+EO-WMS as shown in <a href="#sequence-eo-wms-eo-wcs">Figure 2</a> is feasible.</p>
+</div>
+<div id="sequence-eo-wms-eo-wcs" class="imageblock">
+<div class="content">
+<img src="images/sequence_eo-wms_eo-wcs.png" alt="EO-WMS &amp; EO-WCS Sequence Diagram">
+</div>
+<div class="title">Figure 2. Sequence diagram showing the combined exploitation of EO-WCS and EO-WMS</div>
+</div>
+<div class="paragraph">
+<p>Of course the WMS in this scenario can easily be replaced by the
+<a href="http://www.opengeospatial.org/standards/wmts">Web Map Tile Service (WMTS)</a>
+specifically designed to improve the performance of WMS.</p>
+</div>
+<div class="paragraph">
+<p>Further OGC standardized services to take into account are the
+<a href="http://www.opengeospatial.org/standards/cat">Catalog Service (CSW, OpenSearch)</a>
+for discovery, the
+<a href="https://portal.opengeospatial.org/files/?artifact_id=55210">Download Service for
+Earth Observation Products Best Practice (DS-EO) [13-043]</a> as well as the
+<a href="http://www.opengeospatial.org/standards/wps">Web Processing Service (WPS)</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_topics_covered">Topics Covered</h3>
+<div class="paragraph">
+<p>Centered around EO-WCS this Best Practice document defines conventions and
+makes recommendations for the following topics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#cross-service-interaction">Cross Service Interaction</a> - Detailing how to
+structure the data offered in the various services as well as how to explicitly
+link between those services. The OGC services under consideration are:
+OpenSearch, WMS, WMTS, WCS, and DS-EO.</p>
+</li>
+<li>
+<p><a href="#rangetype-description-enhancements">rangeType Description Enhancements</a> -
+Designing usage and utilization of how to describe the range values of
+products.</p>
+</li>
+<li>
+<p><a href="#collection-and-product-registration">Collection and Product Registration</a> -
+Drafting an HTTP REST API for programmatic collection and product registration.</p>
+</li>
+<li>
+<p><a href="#coverage-collections">Grouping of Coverages and Associated Data</a> - Adding
+support for typical EO concepts like multi-resolution products or cloud masks
+to OGC services.</p>
+</li>
+<li>
+<p><a href="#condense-coverage-description-information">Condense Coverage Description
+Information</a> - Applying performance optimizations to facilitate and enable
+modern web based applications.</p>
+</li>
+<li>
+<p><a href="#wcs-masking-extension">WCS Masking Extension</a> - Proposing support for
+retrieving non-rectangular subsets of coverages from WCS.</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -394,18 +618,15 @@ documentation.</em></p>
 <div class="paragraph">
 <p>This OGC Best Practice document details configuration and instantiation
 conventions for access to Earth Observation (EO) data. It defines how to
-utilize WCS with EO products including generic conventions and recommendations
+utilize EO-WCS with EO products including generic conventions and recommendations
 for data and metadata mapping and conversion which are to be used in concrete
 tailoring for specific missions. It further considers how to link to other
 services like CSW, WMS, and WPS.</p>
 </div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="normative_references">2. Normative references</h2>
+<h2 id="normative-references">2. Normative references</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following normative documents contain provisions that, through reference in
@@ -419,70 +640,61 @@ referred to applies.</p>
 </div>
 <div class="paragraph">
 <p>OGC 09-146r2, <em>OGC® Coverage Implementation Schema</em> (renamed from <em>OGC®
-GML Application Schema - Coverages</em>), version 1.0<br>
-Conformance classes used: <em>gml-coverage</em>, <em>gml</em>, <em>multipart</em>, <em>special-format</em></p>
+GML Application Schema - Coverages</em>), version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 09-110r4, <em>OGC® WCS 2.0 Interface Standard- Core: Corrigendum</em>, version
-2.0<br>
-Conformance classes used: <em>core</em></p>
+2.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 10-140r2, <em>OGC® Web Coverage Service 2.0 Interface Standard - Earth
-Observation Application Profile</em>, version 1.1<br>
-Conformance classes used: <em>eowcs</em>, <em>eowcs_geteocoverageset</em>, <em>eowcs_get-kvp</em>,
-<em>eowcs_soap</em>,</p>
+Observation Application Profile</em>, version 1.1</p>
 </div>
 <div class="paragraph">
 <p>OGC 11-053r1, <em>OGC® Web Coverage Service Interface Standard - CRS Extension</em>,
-version 1.0<br>
-Conformance classes used: <em>crs</em>, <em>crs-gridded-coverage</em></p>
-</div>
-<div class="paragraph">
-<p>OGC 12-039, <em>OGC® Web Coverage Service Interface Standard - Scaling Extension</em>,
-version 1.0<br>
-Conformance classes used: <em>scaling</em></p>
+version 1.0
+OGC 12-039, <em>OGC® Web Coverage Service Interface Standard - Scaling Extension</em>,
+version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 12-040, <em>OGC® Web Coverage Service Interface Standard - Range Subsetting
-Extension</em>, version 1.0<br>
-Conformance classes used: <em>record-subsetting</em></p>
+Extension</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 12-049, <em>OGC® Web Coverage Service Interface Standard - Interpolation
-Extension</em>, version 1.0<br>
-Conformance classes used: <em>interpolation</em></p>
+Extension</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 09-147r3, <em>OGC® Web Coverage Service 2.0 Interface Standard - KVP Protocol
-Binding Extension - Corrigendum</em>, version 1.0<br>
-Conformance classes used: <em>get-kvp</em></p>
+Binding Extension - Corrigendum</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 09-149r1, <em>OGC® Web Coverage Service 2.0 Interface Standard - XML/SOAP
-Protocol Binding Extension</em>, version 1.0<br>
-Conformance classes used: <em>soap</em></p>
+Protocol Binding Extension</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 12-100r1, <em>OGC® GML Application Schema - Coverages - GeoTIFF Coverage
-Encoding Profile</em>, version 1.0<br>
-Conformance classes used: <em>geotiff-coverage</em></p>
+Encoding Profile</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 14-100r2, <em>OGC® CF-netCDF 3.0 encoding using GML Coverage Application
-Schema</em>, version 2.0<br>
-Conformance classes used: <em>CF-netCDF-1.6 GML encoding</em>, <em>CF-netCDF-1.6 data
-format</em>, <em>CF-netCDF-1.6 multipart data encoding</em></p>
+Schema</em>, version 2.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 12-108, <em>OGC® GML Application Schema - Coverages JPEG2000 Coverage Encoding
-Extension</em>, version 1.0<br>
-Conformance classes used: <em>jpeg2000-coverage</em></p>
+Extension</em>, version 1.0</p>
 </div>
 <div class="paragraph">
 <p>OGC 10-157r4, <em>OGC® Earth Observation Metadata profile of Observations &amp;
-Measurements</em>, version 1.1<br>
-Conformance classes used: <em>eop</em>, <em>sar</em>, <em>opt</em></p>
+Measurements</em>, version 1.1</p>
+</div>
+<div class="paragraph">
+<p>OGC 07-063r1, <em>OpenGIS® Web Map Services - Profile for EO Products</em>, version
+0.3.3</p>
+</div>
+<div class="paragraph">
+<p>OGC 13-043, <em>OGC Download Service for Earth Observation Products Best
+Practice</em>, version 1.0</p>
 </div>
 </div>
 </div>
@@ -498,7 +710,7 @@ strictly followed to conform to this standard.</p>
 </div>
 <div class="paragraph">
 <p>For the purposes of this document, the terms and definitions given in the above
-references, particularly EO-WCS [10-140r1], apply. In addition, the following
+references, particularly EO-WCS [10-140r2], apply. In addition, the following
 terms and definitions apply. An arrow "&#8594;" indicates that the following term is
 defined in this Clause.</p>
 </div>
@@ -511,7 +723,7 @@ defined in this Clause.</p>
 <div class="sect2">
 <h3 id="_dataset">3.2. Dataset</h3>
 <div class="paragraph">
-<p>2-D &#8594; EO Coverage</p>
+<p>&#8594; <a href="#_eo_coverage">EO Coverage</a></p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -530,60 +742,61 @@ instruments.
 <div class="sect2">
 <h3 id="_dataset_series">3.3. Dataset Series</h3>
 <div class="paragraph">
-<p>collection of &#8594; EO Coverages</p>
+<p>collection of &#8594; <a href="#_eo_coverage">EO Coverages</a></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_eo_coverage">3.4. EO Coverage</h3>
 <div class="paragraph">
-<p>Rectified Grid &#8594; Coverage or Referenceable Grid &#8594; Coverage having an &#8594; EO
-Metadata record and a WGS84 bounding box</p>
+<p>Rectified Grid &#8594; <a href="#_coverage">Coverage</a> or Referenceable Grid &#8594; <a href="#_coverage">Coverage</a> having an
+&#8594; <a href="#_eo_metadata">EO Metadata</a> record and a WGS84 footprint</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_eo_metadata">3.5. EO Metadata</h3>
 <div class="paragraph">
-<p>&#8594; EO Coverage&#8217;s metadata record</p>
+<p>&#8594; <a href="#_eo_coverage">EO Coverage&#8217;s</a> metadata record</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_stitched_mosaic">3.6. Stitched Mosaic</h3>
 <div class="paragraph">
-<p>&#8594; EO Coverage composed from subsets of one or more co-referenced &#8594; Datasets</p>
+<p>&#8594; <a href="#_eo_coverage">EO Coverage</a> composed from subsets of one or more co-referenced &#8594;
+<a href="#_dataset">Datasets</a></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_eo_product">3.7. EO Product</h3>
 <div class="paragraph">
-<p>An EO Product contains one or more related &#8594; EO Product Datasets plus metadata
-and optionally auxiliary data like &#8594; EO Product Quicklooks.</p>
+<p>An EO Product contains one or more related &#8594; <a href="#_eo_product">EO Product</a> Datasets plus metadata
+and optionally auxiliary data like &#8594; <a href="#_eo_product">EO Product</a> Quicklooks.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_eo_product_dataset">3.8. EO Product Dataset</h3>
 <div class="paragraph">
-<p>One or more files each containing one or more &#8594; EO Coverages.</p>
+<p>One or more files each containing one or more &#8594; <a href="#_eo_coverage">EO Coverages</a>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_eo_product_quicklook">3.9. EO Product Quicklook</h3>
 <div class="paragraph">
-<p>A visual representation of a usually reduced &#8594; EO Product Dataset encoded in
-an image format. The &#8594; EO Product Dataset may combine different bands.</p>
+<p>A visual representation of a usually reduced &#8594; <a href="#_eo_product">EO Product</a> Dataset encoded
+in an image format. The &#8594; <a href="#_eo_product">EO Product</a> Dataset may combine different bands.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_lineage_record">3.10. Lineage record</h3>
 <div class="paragraph">
-<p>Data structure documenting an operation that has been applied to the &#8594; coverage
-it is part of</p>
+<p>Data structure documenting an operation that has been applied to the &#8594;
+<a href="#_coverage">Coverage</a> it is part of</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_refers_to">3.11. refers to</h3>
 <div class="paragraph">
-<p>contains or references, in its &#8594; EO Metadata element as defined in [OGC
-10-157r4], the &#8594; EO Metadata element of</p>
+<p>contains, in its &#8594; <a href="#_eo_metadata">EO Metadata</a> element as defined in [OGC 10-157r4], the
+&#8594; <a href="#_eo_metadata">EO Metadata</a> element of</p>
 </div>
 </div>
 </div>
@@ -729,10 +942,19 @@ this is considered an error, and the
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cross_service_interaction">5. Cross Service Interaction</h2>
+<h2 id="cross-service-interaction">5. Cross Service Interaction</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_overview">5.1. Overview</h3>
+<div class="paragraph">
+<p>In a number of scenarios and use cases it is necessary to be able to link from
+one service to another, holding e.g. different views on the same data. For
+example a user might first be presented with an RGB view on some data via WMS
+before downloading the actual data, that is, full bands via WCS. The question
+is, how is a client supposed to construct WCS requests for the same product
+just seen via WMS? Currently there is no standard way defined how to provide
+such links.</p>
+</div>
 <div class="paragraph">
 <p>We propose to address the cross service interaction item by giving
 recommendations on how to structure the data offered in the various services as
@@ -771,311 +993,10 @@ the corresponding EO-WCS DatasetSeries.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_coverage_collections">6. Coverage Collections</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>WCS originally was perceived to give access to single coverages taken from a
-flat set of coverage offerings in the server.</p>
-</div>
-<div class="paragraph">
-<p>This approach was based on the classical subdivision into metadata services
-(i.e., catalogs) and data services, connected through some loose coupling
-(which effectively was never standardized beyond the recommendation to use
-URLs).</p>
-</div>
-<div class="paragraph">
-<p>With the progress of requirements and technology it is more and more considered
-important to merge data and metadata perspectives with the vision of a common
-integrated information space.</p>
-</div>
-<div class="paragraph">
-<p>For WCS, this means in particular to further structure a server&#8217;s offering of
-coverages along various criteria.</p>
-</div>
-<div class="paragraph">
-<p>Early on EO-WCS has provided a lead in this by introducing both uniform and
-non-uniform coverage groupings together with dedicated search functionality
-which is able to perform a focused search within coverage subsets.</p>
-</div>
-<div class="paragraph">
-<p>With OGC Coverage Implementation Schema (CIS) 1.1 comes massively enhanced
-support for structuring coverages. Therefore, a harmonization task has to be
-accomplished to relate both concepts, which may well lead to an extension of
-functionality for fully exploiting all benefits.</p>
-</div>
-<div class="paragraph">
-<p>In the following subsections, we discuss EO-relevant grouping concepts, based
-on CIS and EO-WCS.</p>
-</div>
-<div class="sect2">
-<h3 id="_grouping_of_associated_data">6.1. Grouping of Associated Data</h3>
-<div class="sect3">
-<h4 id="_overview_2">6.1.1. Overview</h4>
-<div class="paragraph">
-<p>Modeling the grouped data as coverage itself would directly allow GetCoverage
-requests but would require rather big changes to WCS. Thus we propose to follow
-and extend the approach already established in EO- WCS and reuse the concept of
-DatasetSeries.</p>
-</div>
-<div class="paragraph">
-<p>As described in the section "Encoding of Multiple Coverages in One File" 3.1.2
-above we propose to use <code>Reference</code> elements in <code>Metadata</code> elements also for
-associated data. Together with the GetEOCoverageRequest operation and a
-<code>mediaType</code> of <code>multipart/related</code> this could be suitable to be used for data
-access to whole EO Products.</p>
-</div>
-<div class="paragraph">
-<p>The first part of the multipart response would look like the example below but
-additionally include <code>Reference</code> elements to the associated data inside
-<code>Metadata</code> elements of the <code>DatasetSeries</code> element. Of course the second part
-of the multipart response needs to include all the referenced files.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="tag">&lt;wcseo:EOCoverageSet</span> <span class="attribute-name">numberMatched</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">numberReturned</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:ows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ows/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gml</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/gml/3.2</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gmlcov</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ mlcov/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:swe</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/swe/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcseo</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:eop</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/eop/2.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:om</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/om/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xlink</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/1999/xlink</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1 http://schemas.opengis.net/wcs/wcseo/1.1/wcsEOAll.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-  <span class="tag">&lt;wcseo:RectifiedDataset</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someEOCoverage1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;gml:boundedBy&gt;</span>
-    ...
-    <span class="tag">&lt;/gml:boundedBy&gt;</span>
-    <span class="tag">&lt;gml:domainSet&gt;</span>
-    ...
-    <span class="tag">&lt;/gml:domainSet&gt;</span>
-    <span class="tag">&lt;gml:rangeSet&gt;</span>
-      <span class="tag">&lt;gml:File&gt;</span>
-        <span class="tag">&lt;gml:rangeParameters</span> <span class="attribute-name">xlink:arcrole</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileReference</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cid:coverage.meta4;someEOCoverage1.tif</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/GMLCOV_geotiff-coverages/1.0/conf/geotiff-coverage</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;gml:fileReference&gt;</span>cid:coverage.meta4;someEOCoverage1.tif<span class="tag">&lt;/gml:fileReference&gt;</span>
-        <span class="tag">&lt;gml:fileStructure</span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;gml:mimeType&gt;</span>image/tiff<span class="tag">&lt;/gml:mimeType&gt;</span>
-      <span class="tag">&lt;/gml:File&gt;</span>
-    <span class="tag">&lt;/gml:rangeSet&gt;</span>
-    <span class="tag">&lt;gmlcov:rangeType&gt;</span>
-    ...
-    <span class="tag">&lt;/gmlcov:rangeType&gt;</span>
-    <span class="tag">&lt;gmlcov:metadata&gt;</span>
-      <span class="tag">&lt;gmlcov:Extension&gt;</span>
-        <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
-          <span class="tag">&lt;eop:EarthObservation</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">eop_someEOCoverage1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-          ...
-          <span class="tag">&lt;/eop:EarthObservation&gt;</span>
-          <span class="tag">&lt;wcseo:lineage&gt;</span>
-            <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
-              <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-            <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
-            <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
-          <span class="tag">&lt;/wcseo:lineage&gt;</span>
-        <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
-      <span class="tag">&lt;/gmlcov:Extension&gt;</span>
-    <span class="tag">&lt;/gmlcov:metadata&gt;</span>
-  <span class="tag">&lt;/wcseo:RectifiedDataset&gt;</span>
-  <span class="tag">&lt;wcseo:RectifiedDataset</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someEOCoverage2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    <span class="tag">&lt;gml:boundedBy&gt;</span>
-    ...
-    <span class="tag">&lt;/gml:boundedBy&gt;</span>
-    <span class="tag">&lt;gml:domainSet&gt;</span>
-    ...
-    <span class="tag">&lt;/gml:domainSet&gt;</span>
-    <span class="tag">&lt;gml:rangeSet&gt;</span>
-      <span class="tag">&lt;gml:File&gt;</span>
-        <span class="tag">&lt;gml:rangeParameters</span> <span class="attribute-name">xlink:arcrole</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileReference</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cid:coverage.meta4;someEOCoverage2.tif</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/GMLCOV_geotiff-coverages/1.0/conf/geotiff-coverage</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;gml:fileReference&gt;</span>cid:coverage.meta4;someEOCoverage2.tif<span class="tag">&lt;/gml:fileReference&gt;</span>
-        <span class="tag">&lt;gml:fileStructure</span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;gml:mimeType&gt;</span>image/tiff<span class="tag">&lt;/gml:mimeType&gt;</span>
-        <span class="tag">&lt;/gml:File&gt;</span>
-    <span class="tag">&lt;/gml:rangeSet&gt;</span>
-    <span class="tag">&lt;gmlcov:rangeType&gt;</span>
-    ...
-    <span class="tag">&lt;/gmlcov:rangeType&gt;</span>
-    <span class="tag">&lt;gmlcov:metadata&gt;</span>
-      <span class="tag">&lt;gmlcov:Extension&gt;</span>
-        <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
-          <span class="tag">&lt;eop:EarthObservation</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">eop_someEOCoverage2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-          ...
-          <span class="tag">&lt;/eop:EarthObservation&gt;</span>
-          <span class="tag">&lt;wcseo:lineage&gt;</span>
-            <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
-              <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-            <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
-            <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
-          <span class="tag">&lt;/wcseo:lineage&gt;</span>
-        <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
-      <span class="tag">&lt;/gmlcov:Extension&gt;</span>
-    <span class="tag">&lt;/gmlcov:metadata&gt;</span>
-  <span class="tag">&lt;/wcseo:RectifiedDataset&gt;</span>
-  <span class="tag">&lt;wcseo:DatasetSeries&gt;</span>
-    <span class="tag">&lt;wcseo:DatasetSeriesId&gt;</span>someDatasetSeries1<span class="tag">&lt;/wcseo:DatasetSeriesId&gt;</span>
-    <span class="tag">&lt;eop:Footprint</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footprint_someDatasetSeries1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    ...
-    <span class="tag">&lt;/eop:Footprint&gt;</span>
-    <span class="tag">&lt;gml:TimePeriod</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someDatasetSeries1_timeperiod</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
-    ...
-    <span class="tag">&lt;/gml:TimePeriod&gt;</span>
-    <span class="tag">&lt;ows:Metadata&gt;</span>
-      <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
-        <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someCatalogue.org/eop-metadatafrom-someDatasetSeries1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://standards.iso.org/iso/19115/-3/mdb/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:title</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ISO 19115-3 Metadata</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
-        <span class="tag">&lt;wcseo:lineage&gt;</span>
-          <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
-          <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
-        <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
-        <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
-        <span class="tag">&lt;/wcseo:lineage&gt;</span>
-      <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
-    <span class="tag">&lt;/ows:Metadata&gt;</span>
-    <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
-      <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage1<span class="tag">&lt;/wcs:CoverageId&gt;</span>
-    <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
-    <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
-      <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage2<span class="tag">&lt;/wcs:CoverageId&gt;</span>
-    <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
-  <span class="tag">&lt;/wcseo:DatasetSeries&gt;</span>
-<span class="tag">&lt;/wcseo:EOCoverageSet&gt;</span></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>An additional consideration is to harmonize this proposal with EO-O&amp;M as
-adopted by EO-WCS. EO-O&amp;M is designed to define a catalog record for one EO
-product including links to various raster or vector features like measurements,
-browses, masks, etc.</p>
-</div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_collection_and_product_registration">6.2. Collection and Product Registration</h3>
-<div class="sect3">
-<h4 id="_overview_3">6.2.1. Overview</h4>
-<div class="paragraph">
-<p>We propose to include a high level description of a HTTP REST API to
-programmatic register collections and products in ODA Systems.</p>
-</div>
-<div class="paragraph">
-<p>The API needs to specify the request and response structure as well as the
-payloads. Both, particularly the payload, depend heavily on the functionality
-available in concrete implementations. Thus we propose to evaluate the
-suitability to specify collection and product registration including
-suitability to specify a minimal set of services an ODA System has to support.</p>
-</div>
-<div class="paragraph">
-<p>The GeoServer REST API 20 serves as basis for our proposal.</p>
-</div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_uniform_coverage_grouping">6.3. Uniform Coverage Grouping</h3>
-<div class="sect3">
-<h4 id="_overview_4">6.3.1. Overview</h4>
-<div class="paragraph">
-<p>We propose to carefully review to which extent the forthcoming CIS 1.1 is
-prepared for this.</p>
-</div>
-<div class="paragraph">
-<p>The new partitioning functionality of CIS 1.1 requires all partitions to share
-the same range type partitions which is exactly what is ask for in this item.
-On the other side it requires partitions to not overlap which would require to
-use real 3D coverages in order to group 2D EO coverages.</p>
-</div>
-<div class="paragraph">
-<p>This needs to be further reviewed in order to harmonize with the concepts of
-EO-WCS. In any case this might be best suited to be integrated and documented
-in the solution to the "General Coverage Grouping" item detailed in section
-3.3.1 below.</p>
-</div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_condense_coverage_description_information">7. Condense Coverage Description Information</h2>
+<h2 id="rangetype-description-enhancements">6. rangeType Description Enhancements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_5">7.1. Overview</h3>
-<div class="paragraph">
-<p>OpenSearch is the designated EVO-ODAS endorsed search service. Thus we propose
-to extend OpenSearch in a way to allow clients to specify the verbosity of the
-answer using a new parameter named <code>view</code>. Several allowed values are defined
-in that proposal ranging from <code>full</code> for everything to <code>geotime</code> for a very
-limited view only including id, name, bbox, start, and end.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, there is the idea of adding histogram like functionality i.e.,
-requesting summary information for defined buckets like months.</p>
-</div>
-<div class="paragraph">
-<p>It should be noted that there exists an alternative approach to searching which
-is based on XPath enabling traversal and subsetting of a server&#8217;s XML
-information hierarchy.</p>
-</div>
-<div class="paragraph">
-<p>OpenSearch and XPath are not competing, but complementary approaches:
-OpenSearch empowers users to do human-centric search through keywords. XPath,
-conversely, enables fine-grain drilling into the server&#8217;s information structure
-and, hence, is suitable in particular for machine-to-machine communication.</p>
-</div>
-<div class="paragraph">
-<p>Both search types, therefore, are important for versatile coverage services. In
-EVO-ODAS, the OpenSearch avenue will be elaborated.</p>
-</div>
-<div class="paragraph">
-<p>Although XPath looks like a promising approach there are some difficulties
-particularly from an implementation point of view. In general, an XML document
-can only be subsetted using XPath once it has been generated. This approach
-wouldn&#8217;t scale well on server implementations. Of course particular queries can
-be computed on the fly but to allow generic XPath queries is quite challenging.</p>
-</div>
-<div class="paragraph">
-<p>Another issue is, that XPath returns subsets of XML documents without
-maintaining overlying hierarchy. While it is simple to retrieve a list of
-coverage IDs for certain search criteria it is difficult if not impossible to
-retrieve for the same list of coverages tailored coverage descriptions only
-containing ID, phenomenon time, and footprint.</p>
-</div>
-<div class="paragraph">
-<p>Further challenges arise when the query is supposed to contain time or spatial
-subsetting.</p>
-</div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_wcs_masking_extension">8. WCS Masking Extension</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_overview_6">8.1. Overview</h3>
-<div class="paragraph">
-<p>We propose to extend the GetCoverage request with parameters to request a
-masking via a mask coverage or polygons e.g. given as GeoJSON or shapefile. The
-coverage of polygons can be given by reference or, if small enough, included
-directly in the request in case of polygons as WKT.</p>
-</div>
-<div class="paragraph">
-<p>The response shall use a defined NoData value for areas outside of the mask.</p>
-</div>
-<div class="paragraph">
-<p>In the frame of EVO-ODAS this will be described in the EO Data Access Best
-Practice. Later on this might be promoted to an actual WCS extension.</p>
-</div>
-<div class="paragraph">
-<p>TODO</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="rangetype-description-enhancements">9. rangeType Description Enhancements</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_overview_7">9.1. Overview</h3>
+<h3 id="_overview_2">6.1. Overview</h3>
 <div class="paragraph">
 <p>The rangeType component of a coverage describes the common data type all this
 coverage&#8217;s range values (such as pixels) share. In programming languages, this
@@ -1118,7 +1039,7 @@ extensive examples are given <a href="#_examples">below</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_physical_properties">9.2. Physical Properties</h3>
+<h3 id="_physical_properties">6.2. Physical Properties</h3>
 <div class="paragraph">
 <p>The <code>wcseo:rangeTypeExtension</code> element first includes the <code>wcseo:dataSemantics</code>
 element of type <code>anyURI</code>. This element holds an URI preferably resolving to a
@@ -1164,7 +1085,7 @@ measure code <code>W.m-2.sr-1.nm-1</code> as defined by
 </div>
 </div>
 <div class="sect2">
-<h3 id="_data_types">9.3. Data Types</h3>
+<h3 id="_data_types">6.3. Data Types</h3>
 <div class="paragraph">
 <p>The <code>wcseo:rangeTypeExtension</code> element further includes the <code>wcseo:dataType</code>
 element, again of type <code>anyURI</code>. This element again holds an URI preferably
@@ -1181,7 +1102,7 @@ understand and parse the actual coverage encoding format.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_conversion_from_data_types_to_physical_properties">9.4. Conversion from Data Types to Physical Properties</h3>
+<h3 id="_conversion_from_data_types_to_physical_properties">6.4. Conversion from Data Types to Physical Properties</h3>
 <div class="paragraph">
 <p>In order to be able to convert the stored numbers to the value of the actual
 measured physical property the <code>wcseo:dataType2dataSemantics</code> element is added
@@ -1230,7 +1151,7 @@ e^(((x-1)*(ln(1000000000)-ln(2)))/(65535-1))\$.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hint_for_rgb_generation">9.5. Hint for RGB Generation</h3>
+<h3 id="_hint_for_rgb_generation">6.5. Hint for RGB Generation</h3>
 <div class="paragraph">
 <p>The last element in the <code>wcseo:rangeTypeExtension</code> element is the
 <code>wcseo:RGBgenerationHint</code> element. It is meant to provide a hint for clients
@@ -1260,7 +1181,7 @@ converted to \$y\$ using \$y =
 </div>
 </div>
 <div class="sect2">
-<h3 id="_recommended_definitions">9.6. Recommended definitions</h3>
+<h3 id="_recommended_definitions">6.6. Recommended definitions</h3>
 <div class="paragraph">
 <p>This section details our recommendations for the most commonly used data as
 well as for data not covered here. Of course data providers are free to choose
@@ -1268,7 +1189,7 @@ any definitions, it&#8217;s just highly recommended to use resolvable URIs provi
 meaningful descriptions ideally machine as well as human readable.</p>
 </div>
 <div class="sect3">
-<h4 id="__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">9.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></h4>
+<h4 id="__code_wcseo_datasemantics_code_code_swe_quantity_definition_code_and_code_swe_uom_code_code">6.6.1. <code>wcseo:dataSemantics</code>, <code>swe:Quantity/@definition</code>, and <code>swe:uom/@code</code></h4>
 <div class="paragraph">
 <p>The non-exhaustive list below provides recommendations for the values of the
 three items <code>wcseo:dataSemantics</code>, <code>definition</code> attribute of <code>swe:Quantity</code>,
@@ -1440,7 +1361,7 @@ and <code>code</code> attribute of <code>swe:Quantity/swe:uom</code> for the mos
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_wcseo_datatype_code">9.6.2. <code>wcseo:dataType</code></h4>
+<h4 id="__code_wcseo_datatype_code">6.6.2. <code>wcseo:dataType</code></h4>
 <div class="paragraph">
 <p>The <code>wcseo:dataType</code> needs to match the data type actually used in the coverage
 encoding like GeoTIFF. The non-exhaustive list below provides recommendations
@@ -1493,7 +1414,7 @@ the examples given below.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">9.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></h4>
+<h4 id="__code_wcseo_type_code_in_code_wcseo_datatype2datasemantics_code_and_code_wcseo_rgbgenerationhint_code">6.6.3. <code>wcseo:type</code> in <code>wcseo:dataType2dataSemantics</code> and <code>wcseo:RGBgenerationHint</code></h4>
 <div class="paragraph">
 <p>Recommendations for possible values for the <code>wcseo:type</code> element used to define
 data conversions are provided below.</p>
@@ -1513,7 +1434,7 @@ data conversions are provided below.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_wcseo_bandsequence_code">9.6.4. <code>wcseo:bandSequence</code></h4>
+<h4 id="__code_wcseo_bandsequence_code">6.6.4. <code>wcseo:bandSequence</code></h4>
 <div class="paragraph">
 <p>The <code>wcseo:bandSequence</code> element used in the <code>wcseo:RGBgenerationHint</code> is
 defined as type <code>NameTriple</code> which is a space delimited list of three elements
@@ -1526,7 +1447,7 @@ band1%2A2%2F3%2Bband2%2F3 %28band1%2Bband3%29%2F2</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_swe_datarecord_definition_code">9.6.5. <code>swe:DataRecord/@definition</code></h4>
+<h4 id="__code_swe_datarecord_definition_code">6.6.5. <code>swe:DataRecord/@definition</code></h4>
 <div class="paragraph">
 <p>The non-exhaustive list below provides recommendations for the value of the
 definition` attribute of <code>swe:DataRecord</code>.</p>
@@ -1574,7 +1495,7 @@ definition` attribute of <code>swe:DataRecord</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_swe_field_name_code_vs_code_swe_field_swe_quantity_swe_identifier_code">9.6.6. <code>swe:field/@name</code> vs. <code>swe:field/swe:Quantity/swe:identifier</code></h4>
+<h4 id="__code_swe_field_name_code_vs_code_swe_field_swe_quantity_swe_identifier_code">6.6.6. <code>swe:field/@name</code> vs. <code>swe:field/swe:Quantity/swe:identifier</code></h4>
 <div class="paragraph">
 <p>The <code>name</code> attribute of <code>swe:field</code> is defined as type <code>NCName</code>. This mainly
 means that it must not include characters like <code>:</code> (colon), <code>@</code>, <code>$</code>, <code>%</code>, <code>&amp;</code>,
@@ -1609,7 +1530,7 @@ attributes.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="__code_swe_nilvalue_reason_code">9.6.7. <code>swe:nilValue/@reason</code></h4>
+<h4 id="__code_swe_nilvalue_reason_code">6.6.7. <code>swe:nilValue/@reason</code></h4>
 <div class="paragraph">
 <p>The recommendations for the value of the <code>reason</code> attribute of <code>swe:nilValue</code>
 are given below.</p>
@@ -1642,7 +1563,7 @@ are given below.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_examples">9.7. Examples</h3>
+<h3 id="_examples">6.7. Examples</h3>
 <div class="paragraph">
 <p>The following provides an example <code>gmlcov:rangeType</code> element including
 additional range type information for RGB generation on <code>swe:DataRecord</code> level
@@ -1873,6 +1794,307 @@ as well as data conversion information on <code>swe:Quantity</code> level.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="coverage-collections">7. Coverage Collections</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WCS originally was perceived to give access to single coverages taken from a
+flat set of coverage offerings in the server.</p>
+</div>
+<div class="paragraph">
+<p>This approach was based on the classical subdivision into metadata services
+(i.e., catalogs) and data services, connected through some loose coupling
+(which effectively was never standardized beyond the recommendation to use
+URLs).</p>
+</div>
+<div class="paragraph">
+<p>With the progress of requirements and technology it is more and more considered
+important to merge data and metadata perspectives with the vision of a common
+integrated information space.</p>
+</div>
+<div class="paragraph">
+<p>For WCS, this means in particular to further structure a server&#8217;s offering of
+coverages along various criteria.</p>
+</div>
+<div class="paragraph">
+<p>Early on EO-WCS has provided a lead in this by introducing both uniform and
+non-uniform coverage groupings together with dedicated search functionality
+which is able to perform a focused search within coverage subsets.</p>
+</div>
+<div class="paragraph">
+<p>With OGC Coverage Implementation Schema (CIS) 1.1 comes massively enhanced
+support for structuring coverages. Therefore, a harmonization task has to be
+accomplished to relate both concepts, which may well lead to an extension of
+functionality for fully exploiting all benefits.</p>
+</div>
+<div class="paragraph">
+<p>In the following subsections, we discuss EO-relevant grouping concepts, based
+on CIS and EO-WCS.</p>
+</div>
+<div class="sect2">
+<h3 id="grouping-of-associated-data">7.1. Grouping of Associated Data</h3>
+<div class="sect3">
+<h4 id="_overview_3">7.1.1. Overview</h4>
+<div class="paragraph">
+<p>Modeling the grouped data as coverage itself would directly allow GetCoverage
+requests but would require rather big changes to WCS. Thus we propose to follow
+and extend the approach already established in EO- WCS and reuse the concept of
+DatasetSeries.</p>
+</div>
+<div class="paragraph">
+<p>As described in the section "Encoding of Multiple Coverages in One File" 3.1.2
+above we propose to use <code>Reference</code> elements in <code>Metadata</code> elements also for
+associated data. Together with the GetEOCoverageRequest operation and a
+<code>mediaType</code> of <code>multipart/related</code> this could be suitable to be used for data
+access to whole EO Products.</p>
+</div>
+<div class="paragraph">
+<p>The first part of the multipart response would look like the example below but
+additionally include <code>Reference</code> elements to the associated data inside
+<code>Metadata</code> elements of the <code>DatasetSeries</code> element. Of course the second part
+of the multipart response needs to include all the referenced files.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="tag">&lt;wcseo:EOCoverageSet</span> <span class="attribute-name">numberMatched</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">numberReturned</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">3</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:ows</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ows/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gml</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/gml/3.2</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:gmlcov</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/ mlcov/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:swe</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/swe/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcs</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:wcseo</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:eop</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/eop/2.1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:om</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/om/2.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xlink</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/1999/xlink</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xmlns:xsi</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.w3.org/2001/XMLSchema-instance</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xsi:schemaLocation</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/wcs/wcseo/1.1 http://schemas.opengis.net/wcs/wcseo/1.1/wcsEOAll.xsd</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+  <span class="tag">&lt;wcseo:RectifiedDataset</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someEOCoverage1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;gml:boundedBy&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:boundedBy&gt;</span>
+    <span class="tag">&lt;gml:domainSet&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:domainSet&gt;</span>
+    <span class="tag">&lt;gml:rangeSet&gt;</span>
+      <span class="tag">&lt;gml:File&gt;</span>
+        <span class="tag">&lt;gml:rangeParameters</span> <span class="attribute-name">xlink:arcrole</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileReference</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cid:coverage.meta4;someEOCoverage1.tif</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/GMLCOV_geotiff-coverages/1.0/conf/geotiff-coverage</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:fileReference&gt;</span>cid:coverage.meta4;someEOCoverage1.tif<span class="tag">&lt;/gml:fileReference&gt;</span>
+        <span class="tag">&lt;gml:fileStructure</span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:mimeType&gt;</span>image/tiff<span class="tag">&lt;/gml:mimeType&gt;</span>
+      <span class="tag">&lt;/gml:File&gt;</span>
+    <span class="tag">&lt;/gml:rangeSet&gt;</span>
+    <span class="tag">&lt;gmlcov:rangeType&gt;</span>
+    ...
+    <span class="tag">&lt;/gmlcov:rangeType&gt;</span>
+    <span class="tag">&lt;gmlcov:metadata&gt;</span>
+      <span class="tag">&lt;gmlcov:Extension&gt;</span>
+        <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+          <span class="tag">&lt;eop:EarthObservation</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">eop_someEOCoverage1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          ...
+          <span class="tag">&lt;/eop:EarthObservation&gt;</span>
+          <span class="tag">&lt;wcseo:lineage&gt;</span>
+            <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
+              <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
+            <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
+          <span class="tag">&lt;/wcseo:lineage&gt;</span>
+        <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+      <span class="tag">&lt;/gmlcov:Extension&gt;</span>
+    <span class="tag">&lt;/gmlcov:metadata&gt;</span>
+  <span class="tag">&lt;/wcseo:RectifiedDataset&gt;</span>
+  <span class="tag">&lt;wcseo:RectifiedDataset</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someEOCoverage2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    <span class="tag">&lt;gml:boundedBy&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:boundedBy&gt;</span>
+    <span class="tag">&lt;gml:domainSet&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:domainSet&gt;</span>
+    <span class="tag">&lt;gml:rangeSet&gt;</span>
+      <span class="tag">&lt;gml:File&gt;</span>
+        <span class="tag">&lt;gml:rangeParameters</span> <span class="attribute-name">xlink:arcrole</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">fileReference</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">cid:coverage.meta4;someEOCoverage2.tif</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.opengis.net/spec/GMLCOV_geotiff-coverages/1.0/conf/geotiff-coverage</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:fileReference&gt;</span>cid:coverage.meta4;someEOCoverage2.tif<span class="tag">&lt;/gml:fileReference&gt;</span>
+        <span class="tag">&lt;gml:fileStructure</span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;gml:mimeType&gt;</span>image/tiff<span class="tag">&lt;/gml:mimeType&gt;</span>
+        <span class="tag">&lt;/gml:File&gt;</span>
+    <span class="tag">&lt;/gml:rangeSet&gt;</span>
+    <span class="tag">&lt;gmlcov:rangeType&gt;</span>
+    ...
+    <span class="tag">&lt;/gmlcov:rangeType&gt;</span>
+    <span class="tag">&lt;gmlcov:metadata&gt;</span>
+      <span class="tag">&lt;gmlcov:Extension&gt;</span>
+        <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+          <span class="tag">&lt;eop:EarthObservation</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">eop_someEOCoverage2</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+          ...
+          <span class="tag">&lt;/eop:EarthObservation&gt;</span>
+          <span class="tag">&lt;wcseo:lineage&gt;</span>
+            <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
+              <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+            <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
+            <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
+          <span class="tag">&lt;/wcseo:lineage&gt;</span>
+        <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+      <span class="tag">&lt;/gmlcov:Extension&gt;</span>
+    <span class="tag">&lt;/gmlcov:metadata&gt;</span>
+  <span class="tag">&lt;/wcseo:RectifiedDataset&gt;</span>
+  <span class="tag">&lt;wcseo:DatasetSeries&gt;</span>
+    <span class="tag">&lt;wcseo:DatasetSeriesId&gt;</span>someDatasetSeries1<span class="tag">&lt;/wcseo:DatasetSeriesId&gt;</span>
+    <span class="tag">&lt;eop:Footprint</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">footprint_someDatasetSeries1</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    ...
+    <span class="tag">&lt;/eop:Footprint&gt;</span>
+    <span class="tag">&lt;gml:TimePeriod</span> <span class="attribute-name">gml:id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">someDatasetSeries1_timeperiod</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
+    ...
+    <span class="tag">&lt;/gml:TimePeriod&gt;</span>
+    <span class="tag">&lt;ows:Metadata&gt;</span>
+      <span class="tag">&lt;wcseo:EOMetadata&gt;</span>
+        <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someCatalogue.org/eop-metadatafrom-someDatasetSeries1</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:role</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://standards.iso.org/iso/19115/-3/mdb/1.0</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">xlink:title</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">ISO 19115-3 Metadata</span><span class="delimiter">&quot;</span></span> <span class="tag">/&gt;</span>
+        <span class="tag">&lt;wcseo:lineage&gt;</span>
+          <span class="tag">&lt;wcseo:referenceGetEOCoverageSet&gt;</span>
+          <span class="tag">&lt;ows:Reference</span> <span class="attribute-name">xlink:href</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">http://www.someWCS.org?SERVICE=WCS</span><span class="entity">&amp;amp;</span><span class="content">VERSION=2.0.1</span><span class="entity">&amp;amp;</span><span class="content">REQUEST=GetEOCoverageSet</span><span class="entity">&amp;amp;</span><span class="content">EOID=someDatasetSeries1</span><span class="entity">&amp;amp;</span><span class="content">PACKAGEFORMAT=application/metalink4+xml</span><span class="entity">&amp;amp;</span><span class="content">MEDIATYPE=multipart/related</span><span class="delimiter">&quot;</span></span><span class="tag">/&gt;</span>
+        <span class="tag">&lt;/wcseo:referenceGetEOCoverageSet&gt;</span>
+        <span class="tag">&lt;gml:timePosition&gt;</span>2016-05-17T12:25:40Z<span class="tag">&lt;/gml:timePosition&gt;</span>
+        <span class="tag">&lt;/wcseo:lineage&gt;</span>
+      <span class="tag">&lt;/wcseo:EOMetadata&gt;</span>
+    <span class="tag">&lt;/ows:Metadata&gt;</span>
+    <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
+      <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage1<span class="tag">&lt;/wcs:CoverageId&gt;</span>
+    <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
+    <span class="tag">&lt;wcseo:rectifiedDataset&gt;</span>
+      <span class="tag">&lt;wcs:CoverageId&gt;</span>someEOCoverage2<span class="tag">&lt;/wcs:CoverageId&gt;</span>
+    <span class="tag">&lt;/wcseo:rectifiedDataset&gt;</span>
+  <span class="tag">&lt;/wcseo:DatasetSeries&gt;</span>
+<span class="tag">&lt;/wcseo:EOCoverageSet&gt;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An additional consideration is to harmonize this proposal with EO-O&amp;M as
+adopted by EO-WCS. EO-O&amp;M is designed to define a catalog record for one EO
+product including links to various raster or vector features like measurements,
+browses, masks, etc.</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="collection-and-product-registration">7.2. Collection and Product Registration</h3>
+<div class="sect3">
+<h4 id="_overview_4">7.2.1. Overview</h4>
+<div class="paragraph">
+<p>We propose to include a high level description of a HTTP REST API to
+programmatic register collections and products in ODA Systems.</p>
+</div>
+<div class="paragraph">
+<p>The API needs to specify the request and response structure as well as the
+payloads. Both, particularly the payload, depend heavily on the functionality
+available in concrete implementations. Thus we propose to evaluate the
+suitability to specify collection and product registration including
+suitability to specify a minimal set of services an ODA System has to support.</p>
+</div>
+<div class="paragraph">
+<p>The GeoServer REST API 20 serves as basis for our proposal.</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uniform-coverage-grouping">7.3. Uniform Coverage Grouping</h3>
+<div class="sect3">
+<h4 id="_overview_5">7.3.1. Overview</h4>
+<div class="paragraph">
+<p>We propose to carefully review to which extent the forthcoming CIS 1.1 is
+prepared for this.</p>
+</div>
+<div class="paragraph">
+<p>The new partitioning functionality of CIS 1.1 requires all partitions to share
+the same range type partitions which is exactly what is ask for in this item.
+On the other side it requires partitions to not overlap which would require to
+use real 3D coverages in order to group 2D EO coverages.</p>
+</div>
+<div class="paragraph">
+<p>This needs to be further reviewed in order to harmonize with the concepts of
+EO-WCS. In any case this might be best suited to be integrated and documented
+in the solution to the "General Coverage Grouping" item detailed in section
+3.3.1 below.</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="condense-coverage-description-information">8. Condense Coverage Description Information</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_6">8.1. Overview</h3>
+<div class="paragraph">
+<p>OpenSearch is the designated EVO-ODAS endorsed search service. Thus we propose
+to extend OpenSearch in a way to allow clients to specify the verbosity of the
+answer using a new parameter named <code>view</code>. Several allowed values are defined
+in that proposal ranging from <code>full</code> for everything to <code>geotime</code> for a very
+limited view only including id, name, bbox, start, and end.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, there is the idea of adding histogram like functionality i.e.,
+requesting summary information for defined buckets like months.</p>
+</div>
+<div class="paragraph">
+<p>It should be noted that there exists an alternative approach to searching which
+is based on XPath enabling traversal and subsetting of a server&#8217;s XML
+information hierarchy.</p>
+</div>
+<div class="paragraph">
+<p>Although XPath looks like a promising approach there are some difficulties
+particularly from an implementation point of view. In general, an XML document
+can only be subsetted using XPath once it has been generated. This approach
+wouldn&#8217;t scale well on server implementations. Of course particular queries can
+be computed on the fly but to allow generic XPath queries is quite challenging.</p>
+</div>
+<div class="paragraph">
+<p>Another issue is, that XPath returns subsets of XML documents without
+maintaining overlying hierarchy. While it is simple to retrieve a list of
+coverage IDs for certain search criteria it is difficult if not impossible to
+retrieve for the same list of coverages tailored coverage descriptions only
+containing ID, phenomenon time, and footprint.</p>
+</div>
+<div class="paragraph">
+<p>Further challenges arise when the query is supposed to contain time or spatial
+subsetting.</p>
+</div>
+<div class="paragraph">
+<p>OpenSearch and XPath are not competing, but complementary approaches:
+OpenSearch empowers users to do human-centric search through keywords. XPath,
+conversely, enables fine-grain drilling into the server&#8217;s information structure
+and, hence, is suitable in particular for machine-to-machine communication.</p>
+</div>
+<div class="paragraph">
+<p>Both search types, therefore, are important for versatile coverage services. In
+EVO-ODAS, the OpenSearch avenue will be elaborated.</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="wcs-masking-extension">9. WCS Masking Extension</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_overview_7">9.1. Overview</h3>
+<div class="paragraph">
+<p>We propose to extend the GetCoverage request with parameters to request a
+masking via a mask coverage or polygons e.g. given as GeoJSON or shapefile. The
+coverage of polygons can be given by reference or, if small enough, included
+directly in the request in case of polygons as WKT.</p>
+</div>
+<div class="paragraph">
+<p>The response shall use a defined NoData value for areas outside of the mask.</p>
+</div>
+<div class="paragraph">
+<p>In the frame of EVO-ODAS this will be described in the EO Data Access Best
+Practice. Later on this might be promoted to an actual WCS extension.</p>
+</div>
+<div class="paragraph">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="conclusions">10. Conclusions</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -1959,7 +2181,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-01 16:16:15 CEST
+Last updated 2016-09-30 16:18:28 CEST
 </div>
 </div>
 <script type="text/x-mathjax-config">
