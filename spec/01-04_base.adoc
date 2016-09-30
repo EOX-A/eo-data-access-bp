@@ -11,7 +11,7 @@ services like CSW, WMS, and WPS.
 
 TODO
 
-[#normative_references,reftext='2']
+[#normative-references,reftext='2']
 == Normative references
 
 The following normative documents contain provisions that, through reference in
@@ -23,58 +23,48 @@ referred to applies.
 OGC 06-121r9, _OGC Web Services Common Standard_, version 2.0
 
 OGC 09-146r2, _OGC® Coverage Implementation Schema_ (renamed from _OGC®
-GML Application Schema - Coverages_), version 1.0 +
-Conformance classes used: _gml-coverage_, _gml_, _multipart_, _special-format_
+GML Application Schema - Coverages_), version 1.0
 
 OGC 09-110r4, _OGC® WCS 2.0 Interface Standard- Core: Corrigendum_, version
-2.0 +
-Conformance classes used: _core_
+2.0
 
 OGC 10-140r2, _OGC® Web Coverage Service 2.0 Interface Standard - Earth
-Observation Application Profile_, version 1.1 +
-Conformance classes used: _eowcs_, _eowcs_geteocoverageset_, _eowcs_get-kvp_,
-_eowcs_soap_,
+Observation Application Profile_, version 1.1
 
 OGC 11-053r1, _OGC® Web Coverage Service Interface Standard - CRS Extension_,
-version 1.0 +
-Conformance classes used: _crs_, _crs-gridded-coverage_
-
+version 1.0
 OGC 12-039, _OGC® Web Coverage Service Interface Standard - Scaling Extension_,
-version 1.0 +
-Conformance classes used: _scaling_
+version 1.0
 
 OGC 12-040, _OGC® Web Coverage Service Interface Standard - Range Subsetting
-Extension_, version 1.0 +
-Conformance classes used: _record-subsetting_
+Extension_, version 1.0
 
 OGC 12-049, _OGC® Web Coverage Service Interface Standard - Interpolation
-Extension_, version 1.0 +
-Conformance classes used: _interpolation_
+Extension_, version 1.0
 
 OGC 09-147r3, _OGC® Web Coverage Service 2.0 Interface Standard - KVP Protocol
-Binding Extension - Corrigendum_, version 1.0 +
-Conformance classes used: _get-kvp_
+Binding Extension - Corrigendum_, version 1.0
 
 OGC 09-149r1, _OGC® Web Coverage Service 2.0 Interface Standard - XML/SOAP
-Protocol Binding Extension_, version 1.0 +
-Conformance classes used: _soap_
+Protocol Binding Extension_, version 1.0
 
 OGC 12-100r1, _OGC® GML Application Schema - Coverages - GeoTIFF Coverage
-Encoding Profile_, version 1.0 +
-Conformance classes used: _geotiff-coverage_
+Encoding Profile_, version 1.0
 
 OGC 14-100r2, _OGC® CF-netCDF 3.0 encoding using GML Coverage Application
-Schema_, version 2.0 +
-Conformance classes used: _CF-netCDF-1.6 GML encoding_, _CF-netCDF-1.6 data
-format_, _CF-netCDF-1.6 multipart data encoding_
+Schema_, version 2.0
 
 OGC 12-108, _OGC® GML Application Schema - Coverages JPEG2000 Coverage Encoding
-Extension_, version 1.0 +
-Conformance classes used: _jpeg2000-coverage_
+Extension_, version 1.0
 
 OGC 10-157r4, _OGC® Earth Observation Metadata profile of Observations &
-Measurements_, version 1.1 +
-Conformance classes used: _eop_, _sar_, _opt_
+Measurements_, version 1.1
+
+OGC 07-063r1, _OpenGIS® Web Map Services - Profile for EO Products_, version
+0.3.3
+
+OGC 13-043, _OGC Download Service for Earth Observation Products Best
+Practice_, version 1.0
 
 == Terms and definitions
 
@@ -85,7 +75,7 @@ structure and drafting of International Standards. In particular, the word
 strictly followed to conform to this standard.
 
 For the purposes of this document, the terms and definitions given in the above
-references, particularly EO-WCS [10-140r1], apply. In addition, the following
+references, particularly EO-WCS [10-140r2], apply. In addition, the following
 terms and definitions apply. An arrow "->" indicates that the following term is
 defined in this Clause.
 
@@ -96,51 +86,52 @@ digital representation of a spatio-temporally varying phenomenon as defined in
 
 === Dataset
 
-2-D -> EO Coverage
+-> <<EO Coverage>>
 
 NOTE: A Dataset usually represents observations obtained by satellite
 instruments.
 
 === Dataset Series
 
-collection of -> EO Coverages
+collection of -> <<EO Coverage,EO Coverages>>
 
 === EO Coverage
 
-Rectified Grid -> Coverage or Referenceable Grid -> Coverage having an -> EO
-Metadata record and a WGS84 bounding box
+Rectified Grid -> <<Coverage>> or Referenceable Grid -> <<Coverage>> having an
+-> <<EO Metadata>> record and a WGS84 footprint
 
 === EO Metadata
 
--> EO Coverage's metadata record
+-> <<EO Coverage,EO Coverage's>> metadata record
 
 === Stitched Mosaic
 
--> EO Coverage composed from subsets of one or more co-referenced -> Datasets
+-> <<EO Coverage>> composed from subsets of one or more co-referenced ->
+<<Dataset,Datasets>>
 
 === EO Product
 
-An EO Product contains one or more related -> EO Product Datasets plus metadata
-and optionally auxiliary data like -> EO Product Quicklooks.
+An EO Product contains one or more related -> <<EO Product>> Datasets plus metadata
+and optionally auxiliary data like -> <<EO Product>> Quicklooks.
 
 === EO Product Dataset
 
-One or more files each containing one or more -> EO Coverages.
+One or more files each containing one or more -> <<EO Coverage,EO Coverages>>.
 
 === EO Product Quicklook
 
-A visual representation of a usually reduced -> EO Product Dataset encoded in
-an image format. The -> EO Product Dataset may combine different bands.
+A visual representation of a usually reduced -> <<EO Product>> Dataset encoded
+in an image format. The -> <<EO Product>> Dataset may combine different bands.
 
 === Lineage record
 
-Data structure documenting an operation that has been applied to the -> coverage
-it is part of
+Data structure documenting an operation that has been applied to the ->
+<<Coverage>> it is part of
 
 === refers to
 
-contains or references, in its -> EO Metadata element as defined in [OGC
-10-157r4], the -> EO Metadata element of
+contains, in its -> <<EO Metadata>> element as defined in [OGC 10-157r4], the
+-> <<EO Metadata>> element of
 
 == Conventions
 
