@@ -243,16 +243,28 @@ TODO
 ==== Overview
 
 We propose to carefully review to which extent the forthcoming CIS 1.1 is
-prepared for this.
+prepared for this. CIS 1.1 offers a conformance class, coverage-partitioning,
+which allows splitting a coverage into pieces - in other words, a coverage can
+be composed from sub-coverages. This nesting of coverages actually is recursive,
+allowing to establish hierarchically nested coverages.
 
-The new partitioning functionality of CIS 1.1 requires all partitions to share
-the same range type partitions which is exactly what is ask for in this item.
-On the other side it requires partitions to not overlap which would require to
-use real 3D coverages in order to group 2D EO coverages.
+As the new partitioning functionality of CIS 1.1 still defines a - partitioned -
+coverage the same homogeneity criteria hold as for "atomic" coverages: they must
+have a common range type and common range components ("bands", "variables") must
+not overlap. The latter means: different sub-coverages can overlap only when
+contributing to different range components. EO-WCS, on the contrary, allows
+coverages to overlap in a grouping, both in DatasetSeries as well as
+StitchedMosaics.
 
-This needs to be further reviewed in order to harmonize with the concepts of
-EO-WCS. In any case this might be best suited to be integrated and documented
-in the solution to the "General Coverage Grouping" item detailed in section
-3.3.1 below.
+In the latter, StitchedMosaics, the extra concept of a "contributing footprint"
+captures the overlap by indicating which pixel contributes to the coverage -
+effectively, the contributing footprint acts like a mask blanking out parts of a
+coverage, thereby achieving a unique pixel for each position while retaining
+overlap information. This - more involved - concept is not directly supported by
+the CIS 1.1 partitioning.
 
 TODO
+    Idea: Derive DatasetSeries subtype where rangeType is fixed for all included
+    coverages (maybe using schematron?). Make sure that this subtype is
+    substitutable (substitutionGroup?) and instances still validate against EO-
+    WCS 1.1 schemas.
