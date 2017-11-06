@@ -150,12 +150,14 @@ All questions regarding this document should be directed to the editor or the
 contributors.
 
 [options="header"]
-|==============================================================================
+|=============================================================================
 |Name                                   |Organization
 |Stephan Meißl <stephan.meissl@eox.at>  |https://eox.at[EOX IT Services GmbH]
 |Peter Baumann <p.baumann@jacobs-university.de> |
 http://www.jacobs-university.de[Jacobs University Bremen]
-|==============================================================================
+|Andrea Aime <andrea.aime@geo-solutions.it> |
+http://www.geo-solutions.it[GeoSolutions S.A.S.]
+|=============================================================================
 
 == Changes to the OGC ® Abstract Specification
 
@@ -164,8 +166,56 @@ the technical contents of this (part of this) document.
 
 == Future Work
 
-Please send any suggestions for future work to the document editor or
-contributors named above.
+Suggested additions, changes, and comments on this draft document are welcome
+and encouraged. Such suggestions may be submitted by email message to the
+document editor or contributors named above, by creating an issue or a pull
+request at the https://github.com/EOX-A/eo-data-access-bp[GitHub repository],
+or by making suggested changes in an edited copy of this document.
+
+Presently, this document is a living document until officially submitted to
+OGC seeking formal adoption. Below is a list of items that are currently
+worked on or that could be worked on in future activities.
+
+* <<cross-service-interaction,Cross Service Interaction>> - Detailing how to
+  structure the data offered in the various services as well as how to
+  explicitly link between those services. The OGC services under consideration
+  are: OpenSearch, WMS, WMTS, WCS, and DS-EO.
+
+There is a proposal available in the "EVO-ODAS Recommendation on building a
+discovery interface using OpenSearch Technical Note (EVOODAS-TN-GEO-4112
+version 1.3.0 from 2017-10-24)" developed in parallel by GeoSolutions on how
+to address this item for linking from OpenSearch to the other services.
+
+For the other linking mechanisms a proposal still needs to be worked on.
+
+* <<coverage-collections,Coverage Collections>> - Adding support for typical
+  EO concepts like multi-resolution products or cloud masks to OGC services.
+
+We propose to carefully review forthcoming CIS 1.1 against EO-WCS 1.1
+particularly how far it accomplishes the grouping concepts proposed in there.
+
+Further we propose to review the idea to derive DatasetSeries subtypes as
+described in the relevant section below.
+
+Finally the <<collection-and-product-registration,Collection and Product
+Registration>> using a HTTP REST API for programmatic collection and product
+registration probably based on WCS-T needs to be drafted.
+
+* <<condense-coverage-description-information,Condense Coverage Description
+  Information>> - Applying performance optimizations to facilitate and enable
+  modern web based applications.
+
+The OpenSearch SRU (Search and Retrieval via URL) extension needs to be
+investigated for suitability. Alternatively the already drafted usage of a new
+parameter named `view` needs to be further pursued and elaborated.
+
+* <<wcs-masking-extension,WCS Masking Extension>> - Proposing support for
+  retrieving non-rectangular subsets of coverages from WCS.
+
+This needs to be drafted.
+
+* A <<conclusions,summary>> for the intended use and benefits of EO-WCS 1.1 is
+  planned to be added.
 
 include::00_introduction.adoc[]
 
