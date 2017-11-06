@@ -217,26 +217,27 @@ procedures required by applicable law to make this license enforceable</p>
 </li>
 <li><a href="#coverage-collections">7. Coverage Collections</a>
 <ul class="sectlevel2">
-<li><a href="#grouping-of-associated-data">7.1. Grouping of Associated Data</a>
+<li><a href="#_motivation">7.1. Motivation</a></li>
+<li><a href="#uniform-coverage-grouping">7.2. Uniform Coverage Grouping</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_3">7.1.1. Overview</a></li>
+<li><a href="#_overview_3">7.2.1. Overview</a></li>
+<li><a href="#_a_concept_for_uniform_coverage_groupings">7.2.2. A Concept for Uniform Coverage Groupings</a></li>
+<li><a href="#_coverage_groupings_in_cis_1_1_versus_eo_wcs_1_1">7.2.3. Coverage Groupings in CIS 1.1 versus EO-WCS 1.1</a></li>
+<li><a href="#_modeling_of_grouping_data_and_operations">7.2.4. Modeling of Grouping Data and Operations</a></li>
 </ul>
 </li>
-<li><a href="#collection-and-product-registration">7.2. Collection and Product Registration</a>
+<li><a href="#_general_grouping_of_coverages">7.3. General Grouping of Coverages</a>
 <ul class="sectlevel3">
-<li><a href="#_overview_4">7.2.1. Overview</a></li>
+<li><a href="#_concept">7.3.1. Concept</a></li>
+<li><a href="#grouping-of-associated-data">7.3.2. Encoding and Grouping of Associated Data</a></li>
 </ul>
 </li>
-<li><a href="#uniform-coverage-grouping">7.3. Uniform Coverage Grouping</a>
-<ul class="sectlevel3">
-<li><a href="#_overview_5">7.3.1. Overview</a></li>
-</ul>
-</li>
+<li><a href="#collection-and-product-registration">7.4. Collection and Product Registration</a></li>
 </ul>
 </li>
 <li><a href="#condense-coverage-description-information">8. Condense Coverage Description Information</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_6">8.1. Overview</a></li>
+<li><a href="#_overview_4">8.1. Overview</a></li>
 <li><a href="#_opensearch_code_view_code_parameter">8.2. OpenSearch <code>view</code> parameter</a>
 <ul class="sectlevel3">
 <li><a href="#_objective">8.2.1. Objective</a></li>
@@ -247,7 +248,7 @@ procedures required by applicable law to make this license enforceable</p>
 </li>
 <li><a href="#wcs-masking-extension">9. WCS Masking Extension</a>
 <ul class="sectlevel2">
-<li><a href="#_overview_7">9.1. Overview</a></li>
+<li><a href="#_overview_5">9.1. Overview</a></li>
 </ul>
 </li>
 <li><a href="#conclusions">10. Conclusions</a></li>
@@ -331,6 +332,10 @@ contributors.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Peter Baumann &lt;<a href="mailto:p.baumann@jacobs-university.de">p.baumann@jacobs-university.de</a>&gt;</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.jacobs-university.de">Jacobs University Bremen</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Andrea Aime &lt;<a href="mailto:andrea.aime@geo-solutions.it">andrea.aime@geo-solutions.it</a>&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.geo-solutions.it">GeoSolutions S.A.S.</a></p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -348,8 +353,89 @@ the technical contents of this (part of this) document.</p>
 <h2 id="_future_work">Future Work</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Please send any suggestions for future work to the document editor or
-contributors named above.</p>
+<p>Suggested additions, changes, and comments on this draft document are welcome
+and encouraged. Such suggestions may be submitted by email message to the
+document editor or contributors named above, by creating an issue or a pull
+request at the <a href="https://github.com/EOX-A/eo-data-access-bp">GitHub repository</a>,
+or by making suggested changes in an edited copy of this document.</p>
+</div>
+<div class="paragraph">
+<p>Presently, this document is a living document until officially submitted to
+OGC seeking formal adoption. Below is a list of items that are currently
+worked on or that could be worked on in future activities.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#cross-service-interaction">Cross Service Interaction</a> - Detailing how to
+structure the data offered in the various services as well as how to
+explicitly link between those services. The OGC services under consideration
+are: OpenSearch, WMS, WMTS, WCS, and DS-EO.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There is a proposal available in the "EVO-ODAS Recommendation on building a
+discovery interface using OpenSearch Technical Note (EVOODAS-TN-GEO-4112
+version 1.3.0 from 2017-10-24)" developed in parallel by GeoSolutions on how
+to address this item for linking from OpenSearch to the other services.</p>
+</div>
+<div class="paragraph">
+<p>For the other linking mechanisms a proposal still needs to be worked on.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#coverage-collections">Coverage Collections</a> - Adding support for typical
+EO concepts like multi-resolution products or cloud masks to OGC services.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We propose to carefully review forthcoming CIS 1.1 against EO-WCS 1.1
+particularly how far it accomplishes the grouping concepts proposed in there.</p>
+</div>
+<div class="paragraph">
+<p>Further we propose to review the idea to derive DatasetSeries subtypes as
+described in the relevant section below.</p>
+</div>
+<div class="paragraph">
+<p>Finally the <a href="#collection-and-product-registration">Collection and Product
+Registration</a> using a HTTP REST API for programmatic collection and product
+registration probably based on WCS-T needs to be drafted.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#condense-coverage-description-information">Condense Coverage Description
+Information</a> - Applying performance optimizations to facilitate and enable
+modern web based applications.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The OpenSearch SRU (Search and Retrieval via URL) extension needs to be
+investigated for suitability. Alternatively the already drafted usage of a new
+parameter named <code>view</code> needs to be further pursued and elaborated.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#wcs-masking-extension">WCS Masking Extension</a> - Proposing support for
+retrieving non-rectangular subsets of coverages from WCS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This needs to be drafted.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <a href="#conclusions">summary</a> for the intended use and benefits of EO-WCS 1.1 is
+planned to be added.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -370,14 +456,14 @@ EO Online Data Access Services (EVO-ODAS)</a>.</p>
 Web Coverage Service (WCS)</a> with EO products including generic conventions and
 recommendations for data and metadata mapping and conversions which are to be
 used in concrete tailorings for specific missions. It further considers how to
-link to other services like CSW, WMS, and WPS.</p>
+link to other services like CSW, OpenSearch, WMS, WMTS, DS-EO, and WPS.</p>
 </div>
 <div class="paragraph">
 <p>Suggested additions, changes, and comments on this draft document are welcome
-and encouraged. Such suggestions may be submitted by email message, by creating
-an issue or a pull request at the
-<a href="https://github.com/EOX-A/eo-data-access-bp">GitHub repository</a>, or by making
-suggested changes in an edited copy of this document.</p>
+and encouraged. Such suggestions may be submitted by email message to the
+document editor or contributors named above, by creating an issue or a pull
+request at the <a href="https://github.com/EOX-A/eo-data-access-bp">GitHub repository</a>,
+or by making suggested changes in an edited copy of this document.</p>
 </div>
 <div class="paragraph">
 <p><em>Attention is drawn to the possibility that some of the elements of this
@@ -984,13 +1070,12 @@ using the same TIME parameter value.</p>
 <div class="paragraph">
 <p>First explicit linking recommendations are given in the "EVO-ODAS
 Recommendation on building a discovery interface using OpenSearch Technical
-Note" [RD49] by GeoSolutions. The recommendation there is to use <code>link</code>
-elements with a <code>rel</code> attribute of value <code>wms</code> ,<code>wmts</code>, <code>wcs</code>, <code>wfs</code>, or
-<code>ds-eo</code> in Atom results to link to the EO Product in the respective service.
-Note that it also includes recommendations on how to structure these links in
-order to link to a single product. In short the recommendation is to link to a
-tailored Capabilities document like e.g.,
-<code><a href="http://u.rl?service=WMS&amp;acceptVersions=1.3.0&amp;request=GetCapabilities&amp;time=2015-10-02T10:00:00Z&amp;elevation=150" class="bare">http://u.rl?service=WMS&amp;acceptVersions=1.3.0&amp;request=GetCapabilities&amp;time=2015-10-02T10:00:00Z&amp;elevation=150</a></code>.
+Note (EVOODAS-TN-GEO-4112 version 1.3.0 from 2017-10-24)" by GeoSolutions. The
+recommendation there is to use OWC ATOM <code>offering</code> elements linking to the EO
+Product in the respective service. Note that it also includes recommendations
+on how to structure these links in order to link to a single product. In short
+the recommendation is to link to a tailored Capabilities document like e.g.,
+<code><a href="http://u.rl?service=WMS&amp;acceptVersions=1.3.0&amp;request=GetCapabilities&amp;layers=S2" class="bare">http://u.rl?service=WMS&amp;acceptVersions=1.3.0&amp;request=GetCapabilities&amp;layers=S2</a></code>.
 This covers all links from OpenSearch to any other service.</p>
 </div>
 <div class="paragraph">
@@ -1809,6 +1894,8 @@ as well as data conversion information on <code>swe:Quantity</code> level.</p>
 <div class="sect1">
 <h2 id="coverage-collections">7. Coverage Collections</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_motivation">7.1. Motivation</h3>
 <div class="paragraph">
 <p>WCS originally was perceived to give access to single coverages taken from a
 flat set of coverage offerings on the server.</p>
@@ -1837,33 +1924,216 @@ which is able to perform a focused search within coverage subsets.</p>
 <p>With OGC Coverage Implementation Schema (CIS) 1.1 comes massively enhanced
 support for structuring coverages. Therefore, a harmonization task has to be
 accomplished to relate both concepts, which may well lead to an extension of
-functionality for fully exploiting all benefits.</p>
+functionality for fully exploiting all benefits. One standardization
+opportunity might be to generalize EO groupings, phase in CIS 1.1 concepts,
+and establish a general WCS grouping extension.</p>
+</div>
+<div class="paragraph">
+<p>A separate issue is how far recursion should be allowed: can a coverage
+grouping be part of another coverage grouping, with unlimited nesting? While
+the generality may be appealing it might pose severe extra complexity on
+implementations.</p>
 </div>
 <div class="paragraph">
 <p>In the following subsections, we discuss EO-relevant grouping concepts, based
 on CIS and EO-WCS.</p>
 </div>
+<div class="paragraph">
+<p>First, we address the special case of grouping coverages that share some
+critical common properties. Next, we generalize this to arbitrary groupings of
+coverages. Finally, we discuss registration issues.</p>
+</div>
+</div>
 <div class="sect2">
-<h3 id="grouping-of-associated-data">7.1. Grouping of Associated Data</h3>
+<h3 id="uniform-coverage-grouping">7.2. Uniform Coverage Grouping</h3>
 <div class="sect3">
-<h4 id="_overview_3">7.1.1. Overview</h4>
+<h4 id="_overview_3">7.2.1. Overview</h4>
 <div class="paragraph">
-<p>EO products are typically stored in single files, either using a special binary
-EO format like NetCDF or ENVISAT N1, a special EO container format like SAFE,
-e.g. Sentinel-2, or DIMAP, or a general container format like TAR or ZIP.
-Sometimes EO products are stored as multiple files directly, e.g. Landsat-8.</p>
+<p>Uniform Coverage Groupings represent sets of coverages which are homogeneous
+enough that they can collectively appear as a single coverage from a WCS
+perspective - in particular, such items are amenable to GetCoverage requests.
+Aside from their positioning in space/time through the domain set there is no
+other particular order defined on such coverage sets.</p>
 </div>
 <div class="paragraph">
-<p>Modeling the grouped data as coverage itself would directly allow GetCoverage
-requests but would require rather big changes to WCS. Thus we propose to follow
-and extend the approach already established in EO-WCS and reuse the concept of
-Dataset Series.</p>
+<p>Concretely, the requirements on the coverages contained in a Uniform Coverage
+Grouping are as follows (as a direct consequential of the definition of
+coverage):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>all coverages contained shall have the same coverage type (i.e.,
+combinations of Rectified and Referenceable Grid, or MultiPoint Coverages,
+are prohibited);</p>
+</li>
+<li>
+<p>all coverages contained shall have the same range type (whereby it needs to
+be clarified when two range types are equal - for example, band names might
+be not constitutive while quantity, unit of measure, and nil values likely
+are);</p>
+</li>
+<li>
+<p>all coverages contained shall have the same resolution;</p>
+</li>
+<li>
+<p>all coverages contained shall have the same CRS in their domain set (note
+that this is not technically necessary for the boundedBy element which gives
+an informal, not necessarily minimal bounding box for a quick location
+determination);</p>
+</li>
+<li>
+<p>for each direct position (i.e., pixel) in the spatial domain of the Uniform
+Coverage Grouping there shall be exactly one range value - in other words,
+there shall be no "holes" and no duplicate pixel values.</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>As a first step, the encoding of multiple coverages, potentially representing
-an EO Product, in a package format like TAR or ZIP is investigated. Given the
-new operation GetEOCoverageSet the only point missing is the inclusion of
-metadata on package level.</p>
+<p>In the context of EO-WCS, the coverage subtype <code>StitchedMosaic</code> implements the
+Uniform Coverage Grouping.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_concept_for_uniform_coverage_groupings">7.2.2. A Concept for Uniform Coverage Groupings</h4>
+<div class="paragraph">
+<p>TODO
+    Idea: Derive DatasetSeries subtype where rangeType is fixed for all
+    included coverages (maybe using schematron?). Make sure that this subtype
+    is substitutable (substitutionGroup?) and instances still validate against
+    EO-WCS 1.1 schemas.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_coverage_groupings_in_cis_1_1_versus_eo_wcs_1_1">7.2.3. Coverage Groupings in CIS 1.1 versus EO-WCS 1.1</h4>
+<div class="paragraph">
+<p>CIS 1.1 offers a conformance class, <code>coverage-partitioning</code>, which allows
+splitting a coverage into pieces - in other words, a coverage can be composed
+from sub-coverages. This nesting of coverages actually is recursive, allowing
+to establish hierarchically nested coverages.</p>
+</div>
+<div class="paragraph">
+<p>As the new partitioning functionality of CIS 1.1 still defines a - partitioned
+- coverage the same homogeneity criteria must hold as for "atomic" coverages:
+they must have a common range type and domain set CRS, and common range
+components ("bands", "variables") must not overlap. Note that the latter
+constraint allows that different sub-coverages can overlap in their domain
+set, but only when contributing to different range components; this way, bands
+stored in single files, for example, can be assembled into multi-band
+coverages.</p>
+</div>
+<div class="paragraph">
+<p>EO-WCS, in comparison, allows coverages to overlap in a grouping, both in
+DatasetSeries as well as StitchedMosaics. In the latter, StitchedMosaics, the
+extra concept of a "contributing footprint" captures the overlap by indicating
+which pixel contributes to the coverage - effectively, the contributing
+footprint acts like a mask blanking out parts of a coverage, thereby achieving
+a unique pixel for each position while retaining overlap information. This -
+more involved - concept is not directly supported by the CIS 1.1 partitioning.</p>
+</div>
+<div class="paragraph">
+<p>Obviously, there is a strong resemblance of concepts between CIS 1.1 and EO-
+WCS 1.1. We therefore propose to carefully review forthcoming CIS 1.1 and how
+far it accomplishes the grouping concepts proposed in this section.</p>
+</div>
+<div class="paragraph">
+<p>Further, it should be noted that CIS 1.1 foresees a general object about which
+no further normative constraints are made. Collections of coverages could be
+derived from such objects if deemed feasible.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_modeling_of_grouping_data_and_operations">7.2.4. Modeling of Grouping Data and Operations</h4>
+<div class="paragraph">
+<p>To capture as much of the semantics of such groupings - and hence ensure
+integrity at the highest possible level - schematron can be used. The
+following consistency constraints seem addressable:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>require the same coverage type, range type, CRS on all items contained in
+the grouping;</p>
+</li>
+<li>
+<p>require the same resolution (this information, though, is directly
+accessible only in CIS 1.1; in GMLCOV/CIS 1.0 it can only be computed
+through means beyond schematron); The final constraint - non-overlapping
+sub-coverages and no "holes" in super-coverage - can only be solved
+algorithmically, not through schematron - in particular, in presence of
+"contributing footprint" polygons as per EO-WCS.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In terms of operations, a Uniform Coverage Grouping needs to allow a
+GetCoverage request. The result might be a "consolidated" flat coverage
+reassembled from the sub-coverages, or a collection retaining those original
+or cropped sub-coverages selected by the GetCoverage subsetting request.
+Further, subset extraction is meaningful for obtaining particular sub-
+coverages; in EO-WCS, this is accomplished through the DescribeEOCoverageSet
+request type.</p>
+</div>
+<div class="paragraph">
+<p>Note that CIS 1.1 allows any suitable container format (such as zip, SAFE,
+etc.), thereby making delivery of "packages" representing Uniform Coverage
+Groupings flexible and user-oriented.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_general_grouping_of_coverages">7.3. General Grouping of Coverages</h3>
+<div class="sect3">
+<h4 id="_concept">7.3.1. Concept</h4>
+<div class="paragraph">
+<p>Generalizing the uniform grouping from above, coverages can be aggregated into
+some topical information collection without any constraints of the elements
+grouped, and without the need of them to form a single super-coverage.</p>
+</div>
+<div class="paragraph">
+<p>For example, EO products are typically stored in single files, either using a
+special binary EO format like NetCDF or ENVISAT N1, a special EO container
+format like SAFE, e.g. Sentinel-2, or DIMAP, or a general container format
+like TAR or ZIP. Sometimes EO products are stored as multiple files, e.g.,
+sets of Landsat-8 files.</p>
+</div>
+<div class="paragraph">
+<p>Modeling such grouped data as a coverage and allow GetCoverage requests would
+conceptually break the coverage definition and would also overburden WCS,
+rendering it impractical. Thus we propose to follow and extend the approach
+already established in EO-WCS and enhance the concept of <code>DatasetSeries</code> to
+incorporate the additional requirements that have come up to grasp more
+application semantics:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>constrain participating coverages in their types; for example, a collection
+representing a product may consist of several hyperspectral images forming a
+timeseries, plus one binary mask; this can be expressed, for example, via
+schematron;</p>
+</li>
+<li>
+<p>restrict the range set, e.g., to particular bands; again, schematron can be
+used for this;</p>
+</li>
+<li>
+<p>Further, the OpenSearch EO Extension imposes a restriction in that it
+supports only two levels of grouping. Translated into the DatasetSeries
+modeling this means that a DatasetSeries cannot contain a DatasetSeries
+containing DatasetSeries itself. This can again be expressed through
+Schematron.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="grouping-of-associated-data">7.3.2. Encoding and Grouping of Associated Data</h4>
+<div class="paragraph">
+<p>We now address the encoding of multiple coverages, potentially representing an
+EO Product, in a package format like TAR or ZIP. Given the new operation
+GetEOCoverageSet the only point missing is the inclusion of metadata on
+package level.</p>
 </div>
 <div class="paragraph">
 <p>Basically the EOMetadata element has been amended to be in the
@@ -2049,63 +2319,24 @@ browses, masks, etc.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="collection-and-product-registration">7.2. Collection and Product Registration</h3>
-<div class="sect3">
-<h4 id="_overview_4">7.2.1. Overview</h4>
+<h3 id="collection-and-product-registration">7.4. Collection and Product Registration</h3>
 <div class="paragraph">
-<p>We propose to include a high level description of a HTTP REST API to
-programmatic register collections and products in ODA Systems.</p>
+<p>So far, access to coverages and groupings has been discussed. However, with
+WCS-T Web-based maintenance of coverage offerings is possible, including
+insertion, update, and deletion of coverages. This functionality might get
+extended with maintenance operations on coverage collections.</p>
 </div>
 <div class="paragraph">
-<p>The API needs to specify the request and response structure as well as the
-payloads. Both, particularly the payload, depend heavily on the functionality
-available in concrete implementations. Thus we propose to evaluate the
-suitability to specify collection and product registration including
-suitability to specify a minimal set of services an ODA System has to support.</p>
+<p>Essentially, this would include creation and removal of collections, inclusion
+of coverages into an existing collection as well as excluding selected
+coverages, and maybe more.</p>
 </div>
 <div class="paragraph">
-<p>The GeoServer REST API 20 serves as basis for our proposal.</p>
+<p>Relevant existing approaches should be considered appropriately, such as the
+GeoServer REST API 2.0.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="uniform-coverage-grouping">7.3. Uniform Coverage Grouping</h3>
-<div class="sect3">
-<h4 id="_overview_5">7.3.1. Overview</h4>
-<div class="paragraph">
-<p>We propose to carefully review to which extent the forthcoming CIS 1.1 is
-prepared for this. CIS 1.1 offers a conformance class, coverage-partitioning,
-which allows splitting a coverage into pieces - in other words, a coverage can
-be composed from sub-coverages. This nesting of coverages actually is recursive,
-allowing to establish hierarchically nested coverages.</p>
-</div>
-<div class="paragraph">
-<p>As the new partitioning functionality of CIS 1.1 still defines a - partitioned -
-coverage the same homogeneity criteria hold as for "atomic" coverages: they must
-have a common range type and common range components ("bands", "variables") must
-not overlap. The latter means: different sub-coverages can overlap only when
-contributing to different range components. EO-WCS, on the contrary, allows
-coverages to overlap in a grouping, both in DatasetSeries as well as
-StitchedMosaics.</p>
-</div>
-<div class="paragraph">
-<p>In the latter, StitchedMosaics, the extra concept of a "contributing footprint"
-captures the overlap by indicating which pixel contributes to the coverage -
-effectively, the contributing footprint acts like a mask blanking out parts of a
-coverage, thereby achieving a unique pixel for each position while retaining
-overlap information. This - more involved - concept is not directly supported by
-the CIS 1.1 partitioning.</p>
-</div>
-<div class="paragraph">
-<p>TODO
-    Idea: Derive DatasetSeries subtype where rangeType is fixed for all included
-    coverages (maybe using schematron?). Make sure that this subtype is
-    substitutable (substitutionGroup?) and instances still validate against EO-
-    WCS 1.1 schemas.</p>
-</div>
 </div>
 </div>
 </div>
@@ -2114,13 +2345,21 @@ the CIS 1.1 partitioning.</p>
 <h2 id="condense-coverage-description-information">8. Condense Coverage Description Information</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_6">8.1. Overview</h3>
+<h3 id="_overview_4">8.1. Overview</h3>
 <div class="paragraph">
 <p>OpenSearch is the designated EVO-ODAS endorsed search service. Thus we propose
 to extend OpenSearch in a way to allow clients to specify the verbosity of the
-answer using a new parameter named <code>view</code>. Several allowed values are defined
-in that proposal ranging from <code>full</code> for everything to <code>geotime</code> for a very
-limited view only including id, name, bbox, start, and end.</p>
+answer.</p>
+</div>
+<div class="paragraph">
+<p>Below we draft the usage of a new parameter named <code>view</code>. Alternatively the
+suitability of the OpenSearch SRU (Search and Retrieval via URL) extension
+should be investigated.</p>
+</div>
+<div class="paragraph">
+<p>Several allowed values are defined in that proposal ranging from <code>full</code> for
+everything to <code>geotime</code> for a very limited view only including id, name, bbox,
+start, and end.</p>
 </div>
 <div class="paragraph">
 <p>Additionally, there is the idea of adding histogram like functionality i.e.,
@@ -2288,7 +2527,7 @@ footprint in EPSG:4326, start time, and end time.</p>
 <h2 id="wcs-masking-extension">9. WCS Masking Extension</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_overview_7">9.1. Overview</h3>
+<h3 id="_overview_5">9.1. Overview</h3>
 <div class="paragraph">
 <p>We propose to extend the GetCoverage request with parameters to request a
 masking via a mask coverage or polygons e.g. given as GeoJSON or shapefile. The
@@ -2299,8 +2538,8 @@ directly in the request in case of polygons as WKT.</p>
 <p>The response shall use a defined NoData value for areas outside of the mask.</p>
 </div>
 <div class="paragraph">
-<p>In the frame of EVO-ODAS this will be described in the EO Data Access Best
-Practice. Later on this might be promoted to an actual WCS extension.</p>
+<p>This will be described first in the EO Data Access Best Practice at hand.
+Later on this might be promoted to an actual WCS extension.</p>
 </div>
 <div class="paragraph">
 <p>TODO</p>
@@ -2395,7 +2634,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-10-17 15:02:10 CEST
+Last updated 2017-11-06 14:46:00 CET
 </div>
 </div>
 <script type="text/x-mathjax-config">
