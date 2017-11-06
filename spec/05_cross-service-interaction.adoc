@@ -24,13 +24,12 @@ using the same TIME parameter value.
 
 First explicit linking recommendations are given in the "EVO-ODAS
 Recommendation on building a discovery interface using OpenSearch Technical
-Note" [RD49] by GeoSolutions. The recommendation there is to use `link`
-elements with a `rel` attribute of value `wms` ,`wmts`, `wcs`, `wfs`, or
-`ds-eo` in Atom results to link to the EO Product in the respective service.
-Note that it also includes recommendations on how to structure these links in
-order to link to a single product. In short the recommendation is to link to a
-tailored Capabilities document like e.g.,
-`http://u.rl?service=WMS&acceptVersions=1.3.0&request=GetCapabilities&time=2015-10-02T10:00:00Z&elevation=150`.
+Note (EVOODAS-TN-GEO-4112 version 1.3.0 from 2017-10-24)" by GeoSolutions. The
+recommendation there is to use OWC ATOM `offering` elements linking to the EO
+Product in the respective service. Note that it also includes recommendations
+on how to structure these links in order to link to a single product. In short
+the recommendation is to link to a tailored Capabilities document like e.g.,
+`http://u.rl?service=WMS&acceptVersions=1.3.0&request=GetCapabilities&layers=S2`.
 This covers all links from OpenSearch to any other service.
 
 In the same way recommendations will be given from (EO-)WMS, WMTS, (EO-)WCS,
