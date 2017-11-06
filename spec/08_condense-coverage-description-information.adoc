@@ -5,9 +5,15 @@
 
 OpenSearch is the designated EVO-ODAS endorsed search service. Thus we propose
 to extend OpenSearch in a way to allow clients to specify the verbosity of the
-answer using a new parameter named `view`. Several allowed values are defined
-in that proposal ranging from `full` for everything to `geotime` for a very
-limited view only including id, name, bbox, start, and end.
+answer.
+
+Below we draft the usage of a new parameter named `view`. Alternatively the
+suitability of the OpenSearch SRU (Search and Retrieval via URL) extension
+should be investigated.
+
+Several allowed values are defined in that proposal ranging from `full` for
+everything to `geotime` for a very limited view only including id, name, bbox,
+start, and end.
 
 Additionally, there is the idea of adding histogram like functionality i.e.,
 requesting summary information for defined buckets like months.
