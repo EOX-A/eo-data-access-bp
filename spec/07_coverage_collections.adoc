@@ -1,6 +1,8 @@
 [#coverage-collections,reftext='7']
 == Coverage Collections
 
+=== Motivation
+
 WCS originally was perceived to give access to single coverages taken from a
 flat set of coverage offerings on the server.
 
@@ -23,30 +25,163 @@ which is able to perform a focused search within coverage subsets.
 With OGC Coverage Implementation Schema (CIS) 1.1 comes massively enhanced
 support for structuring coverages. Therefore, a harmonization task has to be
 accomplished to relate both concepts, which may well lead to an extension of
-functionality for fully exploiting all benefits.
+functionality for fully exploiting all benefits. One standardization
+opportunity might be to generalize EO groupings, phase in CIS 1.1 concepts,
+and establish a general WCS grouping extension.
+
+A separate issue is how far recursion should be allowed: can a coverage
+grouping be part of another coverage grouping, with unlimited nesting? While
+the generality may be appealing it might pose severe extra complexity on
+implementations.
 
 In the following subsections, we discuss EO-relevant grouping concepts, based
 on CIS and EO-WCS.
 
-[#grouping-of-associated-data,reftext='7.1']
-=== Grouping of Associated Data
+First, we address the special case of grouping coverages that share some
+critical common properties. Next, we generalize this to arbitrary groupings of
+coverages. Finally, we discuss registration issues.
+
+[#uniform-coverage-grouping,reftext='6.3']
+=== Uniform Coverage Grouping
 
 ==== Overview
 
-EO products are typically stored in single files, either using a special binary
-EO format like NetCDF or ENVISAT N1, a special EO container format like SAFE,
-e.g. Sentinel-2, or DIMAP, or a general container format like TAR or ZIP.
-Sometimes EO products are stored as multiple files directly, e.g. Landsat-8.
+Uniform Coverage Groupings represent sets of coverages which are homogeneous
+enough that they can collectively appear as a single coverage from a WCS
+perspective - in particular, such items are amenable to GetCoverage requests.
+Aside from their positioning in space/time through the domain set there is no
+other particular order defined on such coverage sets.
 
-Modeling the grouped data as coverage itself would directly allow GetCoverage
-requests but would require rather big changes to WCS. Thus we propose to follow
-and extend the approach already established in EO-WCS and reuse the concept of
-Dataset Series.
+Concretely, the requirements on the coverages contained in a Uniform Coverage
+Grouping are as follows (as a direct consequential of the definition of
+coverage):
 
-As a first step, the encoding of multiple coverages, potentially representing
-an EO Product, in a package format like TAR or ZIP is investigated. Given the
-new operation GetEOCoverageSet the only point missing is the inclusion of
-metadata on package level.
+* all coverages contained shall have the same coverage type (i.e.,
+  combinations of Rectified and Referenceable Grid, or MultiPoint Coverages,
+  are prohibited);
+* all coverages contained shall have the same range type (whereby it needs to
+  be clarified when two range types are equal - for example, band names might
+  be not constitutive while quantity, unit of measure, and nil values likely
+  are);
+* all coverages contained shall have the same resolution;
+* all coverages contained shall have the same CRS in their domain set (note
+  that this is not technically necessary for the boundedBy element which gives
+  an informal, not necessarily minimal bounding box for a quick location
+  determination);
+* for each direct position (i.e., pixel) in the spatial domain of the Uniform
+  Coverage Grouping there shall be exactly one range value - in other words,
+  there shall be no "holes" and no duplicate pixel values.
+
+In the context of EO-WCS, the coverage subtype `StitchedMosaic` implements the
+Uniform Coverage Grouping.
+
+==== A Concept for Uniform Coverage Groupings
+
+TODO
+    Idea: Derive DatasetSeries subtype where rangeType is fixed for all
+    included coverages (maybe using schematron?). Make sure that this subtype
+    is substitutable (substitutionGroup?) and instances still validate against
+    EO-WCS 1.1 schemas.
+
+==== Coverage Groupings in CIS 1.1 versus EO-WCS 1.1
+
+CIS 1.1 offers a conformance class, `coverage-partitioning`, which allows
+splitting a coverage into pieces - in other words, a coverage can be composed
+from sub-coverages. This nesting of coverages actually is recursive, allowing
+to establish hierarchically nested coverages.
+
+As the new partitioning functionality of CIS 1.1 still defines a - partitioned
+- coverage the same homogeneity criteria must hold as for "atomic" coverages:
+they must have a common range type and domain set CRS, and common range
+components ("bands", "variables") must not overlap. Note that the latter
+constraint allows that different sub-coverages can overlap in their domain
+set, but only when contributing to different range components; this way, bands
+stored in single files, for example, can be assembled into multi-band
+coverages.
+
+EO-WCS, in comparison, allows coverages to overlap in a grouping, both in
+DatasetSeries as well as StitchedMosaics. In the latter, StitchedMosaics, the
+extra concept of a "contributing footprint" captures the overlap by indicating
+which pixel contributes to the coverage - effectively, the contributing
+footprint acts like a mask blanking out parts of a coverage, thereby achieving
+a unique pixel for each position while retaining overlap information. This -
+more involved - concept is not directly supported by the CIS 1.1 partitioning.
+
+Obviously, there is a strong resemblance of concepts between CIS 1.1 and EO-
+WCS 1.1. We therefore propose to carefully review forthcoming CIS 1.1 and how
+far it accomplishes the grouping concepts proposed in this section.
+
+Further, it should be noted that CIS 1.1 foresees a general object about which
+no further normative constraints are made. Collections of coverages could be
+derived from such objects if deemed feasible.
+
+==== Modeling of Grouping Data and Operations
+
+To capture as much of the semantics of such groupings - and hence ensure
+integrity at the highest possible level - schematron can be used. The
+following consistency constraints seem addressable:
+
+* require the same coverage type, range type, CRS on all items contained in
+  the grouping;
+* require the same resolution (this information, though, is directly
+  accessible only in CIS 1.1; in GMLCOV/CIS 1.0 it can only be computed
+  through means beyond schematron); The final constraint - non-overlapping
+  sub-coverages and no "holes" in super-coverage - can only be solved
+  algorithmically, not through schematron - in particular, in presence of
+  "contributing footprint" polygons as per EO-WCS.
+
+In terms of operations, a Uniform Coverage Grouping needs to allow a
+GetCoverage request. The result might be a "consolidated" flat coverage
+reassembled from the sub-coverages, or a collection retaining those original
+or cropped sub-coverages selected by the GetCoverage subsetting request.
+Further, subset extraction is meaningful for obtaining particular sub-
+coverages; in EO-WCS, this is accomplished through the DescribeEOCoverageSet
+request type.
+
+Note that CIS 1.1 allows any suitable container format (such as zip, SAFE,
+etc.), thereby making delivery of "packages" representing Uniform Coverage
+Groupings flexible and user-oriented.
+
+=== General Grouping of Coverages
+
+==== Concept
+
+Generalizing the uniform grouping from above, coverages can be aggregated into
+some topical information collection without any constraints of the elements
+grouped, and without the need of them to form a single super-coverage.
+
+For example, EO products are typically stored in single files, either using a
+special binary EO format like NetCDF or ENVISAT N1, a special EO container
+format like SAFE, e.g. Sentinel-2, or DIMAP, or a general container format
+like TAR or ZIP. Sometimes EO products are stored as multiple files, e.g.,
+sets of Landsat-8 files.
+
+Modeling such grouped data as a coverage and allow GetCoverage requests would
+conceptually break the coverage definition and would also overburden WCS,
+rendering it impractical. Thus we propose to follow and extend the approach
+already established in EO-WCS and enhance the concept of `DatasetSeries` to
+incorporate the additional requirements that have come up to grasp more
+application semantics:
+
+* constrain participating coverages in their types; for example, a collection
+  representing a product may consist of several hyperspectral images forming a
+  timeseries, plus one binary mask; this can be expressed, for example, via
+  schematron;
+* restrict the range set, e.g., to particular bands; again, schematron can be
+  used for this;
+* Further, the OpenSearch EO Extension imposes a restriction in that it
+  supports only two levels of grouping. Translated into the DatasetSeries
+  modeling this means that a DatasetSeries cannot contain a DatasetSeries
+  containing DatasetSeries itself. This can again be expressed through
+  Schematron.
+
+[#grouping-of-associated-data,reftext='7.1']
+==== Encoding and Grouping of Associated Data
+
+We now address the encoding of multiple coverages, potentially representing an
+EO Product, in a package format like TAR or ZIP. Given the new operation
+GetEOCoverageSet the only point missing is the inclusion of metadata on
+package level.
 
 Basically the EOMetadata element has been amended to be in the
 `substitutionGroup` of `ows:AbstractMetaData` and the choice is extended by
@@ -221,50 +356,16 @@ browses, masks, etc.
 [#collection-and-product-registration,reftext='6.2']
 === Collection and Product Registration
 
-==== Overview
+So far, access to coverages and groupings has been discussed. However, with
+WCS-T Web-based maintenance of coverage offerings is possible, including
+insertion, update, and deletion of coverages. This functionality might get
+extended with maintenance operations on coverage collections.
 
-We propose to include a high level description of a HTTP REST API to
-programmatic register collections and products in ODA Systems.
+Essentially, this would include creation and removal of collections, inclusion
+of coverages into an existing collection as well as excluding selected
+coverages, and maybe more.
 
-The API needs to specify the request and response structure as well as the
-payloads. Both, particularly the payload, depend heavily on the functionality
-available in concrete implementations. Thus we propose to evaluate the
-suitability to specify collection and product registration including
-suitability to specify a minimal set of services an ODA System has to support.
-
-The GeoServer REST API 20 serves as basis for our proposal.
-
-TODO
-
-
-[#uniform-coverage-grouping,reftext='6.3']
-=== Uniform Coverage Grouping
-
-==== Overview
-
-We propose to carefully review to which extent the forthcoming CIS 1.1 is
-prepared for this. CIS 1.1 offers a conformance class, coverage-partitioning,
-which allows splitting a coverage into pieces - in other words, a coverage can
-be composed from sub-coverages. This nesting of coverages actually is recursive,
-allowing to establish hierarchically nested coverages.
-
-As the new partitioning functionality of CIS 1.1 still defines a - partitioned -
-coverage the same homogeneity criteria hold as for "atomic" coverages: they must
-have a common range type and common range components ("bands", "variables") must
-not overlap. The latter means: different sub-coverages can overlap only when
-contributing to different range components. EO-WCS, on the contrary, allows
-coverages to overlap in a grouping, both in DatasetSeries as well as
-StitchedMosaics.
-
-In the latter, StitchedMosaics, the extra concept of a "contributing footprint"
-captures the overlap by indicating which pixel contributes to the coverage -
-effectively, the contributing footprint acts like a mask blanking out parts of a
-coverage, thereby achieving a unique pixel for each position while retaining
-overlap information. This - more involved - concept is not directly supported by
-the CIS 1.1 partitioning.
+Relevant existing approaches should be considered appropriately, such as the
+GeoServer REST API 2.0.
 
 TODO
-    Idea: Derive DatasetSeries subtype where rangeType is fixed for all included
-    coverages (maybe using schematron?). Make sure that this subtype is
-    substitutable (substitutionGroup?) and instances still validate against EO-
-    WCS 1.1 schemas.
