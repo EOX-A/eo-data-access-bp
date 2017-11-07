@@ -375,7 +375,7 @@ are: OpenSearch, WMS, WMTS, WCS, and DS-EO.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>There is a proposal available in the "EVO-ODAS Recommendation on building a
+<p>There is a proposal available in the: "EVO-ODAS Recommendation on building a
 discovery interface using OpenSearch Technical Note (EVOODAS-TN-GEO-4112
 version 1.3.0 from 2017-10-24)" developed in parallel by GeoSolutions on how
 to address this item for linking from OpenSearch to the other services.</p>
@@ -418,6 +418,26 @@ modern web based applications.</p>
 investigated for suitability. Alternatively the already drafted usage of a new
 parameter named <code>view</code> needs to be further pursued and elaborated.</p>
 </div>
+<div class="paragraph">
+<p>Additionally the proposal for the item Explore Coverages by Dimension right
+below holds some interesting concepts also for this item like the GetHistogram
+request.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Explore Coverages by Dimension</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>There is a proposal for compact domain inspection and histogram generation
+available in the: "EVO-ODAS Multidimensional WMTS domain discovery Technical
+Note (EVOODAS-TN-GEO-4111_WMTS version 1.0 from 2016-05-23)". This work has
+already been presented to OGC&#8217;s WMS SWG. We propose to pursue the adoption of
+this document in the WMS SWG and in parallel validate and document the usage
+in the EO domain in the present Best Practice document.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -428,6 +448,101 @@ retrieving non-rectangular subsets of coverages from WCS.</p>
 </div>
 <div class="paragraph">
 <p>This needs to be drafted.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Filtering via Common Query Language (CQL)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Sometimes it would be interesting to being able to filter the responses from
+certain services like for example OpenSearch and WMS in the same way. This
+means that in the WMS GetMap request only those products are rendered that are
+also returned via an OpenSearch query. A nice way to accomplish this is
+allowing to use a specific parameter called for examples <code>cql_filter</code> in all
+services where this functionality is needed. The value of this parameter could
+hold any valid CQL query and thus when using the same query on different
+services accomplishes the desired behavior.</p>
+</div>
+<div class="paragraph">
+<p>This solution has been tested and verified to some extend in the EVO-ODAS
+initiative. The next step would be formal documentation that could be part of
+this Best Practice document.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Integration of Access and Processing Services</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Access and processing services both need to be located near the storage
+facilities to improve the performance when working on large EO time series.
+Thus these services are often available on top of the same data. It needs to
+be investigated how access services can effectively utilize and interface with
+the processing infrastructure and algorithms for user-defined information
+extraction. Furthermore a standardized procedure and interface is needed to
+reference EO products from discovery and access services as input to
+processing, so that a user can execute a process based on the results of a
+previous product search.</p>
+</div>
+<div class="paragraph">
+<p>An idea to investigate is to use OpenSearch queries as exchange mechanism,
+i.e., to specify data input for WPS or WCS processing via WCPS.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cloud Optimized GeoTIFF (COG)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We recommend to review a recent proposal named Cloud Optimized GeoTIFF (COG,
+<a href="http://www.cogeo.org" class="bare">http://www.cogeo.org</a>) for suitability as an alternative way to download EO
+data.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Caching and tiling in WCS</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For certain use cases it is desirable to optimally support clients as well as
+intermediate nodes on the web in caching responses to WCS requests. Caching is
+an implementation detail most HTTP software has natively build in using a
+certain set of HTTP headers to control behavior. However, this caching is not
+available when using query strings as in KVP encoding or POST requests. Thus,
+for caching, the invocation via REST potentially using JSON encoding is of
+high interest.</p>
+</div>
+<div class="paragraph">
+<p>In OGC discussions about a Web Coverage Tile Service (WCTS) have started in a
+dedicated working group. Most likely this service will include considerations
+about caching which should be evaluated and harmonized.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Asynchronous Requests Extension</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Support for asynchronous requests for example for large downloads via
+GetCoverage or uploads via InsertCoverage that potentially need long
+processing times on the server is currently not available in WCS.</p>
+</div>
+<div class="paragraph">
+<p>We propose to review the simple approach taken in DS-EO for suitability and
+develop a WCS extension to support asynchronous requests. Note that as per OAB
+and agreed by WPS experts, a bridging WCS-WPS Application Profile is not a
+suitable option.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2634,7 +2749,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-06 14:46:00 CET
+Last updated 2017-11-07 12:01:47 CET
 </div>
 </div>
 <script type="text/x-mathjax-config">
