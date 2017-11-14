@@ -176,10 +176,11 @@ Presently, this document is a living document until officially submitted to
 OGC seeking formal adoption. Below is a list of items that are currently
 worked on or that could be worked on in future activities.
 
-* <<cross-service-interaction,Cross Service Interaction>> - Detailing how to
-  structure the data offered in the various services as well as how to
-  explicitly link between those services. The OGC services under consideration
-  are: OpenSearch, WMS, WMTS, WCS, and DS-EO.
+=== <<cross-service-interaction,Cross Service Interaction>>
+
+Detailing how to structure the data offered in the various services as well as
+how to explicitly link between those services. The OGC services under
+consideration are: OpenSearch, WMS, WMTS, WCS, and DS-EO.
 
 There is a proposal available in the: "EVO-ODAS Recommendation on building a
 discovery interface using OpenSearch Technical Note (EVOODAS-TN-GEO-4112
@@ -188,8 +189,10 @@ to address this item for linking from OpenSearch to the other services.
 
 For the other linking mechanisms a proposal still needs to be worked on.
 
-* <<coverage-collections,Coverage Collections>> - Adding support for typical
-  EO concepts like multi-resolution products or cloud masks to OGC services.
+=== <<coverage-collections,Coverage Collections>>
+
+Adding support for typical EO concepts like multi-resolution products or cloud
+masks to OGC services including registration in those services.
 
 We propose to carefully review forthcoming CIS 1.1 against EO-WCS 1.1
 particularly how far it accomplishes the grouping concepts proposed in there.
@@ -201,9 +204,23 @@ Finally the <<collection-and-product-registration,Collection and Product
 Registration>> using a HTTP REST API for programmatic collection and product
 registration probably based on WCS-T needs to be drafted.
 
-* <<condense-coverage-description-information,Condense Coverage Description
-  Information>> - Applying performance optimizations to facilitate and enable
-  modern web based applications.
+Product registration has been tested in the EVO-ODAS initiative by defining
+the contents of a `product.zip` package and sending them to the HTTP REST API
+for registration. The contents are defined as:
+
+* `product.json` - Product metadata in GeoJSON format.
+* `granules.json` - Metadata linking to the actual data again in GeoJSON
+  `format.
+* `thumbnail.jpg` - An optional thumbnail image.
+* `metadata.xml` -  Optional EO-O&M formated metadata.
+* `owsLinks.json` - Optional links to OGC services including template tags in
+  `JSON format.
+* `description.html` - Optional description in HTML format.
+
+=== <<condense-coverage-description-information,Condense Coverage Description Information>>
+
+Applying performance optimizations to facilitate and enable modern web based
+applications.
 
 The OpenSearch SRU (Search and Retrieval via URL) extension needs to be
 investigated for suitability. Alternatively the already drafted usage of a new
@@ -213,7 +230,7 @@ Additionally the proposal for the item Explore Coverages by Dimension right
 below holds some interesting concepts also for this item like the GetHistogram
 request.
 
-* Explore Coverages by Dimension
+=== Explore Coverages by Dimension
 
 There is a proposal for compact domain inspection and histogram generation
 available in the: "EVO-ODAS Multidimensional WMTS domain discovery Technical
@@ -222,12 +239,14 @@ already been presented to OGC's WMS SWG. We propose to pursue the adoption of
 this document in the WMS SWG and in parallel validate and document the usage
 in the EO domain in the present Best Practice document.
 
-* <<wcs-masking-extension,WCS Masking Extension>> - Proposing support for
-  retrieving non-rectangular subsets of coverages from WCS.
+=== <<wcs-masking-extension,WCS Masking Extension>>
+
+Proposing support for retrieving non-rectangular subsets of coverages from
+WCS.
 
 This needs to be drafted.
 
-* Filtering via Common Query Language (CQL)
+=== Filtering via Common Query Language (CQL)
 
 Sometimes it would be interesting to being able to filter the responses from
 certain services like for example OpenSearch and WMS in the same way. This
@@ -242,7 +261,7 @@ This solution has been tested and verified to some extend in the EVO-ODAS
 initiative. The next step would be formal documentation that could be part of
 this Best Practice document.
 
-* Integration of Access and Processing Services
+=== Integration of Access and Processing Services
 
 Access and processing services both need to be located near the storage
 facilities to improve the performance when working on large EO time series.
@@ -257,13 +276,13 @@ previous product search.
 An idea to investigate is to use OpenSearch queries as exchange mechanism,
 i.e., to specify data input for WPS or WCS processing via WCPS.
 
-* Cloud Optimized GeoTIFF (COG)
+=== Cloud Optimized GeoTIFF (COG)
 
 We recommend to review a recent proposal named Cloud Optimized GeoTIFF (COG,
 http://www.cogeo.org) for suitability as an alternative way to download EO
 data.
 
-* Caching and tiling in WCS
+=== Caching and tiling in WCS
 
 For certain use cases it is desirable to optimally support clients as well as
 intermediate nodes on the web in caching responses to WCS requests. Caching is
@@ -277,7 +296,7 @@ In OGC discussions about a Web Coverage Tile Service (WCTS) have started in a
 dedicated working group. Most likely this service will include considerations
 about caching which should be evaluated and harmonized.
 
-* Asynchronous Requests Extension
+=== Asynchronous Requests Extension
 
 Support for asynchronous requests for example for large downloads via
 GetCoverage or uploads via InsertCoverage that potentially need long
@@ -288,8 +307,10 @@ develop a WCS extension to support asynchronous requests. Note that as per OAB
 and agreed by WPS experts, a bridging WCS-WPS Application Profile is not a
 suitable option.
 
-* A <<conclusions,summary>> for the intended use and benefits of EO-WCS 1.1 is
-  planned to be added.
+=== <<conclusions,Summary>>
+
+A <<conclusions,summary>> for the intended use and benefits of EO-WCS 1.1 is
+planned to be added.
 
 include::00_introduction.adoc[]
 
