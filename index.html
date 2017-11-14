@@ -151,7 +151,21 @@ procedures required by applicable law to make this license enforceable</p>
 <li><a href="#_submitting_organizations">Submitting organizations</a></li>
 <li><a href="#_document_contributor_contact_points">Document Contributor Contact Points</a></li>
 <li><a href="#_changes_to_the_ogc_abstract_specification">Changes to the OGC ® Abstract Specification</a></li>
-<li><a href="#_future_work">Future Work</a></li>
+<li><a href="#_future_work">Future Work</a>
+<ul class="sectlevel2">
+<li><a href="#__a_href_cross_service_interaction_cross_service_interaction_a"><a href="#cross-service-interaction">Cross Service Interaction</a></a></li>
+<li><a href="#__a_href_coverage_collections_coverage_collections_a"><a href="#coverage-collections">Coverage Collections</a></a></li>
+<li><a href="#__a_href_condense_coverage_description_information_condense_coverage_description_information_a"><a href="#condense-coverage-description-information">Condense Coverage Description Information</a></a></li>
+<li><a href="#_explore_coverages_by_dimension">Explore Coverages by Dimension</a></li>
+<li><a href="#__a_href_wcs_masking_extension_wcs_masking_extension_a"><a href="#wcs-masking-extension">WCS Masking Extension</a></a></li>
+<li><a href="#_filtering_via_common_query_language_cql">Filtering via Common Query Language (CQL)</a></li>
+<li><a href="#_integration_of_access_and_processing_services">Integration of Access and Processing Services</a></li>
+<li><a href="#_cloud_optimized_geotiff_cog">Cloud Optimized GeoTIFF (COG)</a></li>
+<li><a href="#_caching_and_tiling_in_wcs">Caching and tiling in WCS</a></li>
+<li><a href="#_asynchronous_requests_extension">Asynchronous Requests Extension</a></li>
+<li><a href="#__a_href_conclusions_summary_a"><a href="#conclusions">Summary</a></a></li>
+</ul>
+</li>
 <li><a href="#_foreword">Foreword</a></li>
 <li><a href="#_introduction">Introduction</a>
 <ul class="sectlevel2">
@@ -364,15 +378,12 @@ or by making suggested changes in an edited copy of this document.</p>
 OGC seeking formal adoption. Below is a list of items that are currently
 worked on or that could be worked on in future activities.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#cross-service-interaction">Cross Service Interaction</a> - Detailing how to
-structure the data offered in the various services as well as how to
-explicitly link between those services. The OGC services under consideration
-are: OpenSearch, WMS, WMTS, WCS, and DS-EO.</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="__a_href_cross_service_interaction_cross_service_interaction_a"><a href="#cross-service-interaction">Cross Service Interaction</a></h3>
+<div class="paragraph">
+<p>Detailing how to structure the data offered in the various services as well as
+how to explicitly link between those services. The OGC services under
+consideration are: OpenSearch, WMS, WMTS, WCS, and DS-EO.</p>
 </div>
 <div class="paragraph">
 <p>There is a proposal available in the: "EVO-ODAS Recommendation on building a
@@ -383,13 +394,12 @@ to address this item for linking from OpenSearch to the other services.</p>
 <div class="paragraph">
 <p>For the other linking mechanisms a proposal still needs to be worked on.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#coverage-collections">Coverage Collections</a> - Adding support for typical
-EO concepts like multi-resolution products or cloud masks to OGC services.</p>
-</li>
-</ul>
+</div>
+<div class="sect2">
+<h3 id="__a_href_coverage_collections_coverage_collections_a"><a href="#coverage-collections">Coverage Collections</a></h3>
+<div class="paragraph">
+<p>Adding support for typical EO concepts like multi-resolution products or cloud
+masks to OGC services including registration in those services.</p>
 </div>
 <div class="paragraph">
 <p>We propose to carefully review forthcoming CIS 1.1 against EO-WCS 1.1
@@ -404,14 +414,41 @@ described in the relevant section below.</p>
 Registration</a> using a HTTP REST API for programmatic collection and product
 registration probably based on WCS-T needs to be drafted.</p>
 </div>
+<div class="paragraph">
+<p>Product registration has been tested in the EVO-ODAS initiative by defining
+the contents of a <code>product.zip</code> package and sending them to the HTTP REST API
+for registration. The contents are defined as:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#condense-coverage-description-information">Condense Coverage Description
-Information</a> - Applying performance optimizations to facilitate and enable
-modern web based applications.</p>
+<p><code>product.json</code> - Product metadata in GeoJSON format.</p>
+</li>
+<li>
+<p><code>granules.json</code> - Metadata linking to the actual data again in GeoJSON
+`format.</p>
+</li>
+<li>
+<p><code>thumbnail.jpg</code> - An optional thumbnail image.</p>
+</li>
+<li>
+<p><code>metadata.xml</code> -  Optional EO-O&amp;M formated metadata.</p>
+</li>
+<li>
+<p><code>owsLinks.json</code> - Optional links to OGC services including template tags in
+`JSON format.</p>
+</li>
+<li>
+<p><code>description.html</code> - Optional description in HTML format.</p>
 </li>
 </ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="__a_href_condense_coverage_description_information_condense_coverage_description_information_a"><a href="#condense-coverage-description-information">Condense Coverage Description Information</a></h3>
+<div class="paragraph">
+<p>Applying performance optimizations to facilitate and enable modern web based
+applications.</p>
 </div>
 <div class="paragraph">
 <p>The OpenSearch SRU (Search and Retrieval via URL) extension needs to be
@@ -423,13 +460,9 @@ parameter named <code>view</code> needs to be further pursued and elaborated.</p
 below holds some interesting concepts also for this item like the GetHistogram
 request.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Explore Coverages by Dimension</p>
-</li>
-</ul>
 </div>
+<div class="sect2">
+<h3 id="_explore_coverages_by_dimension">Explore Coverages by Dimension</h3>
 <div class="paragraph">
 <p>There is a proposal for compact domain inspection and histogram generation
 available in the: "EVO-ODAS Multidimensional WMTS domain discovery Technical
@@ -438,24 +471,19 @@ already been presented to OGC&#8217;s WMS SWG. We propose to pursue the adoption
 this document in the WMS SWG and in parallel validate and document the usage
 in the EO domain in the present Best Practice document.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="#wcs-masking-extension">WCS Masking Extension</a> - Proposing support for
-retrieving non-rectangular subsets of coverages from WCS.</p>
-</li>
-</ul>
+</div>
+<div class="sect2">
+<h3 id="__a_href_wcs_masking_extension_wcs_masking_extension_a"><a href="#wcs-masking-extension">WCS Masking Extension</a></h3>
+<div class="paragraph">
+<p>Proposing support for retrieving non-rectangular subsets of coverages from
+WCS.</p>
 </div>
 <div class="paragraph">
 <p>This needs to be drafted.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Filtering via Common Query Language (CQL)</p>
-</li>
-</ul>
 </div>
+<div class="sect2">
+<h3 id="_filtering_via_common_query_language_cql">Filtering via Common Query Language (CQL)</h3>
 <div class="paragraph">
 <p>Sometimes it would be interesting to being able to filter the responses from
 certain services like for example OpenSearch and WMS in the same way. This
@@ -471,13 +499,9 @@ services accomplishes the desired behavior.</p>
 initiative. The next step would be formal documentation that could be part of
 this Best Practice document.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Integration of Access and Processing Services</p>
-</li>
-</ul>
 </div>
+<div class="sect2">
+<h3 id="_integration_of_access_and_processing_services">Integration of Access and Processing Services</h3>
 <div class="paragraph">
 <p>Access and processing services both need to be located near the storage
 facilities to improve the performance when working on large EO time series.
@@ -493,25 +517,17 @@ previous product search.</p>
 <p>An idea to investigate is to use OpenSearch queries as exchange mechanism,
 i.e., to specify data input for WPS or WCS processing via WCPS.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Cloud Optimized GeoTIFF (COG)</p>
-</li>
-</ul>
 </div>
+<div class="sect2">
+<h3 id="_cloud_optimized_geotiff_cog">Cloud Optimized GeoTIFF (COG)</h3>
 <div class="paragraph">
 <p>We recommend to review a recent proposal named Cloud Optimized GeoTIFF (COG,
 <a href="http://www.cogeo.org" class="bare">http://www.cogeo.org</a>) for suitability as an alternative way to download EO
 data.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Caching and tiling in WCS</p>
-</li>
-</ul>
 </div>
+<div class="sect2">
+<h3 id="_caching_and_tiling_in_wcs">Caching and tiling in WCS</h3>
 <div class="paragraph">
 <p>For certain use cases it is desirable to optimally support clients as well as
 intermediate nodes on the web in caching responses to WCS requests. Caching is
@@ -526,13 +542,9 @@ high interest.</p>
 dedicated working group. Most likely this service will include considerations
 about caching which should be evaluated and harmonized.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Asynchronous Requests Extension</p>
-</li>
-</ul>
 </div>
+<div class="sect2">
+<h3 id="_asynchronous_requests_extension">Asynchronous Requests Extension</h3>
 <div class="paragraph">
 <p>Support for asynchronous requests for example for large downloads via
 GetCoverage or uploads via InsertCoverage that potentially need long
@@ -544,13 +556,13 @@ develop a WCS extension to support asynchronous requests. Note that as per OAB
 and agreed by WPS experts, a bridging WCS-WPS Application Profile is not a
 suitable option.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
+</div>
+<div class="sect2">
+<h3 id="__a_href_conclusions_summary_a"><a href="#conclusions">Summary</a></h3>
+<div class="paragraph">
 <p>A <a href="#conclusions">summary</a> for the intended use and benefits of EO-WCS 1.1 is
 planned to be added.</p>
-</li>
-</ul>
+</div>
 </div>
 </div>
 </div>
@@ -2749,7 +2761,7 @@ EVO-ODAS</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-11-07 12:01:47 CET
+Last updated 2017-11-14 11:37:12 CET
 </div>
 </div>
 <script type="text/x-mathjax-config">
