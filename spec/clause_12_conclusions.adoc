@@ -1,4 +1,4 @@
-[#conclusions,reftext='10']
+[#conclusions,reftext='12']
 == Conclusions
 
 This section summarizes intended use and benefits of EO-WCS 1.1.

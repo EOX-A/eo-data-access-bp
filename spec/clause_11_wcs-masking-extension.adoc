@@ -1,4 +1,4 @@
-[#wcs-masking-extension,reftext='9']
+[#wcs-masking-extension,reftext='11']
 == WCS Masking Extension
 
 === Overview
