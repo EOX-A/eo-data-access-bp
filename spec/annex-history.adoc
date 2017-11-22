@@ -1,0 +1,11 @@
+[appendix]
+:appendix-caption: Annex
+== Revision History
+
+[#revision_history,reftext='{table-caption} {counter:table-num}']
+[width="90%",cols="2,1,2,3,4",options="header"]
+|===
+|Date       |Release |Editor        |Primary clauses modified |Description
+|TBD        |0.0.1   |Stephan Meißl |All |Draft proposal from ESA project
+EVO-ODAS
+|===

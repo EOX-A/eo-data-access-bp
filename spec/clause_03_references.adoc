@@ -1,0 +1,59 @@
+[#normative_references,reftext='3']
+== Normative references
+
+The following normative documents contain provisions that, through reference in
+this text, constitute provisions of this specification. For dated references,
+subsequent amendments to, or revisions of, any of these publications do not
+apply. For undated references, the latest edition of the normative document
+referred to applies.
+
+OGC 06-121r9, _OGC Web Services Common Standard_, version 2.0
+
+OGC 09-146r2, _OGC® Coverage Implementation Schema_ (renamed from _OGC®
+GML Application Schema - Coverages_), version 1.0
+
+OGC 09-110r4, _OGC® WCS 2.0 Interface Standard- Core: Corrigendum_, version
+2.0
+
+OGC 10-140r2, _OGC® Web Coverage Service 2.0 Interface Standard - Earth
+Observation Application Profile_, version 1.1
+
+OGC 11-053r1, _OGC® Web Coverage Service Interface Standard - CRS Extension_,
+version 1.0
+OGC 12-039, _OGC® Web Coverage Service Interface Standard - Scaling Extension_,
+version 1.0
+
+OGC 12-040, _OGC® Web Coverage Service Interface Standard - Range Subsetting
+Extension_, version 1.0
+
+OGC 12-049, _OGC® Web Coverage Service Interface Standard - Interpolation
+Extension_, version 1.0
+
+OGC 09-147r3, _OGC® Web Coverage Service 2.0 Interface Standard - KVP Protocol
+Binding Extension - Corrigendum_, version 1.0
+
+OGC 09-149r1, _OGC® Web Coverage Service 2.0 Interface Standard - XML/SOAP
+Protocol Binding Extension_, version 1.0
+
+OGC 12-100r1, _OGC® GML Application Schema - Coverages - GeoTIFF Coverage
+Encoding Profile_, version 1.0
+
+OGC 14-100r2, _OGC® CF-netCDF 3.0 encoding using GML Coverage Application
+Schema_, version 2.0
+
+OGC 12-108, _OGC® GML Application Schema - Coverages JPEG2000 Coverage Encoding
+Extension_, version 1.0
+
+OGC 10-157r4, _OGC® Earth Observation Metadata profile of Observations &
+Measurements_, version 1.1
+
+OGC 07-063r1, _OpenGIS® Web Map Services - Profile for EO Products_, version
+0.3.3
+
+_OpenSearch Parameter extension_, version 1.0 Draft 2, accessed 2016-43-20,
+http://www.opensearch.org/Specifications/OpenSearch/Extensions/Parameter/1.0/Draft_2
+
+OGC 13-026r8, _OGC® OpenSearch Extension for Earth Observation_, version 1.0
+
+OGC 13-043, _OGC Download Service for Earth Observation Products Best
+Practice_, version 1.0
